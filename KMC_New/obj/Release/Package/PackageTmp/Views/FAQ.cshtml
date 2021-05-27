@@ -1,0 +1,252 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.FAQ>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+
+<div class="container-fluid split-background" id="faq">
+    <div class="background-style">
+    </div>
+
+    <div class="container-fluid float-container">
+        <div class="container text-center">
+            @Html.Raw(Model.FAqheading)
+            <div class="spacer-lg"></div>
+        </div>
+
+        <!--Virrtual Office -->
+        <div class="container contents-box">
+            <div class="wrapper">
+                <h2 class="text-extrabold">Virtual Office Philippines</h2>
+
+                <div class="panel-group" id="accordion-virtual" role="tablist" aria-multiselectable="true">
+
+                    @{
+                        var virtualCount = 0;
+
+                        foreach (var category in Model.Children)
+                        {
+                            if (category.Name == "Virtual Office")
+                            {
+                                foreach (var items in category.Children)
+                                {
+                                    if (items.IsDocumentType("fAQContents"))
+                                    {
+                                        var faq = (FAqcontents)items;
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="heading-virtual_@virtualCount">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion-virtual" href="#collapse-virtual_@virtualCount" aria-expanded="true" aria-controls="collapse-virtual_@virtualCount">
+                                                        @faq.Question
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse-virtual_@virtualCount" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-virtual_@virtualCount">
+                                                <div class="panel-body">
+                                                    @Html.Raw(faq.Answer)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        virtualCount++;
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="spacer-lg"></div>
+        <!-- Careers -->
+        <div class="container contents-box">
+            <div class="wrapper">
+                <h2 class="text-extrabold">Careers</h2>
+
+                <div class="panel-group" id="accordion-careers" role="tablist" aria-multiselectable="true">
+                    @{
+                        var careersCount = 0;
+                        foreach (var category in Model.Children)
+                        {
+                            if (category.Name == "Careers")
+                            {
+                                foreach (var items in category.Children)
+                                {
+                                    if (items.IsDocumentType("fAQContents"))
+                                    {
+                                        var faq = (FAqcontents)items;
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="heading-careers_@careersCount">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion-careers" href="#collapse-careers_@careersCount" aria-expanded="true" aria-controls="collapse_@careersCount">
+                                                        @faq.Question
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse-careers_@careersCount" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-careers_@careersCount">
+                                                <div class="panel-body">
+                                                    @Html.Raw(faq.Answer)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        careersCount++;
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="spacer-lg"></div>
+        <!-- Serviced Offices &amp; Coworking Space -->
+        <div class="container contents-box">
+            <div class="wrapper">
+                <h2 class="text-extrabold">Serviced Offices &amp; Coworking Space</h2>
+
+                <div class="panel-group" id="accordion-serviced-offices" role="tablist" aria-multiselectable="true">
+                    @{
+                        var servicedCount = 0;
+                        foreach (var category in Model.Children)
+                        {
+                            if (category.Name == "Serviced Offices & Coworking Space")
+                            {
+                                foreach (var items in category.Children)
+                                {
+                                    if (items.IsDocumentType("fAQContents"))
+                                    {
+                                        var faq = (FAqcontents)items;
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="heading-serviced-offices_@servicedCount">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion-serviced-offices" href="#collapse-serviced-offices_@servicedCount" aria-expanded="true" aria-controls="collapse-serviced-offices_@servicedCount">
+                                                        @faq.Question
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse-serviced-offices_@servicedCount" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-serviced-offices_@servicedCount">
+                                                <div class="panel-body">
+                                                    @Html.Raw(faq.Answer)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        servicedCount++;
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="spacer-lg"></div>
+        <!-- Coworking -->
+        <div class="container contents-box">
+            <div class="wrapper">
+                <h2 class="text-extrabold">Coworking</h2>
+
+                <div class="panel-group" id="accordion-coworking" role="tablist" aria-multiselectable="true">
+                    @{
+                        var coworkingCount = 0;
+                        foreach (var category in Model.Children)
+                        {
+                            if (category.Name == "Coworking")
+                            {
+                                foreach (var items in category.Children)
+                                {
+                                    if (items.IsDocumentType("fAQContents"))
+                                    {
+                                        var faq = (FAqcontents)items;
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="heading-coworking_@coworkingCount">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion-coworking" href="#collapse-coworking_@coworkingCount" aria-expanded="true" aria-controls="collapse-coworking_@coworkingCount">
+                                                        @faq.Question
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse-coworking_@coworkingCount" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-coworking_@coworkingCount">
+                                                <div class="panel-body">
+                                                    @Html.Raw(faq.Answer)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        coworkingCount++;
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="spacer-lg"></div>
+
+        <!-- Staff Augmentation -->
+        <div class="container contents-box">
+            <div class="wrapper">
+                <h2 class="text-extrabold">Staff Augmentation</h2>
+
+                <div class="panel-group" id="accordion-staff-augmentation" role="tablist" aria-multiselectable="true">
+                    @{
+                        var staffCount = 0;
+                        foreach (var category in Model.Children)
+                        {
+                            if (category.Name == "Staff Augmentation")
+                            {
+                                foreach (var items in category.Children)
+                                {
+                                    if (items.IsDocumentType("fAQContents"))
+                                    {
+                                        var faq = (FAqcontents)items;
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="heading-staff_@staffCount">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion-staff-augmentation" href="#collapse-staff_@staffCount" aria-expanded="true" aria-controls="collapse-staff_@staffCount">
+                                                        @faq.Question
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse-staff_@staffCount" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-staff_@staffCount">
+                                                <div class="panel-body">
+                                                    @Html.Raw(faq.Answer)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        staffCount++;
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $('.panel-collapse').on('show.bs.collapse', function () {
+            $(this).siblings('.panel-heading').addClass('active');
+        });
+
+        $('.panel-collapse').on('hide.bs.collapse', function () {
+            $(this).siblings('.panel-heading').removeClass('active');
+        });
+    </script>
+}

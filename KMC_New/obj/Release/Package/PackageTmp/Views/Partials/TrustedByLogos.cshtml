@@ -1,0 +1,43 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var selection = Model.AncestorOrSelf("home");
+    var home = (Home)selection;
+}
+
+<div class="container-fluid" id="trustedBySection">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 my-auto">
+                <h2 class="text-extrabold">Supporting International Business Growth for</h2>
+            </div>
+            <div class="col-12 col-sm-12 col-md-1 col-lg-1 my-auto">
+
+            </div>
+            <div class="col-12 col-sm-12 col-md-7 col-lg-7 my-auto">
+                <div class="owl-carousel owl-theme" id="trustedBy_carousel">
+                    @{
+                        foreach (var item in home.Children)
+                        {
+                            if (item.Name == "Trusted By")
+                            {
+                                var trustedLogos = (TrustedByParent)item;
+                                foreach (var logoItems in trustedLogos.TrustedByLogos)
+                                {
+                                    <div class="item">
+                                        <img class="owl-lazy"
+                                            height="125"
+                                            data-src="@logoItems.Url"
+                                            alt="@logoItems.Name"
+                                            title="@logoItems.Name"
+                                            loading="lazy"/>
+                                    </div>
+                                }
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

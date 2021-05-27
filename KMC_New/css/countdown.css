@@ -1,0 +1,75 @@
+.countdownContainer {
+    display: grid;
+    grid-template-columns: 4fr 0.5fr 0.2fr 0.5fr 0.2fr 0.5fr;
+    grid-template-areas: 'header days colon-1 hours colon-2 mins';
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.countdownContainer p, h4 {
+    color: white;
+}
+
+.header {
+    grid-area: header;
+}
+
+.header h3 {
+    color: #F99D3A
+}
+
+.day {
+    grid-area: days;
+    text-align: center;
+    align-self: center;
+}
+
+.hour {
+    grid-area: hours;
+    text-align: center;
+    align-self: center;
+}
+
+.min {
+    grid-area: mins;
+    text-align: center;
+    align-self: center;
+}
+
+.colon-1, .colon-2 { align-self: center; }
+
+.colon-1 {
+    grid-area: colon-1;
+}
+
+.colon-2 {
+    grid-area: colon-2;
+}
+/*Media Queries*/
+/* Mobile query */
+@media (max-width: 576px) {
+
+    .countdownContainer h3 {
+        font-size: 1rem;
+    }
+    .countdownContainer .header p {
+        font-size: 0.5rem;
+    }
+
+    .countdownContainer h4 {
+        font-size: 1rem;
+    }
+
+    .countdownContainer .header {
+        display: none;
+    }
+
+    .countdownContainer {
+        display: grid;
+        grid-template-columns: 0.5fr 0.2fr 0.5fr 0.2fr 0.5fr;
+        grid-template-areas: 'days colon-1 hours colon-2 mins';
+    }
+    
+
+    .colon-1, .colon-2 { margin: 1rem; }
+}

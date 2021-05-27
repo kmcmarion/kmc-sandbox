@@ -1,0 +1,104 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.EventsFullscreen>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = null;
+	var selection = Umbraco.Content(Guid.Parse("02eee460-950f-4610-a8b1-b516aa54e706"));
+}
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>@Model.Name - @Model.Value("pageTitle")</title>
+        <meta name="description" content="@Model.Value("metaDescription")">
+        <meta name="author" content="">
+    
+        <meta property="og:title" content="@Model.Name - @Model.Value("pageTitle")">
+        <meta property="og:description" content="@Model.Value("metaDescription")">
+        <meta property="og:image" content="">
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="">
+    
+        <link rel="apple-touch-icon" sizes="120x120" href="/media/2mwjav1c/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/media/z2qah0gx/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/media/z54na23t/favicon-16x16.png">
+        <link rel="manifest" href="/media/f35hni3g/site.webmanifest">
+        <link rel="mask-icon" href="/media/5cilr55e/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#00aba9">
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .fullscreen_event {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            height: auto;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .fullscreen_event img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+   
+    </head>
+    
+    <body>
+          <main id="main">
+            <div class="fullscreen_items">
+             @{
+                foreach (var item in selection.Children)
+                {
+                    if (item.IsDocumentType("event"))
+                    {
+                        var eventPage = (Event)item;
+                        var DateToday = DateTime.Now;
+                        if (eventPage.EventDateFrom >= DateToday && eventPage.EventDateTo >= DateToday && eventPage.EventPoster != null)
+                        {
+                            <div class="fullscreen_event">
+                                <img src="@eventPage.EventPoster.Url" />
+                            </div>
+                        }
+                    }
+
+                    else if (item.IsDocumentType("promotions"))
+                    {
+                        var promotionPage = (Promotions)item;
+                        var DateToday = DateTime.Now;
+                        if (promotionPage.EndDate >= DateToday && promotionPage.PromotionPoster != null)
+                        {
+                            <div class="fullscreen_event">
+                                <img src="@promotionPage.PromotionPoster.Url" />
+                            </div>
+                        }
+                    }
+                }
+            }
+        </main>
+        
+         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(".fullscreen_items> div:gt(0)").hide();
+
+        setInterval(function () {
+            $('.fullscreen_items > div.fullscreen_event:first')
+                .fadeOut(1000)
+                .next()
+                .fadeIn(1000)
+                .end()
+                .appendTo('.fullscreen_items');
+        }, 15000);
+    </script>
+
+    </body>
+</html>

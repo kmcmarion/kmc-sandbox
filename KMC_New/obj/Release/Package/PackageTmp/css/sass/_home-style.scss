@@ -1,0 +1,277 @@
+﻿/*_home-style.scss*/
+//Home page
+.kv-banner-100vh {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 90vh;
+}
+
+@include laptop--sm {
+    .kv-banner-100vh {
+        display: inline-block;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        max-height: 600px;
+    }
+}
+
+.img-bg {
+    pointer-events: none;
+    position: absolute;
+    -o-object-fit: cover;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    clear: float;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+
+.card-img-style {
+    height: 176px;
+    margin: auto;
+    width: 100%;
+}
+
+.card-effect:hover {
+    transform: translateY(-4px);
+}
+
+#kvSection {
+    #kvSectionContainer {
+        padding: 0 35px;
+    }
+
+    #kv_search {
+        background-color: #fff;
+        padding: 25px;
+        border-radius: 5px;
+    }
+}
+
+#mobile-KvSection {
+    display: none;
+}
+
+#trustedBySection {
+    padding: 0;
+    background: -webkit-linear-gradient(70deg, #000 40%, #F99D3A 40%);
+    background: -o-linear-gradient(70deg, #000 40%, #F99D3A 40%);
+    background: -moz-linear-gradient(70deg, #000 40%, #F99D3A 40%);
+    //Change this for staging
+    background: linear-gradient(70deg, #000 40%, #F99D3A 40%);
+    color: #fff;
+}
+
+@include laptop--sm {
+    #trustedBySection {
+        padding: 0;
+
+        .container {
+            padding: 0;
+        }
+
+        .col-lg-4 {
+            padding: 30px;
+        }
+
+        .col-lg-7 {
+            padding: 30px;
+        }
+
+        background: -webkit-linear-gradient(70deg, #000 45%, #F99D3A 45%);
+        background: -o-linear-gradient(70deg, #000 45%, #F99D3A 45%);
+        background: -moz-linear-gradient(70deg, #000 45%, #F99D3A 45%);
+        background: linear-gradient(70deg, #000 45%, #F99D3A 45%);
+        background: linear-gradient(70deg, #000 45%, #F99D3A 45%);
+        color: #fff;
+    }
+}
+
+@include tablet--lg {
+    #trustedBySection {
+        padding: 0;
+
+        .container {
+            padding: 0;
+        }
+
+        background: #F99D3A;
+        color: #ffffff;
+
+        .col-lg-4 {
+            background: #000;
+            padding: 30px;
+        }
+
+        .col-lg-7 {
+            padding: 30px;
+            background: #F99D3A;
+        }
+    }
+}
+
+#servicedOfficesSection {
+    h2 {
+        text-align: center;
+        color: #F99D3A;
+    }
+
+    #locations_carousel {
+        .owl-stage {
+            display: flex;
+        }
+
+        .locationDetails_section {
+            padding: 20px;
+            background-color: #000;
+            color: #fff;
+            line-height: 1rem;
+            flex: 1 0 auto;
+   
+            .details-bold {
+                color: #F99D3A;
+                font-weight: 700;
+                margin-bottom: 0;
+                font-family: PROXIMANOVA-SEMIBOLD, Arial, Helvetica, sans-serif;
+            }
+        }
+    }
+}
+
+#advantage_section {
+    .advantage_slogan p {
+        color: #fff;
+    }
+}
+
+.extended-width {
+    max-width: 1240px;
+}
+
+#coworking_section_paragraph {
+    .coworking-columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+}
+
+@include tablet--lg {
+    #coworking_section_paragraph {
+        .coworking-columns {
+            -webkit-column-count: 1;
+            -moz-column-count: 1;
+            column-count: 1;
+        }
+    }
+}
+
+//KMC Spaces Overview page
+#virtual-offices {
+    @extend #coworking_section;
+}
+
+@include laptop--sm {
+    #coworking_section {
+        .coworking-columns {
+            -webkit-column-count: 1;
+            -moz-column-count: 1;
+            column-count: 1;
+        }
+    }
+}
+
+//Video Modal
+.modal {
+    .modal-content {
+        padding: 15px;
+    }
+}
+
+.video-btn:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.video-btn {
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+//Form Toggle
+#form-toggle-container {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 0;
+
+
+    .nav-pills {
+        width: 100%;
+    }
+
+    .nav-item {
+        width: 50%;
+    }
+
+    .nav-pills .nav-link {
+        font-size: 1.1rem;
+        padding-top: 12px;
+        text-align: center;
+        background: $primary-orange;
+        color: #fff;
+        border-radius: 5px;
+        height: 100px;
+
+        &:hover {
+            background: #f88b15;
+            color: #fff;
+        }
+
+        &.active {
+            background: #fff;
+            color: #000;
+        }
+    }
+
+    #findYourSpace {
+        margin-right: 3px;
+    }
+
+
+    .tab-content {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        margin-top: -50px;
+        background: #fff;
+        color: #000;
+        border-radius: 5px;
+        z-index: 5;
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
+        padding: 20px 10px;
+    }
+}
+
+@include laptop--sm {
+    #form-toggle-container {
+        .nav-pills .nav-link {
+            font-size: 1rem;
+            padding-top: 9px;
+            height: 90px;
+        }
+    }
+}

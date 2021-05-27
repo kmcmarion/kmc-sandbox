@@ -1,0 +1,95 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var homeSelection = Model.Ancestor("home");
+    var home = (Home)homeSelection;
+}
+
+@{
+    foreach (var selection in home.Children)
+    {
+        if (selection.IsDocumentType("virtualOffices"))
+        {
+            var virtualPackage = (VirtualOffices)selection;
+
+            <div class="container-fluid" style="background: #000 url(@virtualPackage.FeaturedLocationDivBgTexture.Url);">
+                <div class="container">
+                    <h2 class="text-white text-center text-extrabold">Our Virtual Office Solutions</h2>
+                    <div class="spacer-lg"></div>
+
+                    <div class="packages-details">
+                        <div class="row" id="virtual-package">
+                            <div class="owl-carousel owl-theme" id="packages-carousel">
+                                <div class="col-lg-4 d-flex align-items-stretch h-100">
+                                    <div class="card w-100 h-100">
+                                        <div class="card-body text-center d-flex flex-column">
+                                            <h3>@virtualPackage.BasicPackageHeading</h3>
+                                            
+                                            <div class="center-items-justify" style="padding: 20px 0">
+                                                <img class="icons-style owl-lazy"
+                                                     data-src="@virtualPackage.BasicPackageIcon.Url" />
+                                            </div>
+                                            <h3 class="price">@virtualPackage.BasicPackagePrice</h3>
+                                            <p class="text-semibold">per month</p>
+                                            <div class="spacer-md"></div>
+                                            <div class="card-text">@Html.Raw(virtualPackage.BasicPackageInclusions)</div>
+
+                                            <a href="https://kmc.solutions/hub/s/virtual-office?book-now=true" class="btn btn-primary w-100 mt-auto">Get Now</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 d-flex align-items-stretch h-100">
+                                    <div class="card w-100 h-100">
+                                        <div class="card-body text-center d-flex flex-column">
+                                            <h3>@virtualPackage.PremiumPackageHeading</h3>
+                                            
+                                            <div class="center-items-justify" style="padding: 20px 0">
+                                                <img class="icons-style owl-lazy"
+                                                     data-src="@virtualPackage.PremiumPackageIcon.Url" />
+                                            </div>
+                                            <p class="price">@virtualPackage.PremiumPackagePrice</p>
+                                            <p class="text-semibold">per month</p>
+
+                                            <div class="spacer-md"></div>
+                                            <div class="card-text">@Html.Raw(virtualPackage.PremiumPackageInclusions)</div>
+
+                                            <a href="https://kmc.solutions/hub/s/virtual-office?book-now=true" class="btn btn-primary w-100 mt-auto">Get Now</a>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 d-flex align-items-stretch h-100">
+                                    <div class="card w-100 h-100">
+                                        <div class="card-body text-center d-flex flex-column">
+                                            <h3 class="text-extrabold">@virtualPackage.ElitePackageHeading</h3>
+                                            
+                                            <div class="center-items-justify" style="padding: 20px 0">
+                                                <img class="icons-style owl-lazy"
+                                                     data-src="@virtualPackage.ElitePackageIcon.Url" />
+                                            </div>
+                                            <p class="price">@virtualPackage.ElitePackagePrice</p>
+                                            <p class="text-semibold">per month</p>
+                                            <div class="spacer-md"></div>
+
+                                            <div class="card-text">@Html.Raw(virtualPackage.ElitePackageInclusions)</div>
+
+                                            <a href="https://kmc.solutions/hub/s/virtual-office?book-now=true" class="btn btn-primary w-100 mt-auto">Get Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="spacer-md"></div>
+                    <!--Disclaimer Text in Packages Section-->
+                    <h4 class="text-white text-center">*Prices are VAT-Exclusive</h4>
+                </div>
+            </div>
+        }
+    }
+}

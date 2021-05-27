@@ -1,0 +1,204 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.KMcpeopleParent>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web
+@{
+  
+    Layout = "master.cshtml";
+}
+
+<div class="container-fluid p-0" id="aboveTheFold_overlapped">
+    <!-- Above the Fold - Desktop View -->
+    <div class="desktop-view">
+        <div class="row rowHeight">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-5"
+                 style="background: #000 url('@Model.AboveTheFoldCol1BgImage.Url');                      background-repeat: repeat;
+                        position:relative;">
+
+                <div class="overlapped_box center-items">
+                    <div>
+                        @Html.Raw(Model.AboveTheFoldHeading)
+                        <div class="orange-divider-2px"></div>
+
+                        <p>@Model.AboveTheFoldDescription</p>
+                        <a href="@Model.AboveTheFoldButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.AboveTheFoldButtonText</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-5 aboveTheFoldImage"
+                 style="background: url(@Model.AboveTheFoldCol2BgImage.Url);
+                                    background-position:center;
+                                    background-repeat: no-repeat;
+                                    background-size: cover;
+                                    min-height: 400px;">
+            </div>
+        </div>
+    </div>
+
+    <!--Above the Fold - Mobile View -->
+    <div class="mobile-view"
+         style="background: url(@Model.AboveTheFoldCol2BgImage.Url);
+            background-position:center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 300px;">
+
+    </div>
+
+    <div class="container-fluid mobile-view">
+        <div class="container">
+            @Html.Raw(Model.AboveTheFoldHeading)
+            <div class="orange-divider-2px"></div>
+            @Html.Raw(Model.AboveTheFoldSubHeading)
+            @Html.Raw(Model.AboveTheFoldDescription)
+            <div class="spacer-sm"></div>
+            <a class="btn btn-primary w-100" role="button" href="@Model.AboveTheFoldButtonLink">@Model.AboveTheFoldButtonText</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid p-0" id="offshore-staffing">
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <div class="container overlap_left"
+                         style="position: relative;
+                            height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             data-src="@Model.OffshoreStaffingSupportingImage.Url"
+                             alt="@Model.OffshoreStaffingImageAltTag"
+                             title="@Model.OffshoreStaffingImageAltTag" />
+                    </div>
+                    <div class="overlap_border_left"></div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.OffshoreStaffingHeading)
+                    <div class="orange-divider-2px"></div>
+                    @Html.Raw(Model.OffshoreStaffingDescription)
+                    <a href="@Model.OffshoreStaffingButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.OffshoreStaffingButtonText</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             data-src="@Model.OffshoreStaffingSupportingImage.Url"
+             alt="@Model.OffshoreStaffingImageAltTag"
+             title="@Model.OffshoreStaffingImageAltTag" />
+
+        <div class="container-fluid">
+            <div class="container">
+                @Html.Raw(Model.OffshoreStaffingHeading)
+                <div class="orange-divider-2px"></div>
+                @Html.Raw(Model.OffshoreStaffingDescription)
+                <a href="@Model.OffshoreStaffingButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.OffshoreStaffingButtonText</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--Staffing Services-->
+<div class="container-fluid p-0" id="staffing-services">
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class=" col-12 col-md-6 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.StaffingServicesHeading)
+                    <div class="orange-divider-2px"></div>
+                    @Html.Raw(Model.StaffingServicesDescription)
+                    <a href="@Model.StaffingServicesButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.StaffingServicesButtonText</a>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <div class="container overlap_right"
+                         style="position: relative;
+                            height: 500px;">
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             data-src="@Model.StaffingServicesSupportingImage.Url"
+                             alt="@Model.StaffingServicesImageAltTag"
+                             title="@Model.StaffingServicesImageAltTag" />
+                    </div>
+                    <div class="overlap_border_right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             data-src="@Model.StaffingServicesSupportingImage.Url"
+             alt="@Model.StaffingServicesImageAltTag"
+             title="@Model.StaffingServicesImageAltTag" />
+
+        <div class="container-fluid">
+            <div class="container">
+                @Html.Raw(Model.StaffingServicesHeading)
+                <div class="orange-divider-2px"></div>
+                @Html.Raw(Model.StaffingServicesDescription)
+                <a href="@Model.StaffingServicesButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.StaffingServicesButtonText</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--HR and Payroll Management-->
+<div class="container-fluid p-0" id="hr-payroll-management">
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <div class="container overlap_left"
+                         style="position: relative;
+                            height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             data-src="@Model.HRpayrollSupportingImage.Url"
+                             alt="@Model.HRpayrollImageAltTag"
+                             title="@Model.HRpayrollImageAltTag" />
+                    </div>
+                    <div class="overlap_border_left"></div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.HRpayrollHeading)
+                    <div class="orange-divider-2px"></div>
+                    @Html.Raw(Model.HRpayrollDescription)
+                    <a href="@Model.HRpayrollButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.HRpayrollButtonText</a>
+                    @Html.Raw(Model.FAqschema)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             data-src="@Model.HRpayrollSupportingImage.Url"
+             alt="@Model.HRpayrollImageAltTag"
+             title="@Model.HRpayrollImageAltTag" />
+
+        <div class="container-fluid">
+            <div class="container">
+                @Html.Raw(Model.HRpayrollHeading)
+                <div class="orange-divider-2px"></div>
+                @Html.Raw(Model.HRpayrollDescription)
+                <a href="@Model.HRpayrollButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.HRpayrollButtonText</a>
+                @Html.Raw(Model.FAqschema)
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Featured Banner-->
+@Html.Partial("~/Views/Partials/FeaturedBanner.cshtml")
+
+@section Scripts{
+     
+}

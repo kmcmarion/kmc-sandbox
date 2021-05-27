@@ -1,0 +1,14 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.SchemaData>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = null;
+}
+
+@model IEnumerable<IPublishedElement>
+
+@{ 
+    foreach(var nestedContent in Model)
+    {
+        var content = nestedContent.Value("schemaType");
+    }
+}

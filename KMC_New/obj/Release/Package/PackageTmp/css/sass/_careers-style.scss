@@ -1,0 +1,31 @@
+﻿/*_careers-style.scss*/
+
+#careers-job-list {
+    table {
+        td {
+            vertical-align: baseline;
+        }
+    }
+
+    .viewMoreJobs{
+        min-width: 250px;
+    }
+}
+
+#categoryAndEduc {
+    border: 1px solid #f99D3a;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 1rem;
+}
+
+#applyNowForm {
+    .modal-content {
+        background: #ffffff;
+
+        ol, ul, dl {
+            list-style: none;
+            padding: 0;
+        }
+    }
+}

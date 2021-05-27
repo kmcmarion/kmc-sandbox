@@ -1,0 +1,89 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web
+
+@{
+    var selection = Model.Ancestor("home");
+    var home = (Home)selection;
+IPublishedContent CurrentPage = UmbracoContext.Current.PublishedContentRequest.PublishedContent;
+}
+
+<!--Above the Fold Column 1 and Carousel -->
+<div class="container-fluid p-0" id="aboveTheFold">
+    <div class="row" style="position: relative;">
+        <div class="col-12 col-lg-5"
+             style="background: linear-gradient( rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+                                         url('@Model.AboveTheFoldCol1BgImage.Url');
+                                         background-repeat: repeat;
+                                         background-position: center;
+                                         position: relative;
+                                         min-height: 250px;
+                                         padding: 100px;
+                                         color: #fff;">
+            <h1>@currentPageId.AboveTheFoldHeading</h1>
+            <div class="orange-divider-1px"></div>
+            @Html.Raw(currentPageId.AboveTheFoldDescription)
+            <a href="@currentPageId.Url" class="btn btn-primary" role="button" aria-pressed="false">@currentPageId.AboveTheFoldButtonText</a>
+
+
+        </div>
+
+        <!-- Insert Carousel Here -->
+        <div class="col-12 col-lg-7 owl-carousel owl-theme px-0" id="aboveTheFold_carousel">
+
+            @{
+            int count = 0;
+            {
+            foreach (var city in home.Children)
+            {
+            if (city.IsDocumentType("cityItems"))
+            {
+            foreach (var building in city.Children)
+            {
+            if (building.IsDocumentType("buildings"))
+            {
+            var featured = (Buildings)building;
+            if (featured.ShouldAppearOn.Contains(page))
+            {
+            if (count >= 3)
+            {
+            break;
+            }
+
+            else
+            {
+            <div class="container h-100" style="background: url('@featured.FeaturedPhoto.Url');
+                                                            background-repeat: no-repeat;
+                                                            background-position: center;
+                                                            background-size: cover;
+                                                            position: absolute:
+                                                     min-height:250px;
+                                                            color: #fff;">
+
+                <div class="spacer-sm"></div>
+
+                <div class="spaces-carousel-text" style="background-color: rgba(0,0,0,0.7);padding: 20px;">
+                    <h4 class="text-semibold text-orange text-uppercase">
+                        <a href="@featured.Url">@featured.FeaturedBuildingName</a>
+                    </h4>
+                    <h5>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;
+                        @featured.FeaturedBuildingCity
+                    </h5>
+                    @Html.Raw(featured.BuildingAddress)
+                    <br />
+                    <a href="#" class="viewAllLocations" target="_blank">View All Locations</a>
+                </div>
+            </div>
+            count++;
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var rootItem = Model.Ancestor("home");
+    var root = (Home)rootItem;
+}
+
+<div class="container">
+
+    @{
+        foreach (var item in root.Children)
+        {
+            if (item.IsDocumentType("cityItems"))
+            {
+                foreach (var cityItems in item.Children)
+                {
+                    if (cityItems.IsDocumentType("buildings"))
+                    {
+                        var buildingItems = (Buildings)cityItems;
+
+                        if (buildingItems.Name.Contains("Sigma"))
+                        {
+                            <div class="col-lg-3">
+                                <img class="img-fluid" src="@buildingItems.CarouselPhoto">
+                                <div class="spacer-sm"></div>
+
+                                <h4 class="text-semibold text-orange text-uppercase">
+                                    <a href="@buildingItems.Url">@buildingItems.CarouselBuildingName</a>
+                                </h4>
+                                <h6>
+                                    @buildingItems.CarouselBuildingAddress
+                                </h6>
+                                <div class="spacer-sm"></div>
+                                @Html.Raw(buildingItems.CarouselBuildingAmenities)
+                                <div class="spacer-sm"></div>
+                            </div>
+
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+</div>

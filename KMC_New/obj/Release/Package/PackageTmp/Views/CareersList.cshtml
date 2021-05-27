@@ -1,0 +1,45 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.CareersList>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+
+    var searchString = "";
+
+    var tempString = Request.QueryString["search"];
+
+    if (tempString == "" || tempString == null)
+    {
+        searchString = "";
+    }
+    else
+    {
+        searchString = tempString;
+    }
+
+}
+
+    <div class="container-fluid" style="background: #f5f5f5 url()">
+        <div class="container">
+            <form class="row" action="/careers/jobs-list/">
+                <div class="col-lg-10 col-md-8 col-sm-12 col-12 my-1">
+                    <input type="text" value="@(searchString != ""? searchString: "")" class="form-control" name="search" placeholder="Search for a position.." /> 
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-12 col-12 my-1">
+                    <button type="submit" class="btn btn-primary w-100">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="container-fluid">      
+        @{
+            Html.RenderAction("RenderActiveAllCareers", "Careers", new { search = searchString });
+        }
+    </div>
+
+@section Scripts
+{
+    @*Careers Scripts*@
+    <script src="~/Scripts/custom/careers_scripts.es5.min.js"></script>
+}

@@ -1,0 +1,33 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+<!--Fixed Button for Form (Mobile)-->
+<div class="col p-2" id="fixed_bookButton">
+    <button class="btn btn-primary w-100" data-toggle="modal" data-target="#modal-fullscreen">BOOK A TOUR</button>
+</div>
+
+<!--Modal for Mobile Book a Tour Form-->
+<div class="modal" id="modal-fullscreen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="text-extrabold" style="font-size: 2rem;">Reimagine Your Workspace</h3>
+            </div>
+
+            <div class="modal-body">
+                <div id="bookTour_form">
+                    <!--[if lte IE 8]>
+                    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+                    <![endif]-->
+                    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                    <script>
+                        hbspt.forms.create({
+                            portalId: "2867266",
+                            formId: "ddd79bc8-ca30-4d42-8766-4232dc8c9d82",
+                            css: ""
+                        });</script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

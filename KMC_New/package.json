@@ -1,0 +1,14 @@
+{
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp-uglify": "^3.0.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "readable-stream": "^3.5.0"
+  },
+  "description": ""
+}

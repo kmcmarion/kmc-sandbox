@@ -1,0 +1,105 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+h5 {
+	font-family: PROXIMANOVA-SEMIBOLD, Arial, Helvetica, sans-serif;
+	font-size: 1rem;
+	line-height: 1.22em;
+}
+
+/**umb_name:Orange Text*/
+.text-orange {
+	color: #F99D3A;
+}
+
+/**umb_name:White Text*/
+.text-white {
+	color: #ffffff;
+}
+
+/**umb_name:Black Text*/
+.black-text {
+	color: #333333;
+}
+
+/**umb_name:Medium Text*/
+.medium-text {
+	font-size: 2rem;
+	line-height: 1;
+}
+
+/**umb_name:Large Text*/
+.large-text {
+	font-size: 3rem;
+	line-height: 1;
+}
+
+/**umb_name:Semi-bold*/
+.text-semibold {
+	font-family: PROXIMANOVA-SEMIBOLD, Arial, Helvetica, sans-serif;
+}
+
+/**umb_name:Extra-bold*/
+.text-extrabold {
+	font-family: PROXIMANOVA-SEMIBOLD, Arial, Helvetica, sans-serif;
+}
+
+/**umb_name:h1*/
+h1 {
+	font-family: PROXIMANOVA-EXTRABOLD, Arial, Helvetica, sans-serif;
+	font-size: 3em;
+	line-height: 1.25em;
+}
+
+/**umb_name:h2*/
+h2 {
+	font-family: PROXIMANOVA-SEMIBOLD, Arial, Helvetica, sans-serif;
+	font-size: 2.25em;
+	line-height: 1.25em;
+}
+
+/**umb_name:h3*/
+h3 {
+	font-family: PROXIMANOVA-SEMIBOLD, Arial, Helvetica, sans-serif;
+	font-size: 1.75em;
+	line-height: 1.25em;
+}
+
+/**umb_name:h4*/
+h4 {
+	font-family: PROXIMANOVA-SEMIBOLD, Arial, Helvetica, sans-serif;
+	font-size: 1.125em;
+	line-height: 1.22em;
+}
+
+/**umb_name:h5*/
+h5 {
+	font-size: 1rem;
+}
+
+/**umb_name:p*/
+p {
+	font-size: 0.9rem;
+}

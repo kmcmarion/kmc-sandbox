@@ -1,0 +1,43 @@
+﻿/*_partnerships-style.scss*/
+#partners-list .modal-content {
+  background: #ffffff; }
+
+#partners-list .modal .close {
+  position: absolute;
+  right: -30px;
+  top: 0;
+  z-index: 999;
+  font-size: 32px;
+  font-size: 2rem;
+  font-weight: normal;
+  color: #fff;
+  opacity: 1;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; }
+
+#partners-list .promo-ribbon {
+  position: absolute;
+  top: 15px;
+  right: 0;
+  padding: 8px 10px;
+  background: #00B3ED;
+  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.3); }
+  #partners-list .promo-ribbon:before, #partners-list .promo-ribbon:after {
+    content: "";
+    position: absolute; }
+
+#partners-list:before {
+  width: 7px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  padding: 0 0 7px;
+  background: inherit;
+  border-radius: 5px 0 0 5px; }
+
+#partners-list:after {
+  width: 5px;
+  height: 5px;
+  bottom: -5px;
+  right: 0;
+  background: lightblue;
+  border-radius: 5px 0 0 5px; }

@@ -1,0 +1,61 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.ContactUsThankYou>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+<div class="container-fluid" id="contactUsHeading">
+    <div class="background-style" style="background: #F99D3A url(@Model.HeadingBgTexture.Url)">
+       
+    </div>
+
+    <div class="container-fluid" id="contactUsFloat">
+        <div class="container">
+            @Html.Raw(Model.Heading)
+        </div>
+        <div class="container" id="contactUsBox">
+            <div class="row wrapper">
+                <div class="col-lg-8 p-5" id="contactUsFormCol">
+                    <p>Thank You!</p>
+                </div>
+
+                <div class="col-lg-4 p-5" id="contactUsInfoCol" style="background: #000 url(@Model.ContactInfoBgTexture.Url)">
+                    <div>
+                        <h4 class="text-extrabold text-orange">Reach Us</h4>
+                        @Html.Raw(Model.ReachUs)
+                        <div class="spacer-sm"></div>
+
+                        <h4 class="text-extrabold text-orange">Sales Hours</h4>
+                        <p>@Html.Raw(Model.SalesHours)</p>
+                        <div class="spacer-sm"></div>
+
+                        <h4 class="text-extrabold text-orange">Mailing Address</h4>
+                        <p>@Html.Raw(Model.MailingAddress)</p>
+                        <div class="spacer-sm"></div>
+
+                        <h4 class="text-extrabold text-orange">Follow Us</h4>
+                        <p>
+                            <ul>
+                                <li>
+                                    <a href="https://instagram.com/" target="_blank">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://linkedin.com/" target="_blank">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://facebook.com/" target="_blank">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

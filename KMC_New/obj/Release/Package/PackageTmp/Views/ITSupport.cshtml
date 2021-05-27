@@ -1,0 +1,84 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.ITsupport>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+                @Html.Raw(Model.AboveTheFoldHeading)
+                 @Html.Raw(Model.AboveTheFoldSubHeading)
+                 
+                 <img class="img-fluid mb-3"
+                     data-src="@Model.AboveTheFoldCol1BgImage.Url" />
+
+                @Html.Raw(Model.AboveTheFoldDescription)
+            </div>
+            
+            <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+                <div style="background-color: #F8F8F8;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    padding: 30px;">
+                    
+                     @Html.Raw(Model.FormTitle)
+                     
+                 <form id="__vtigerWebForm" name="WFH Create SR" action="https://osp.kmc.solutions/modules/Webforms/capture.php" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                    <input type="hidden" name="__vtrftk" value="sid:b5b7dc2cac7d6c7bf0f7384616f7be68051b3b2f,1585122082"><input type="hidden" name="publicid" value="ce48437bf7c467491bb497fede50afb0"><input type="hidden" name="urlencodeenable" value="1"><input type="hidden" name="name" value="WFH Create SR">
+
+                    @Html.Raw(Model.FormDescription)
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="firstname" name="firstname" aria-describedby="firstname-Help" placeholder="First Name" required>
+                                <small id="firstname-Help" class="form-text text-muted">Required</small>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="lastname" name="lastname" aria-describedby="lastname-Help" placeholder="Last Name" required>
+                                <small id="lastname-Help" class="form-text text-muted">Required</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="email-Help" placeholder="Primary Email" required>
+                        <small id="email-Help" class="form-text text-muted">Required</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="cf_1967" aria-describedby="company-Help" placeholder="Company Name" required>
+                        <small id="company-Help" class="form-text text-muted">Required</small>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="title" name="title" aria-describedby="title-Help" placeholder="Ticket Title" required>
+                        <small id="title-Help" class="form-text text-muted">Required</small>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea class="form-control" id="description" name="description" rows="3" placeholder="Description" aria-describedby="description-Help" required></textarea>
+                        <small id="description-Help" class="form-text text-muted">Required</small>
+                    </div>
+
+                    <select name="cf_2305" data-label="label:Create+SR" hidden=""><option value="">Select Value</option><option value="Yes" selected="">Yes</option><option value="No">No</option></select>
+
+                    <input type="submit" value="Submit">
+                </form>
+                </div>
+            </div>
+           
+        </div>
+       
+    </div>
+</div>
+
+
+
+@section Scripts{
+
+}

@@ -1,0 +1,41 @@
+﻿/*_partnerships-style.scss*/
+#partners-list {
+    .modal-content {
+        background: #ffffff;
+    }
+
+    .modal {
+        .close {
+            position: absolute;
+            right: -30px;
+            top: 0;
+            z-index: 999;
+            font-size: 32px;
+            font-size: 2rem;
+            font-weight: normal;
+            color: #fff;
+            opacity: 1;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        }
+    }
+
+    .promo-ribbon {
+        position: absolute;
+        top: 15px;
+        right: 0;
+        padding: 5px 10px;
+        background: $primary-orange;
+        box-shadow: -1px 2px 3px rgba(0,0,0,.3);
+        color: #fff;
+        font-weight: bold;
+
+        &:before, &:after {
+            content: "";
+            position: absolute;
+        }
+    }
+
+    .hidden {
+        display: none;
+    }
+}

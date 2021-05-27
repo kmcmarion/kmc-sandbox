@@ -1,0 +1,161 @@
+﻿
+@{
+    var jobs = (KMC_New.Models.ActiveJobs)ViewBag.Jobs;
+    string[] skills = { "" };
+    string[] exp = { "" };
+
+    if (jobs.skillsAndQualification != null)
+    {
+        skills = jobs.skillsAndQualification.Split(new[] { "\r\n", "\r", "\n", "~" },
+            StringSplitOptions.None);
+    }
+
+    if (jobs.workExperience != null)
+    {
+        exp = jobs.workExperience.Split(new[] { "\r\n", "\r", "\n", "~" }, StringSplitOptions.None);
+    }
+
+    string[] Messages = { "Thank you for sending your application!", "You already submitted an application for this position. Please wait for our recruiters to contact you." };
+    var m = Request.QueryString["m"];
+}
+
+<div class="container" itemscope itemtype="http://schema.org/JobPosting">
+
+    @if (jobs != null)
+    {
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <h1 itemprop="title" class="text-semibold">@jobs.position</h1>
+                <p class="mb-0 pb-0" itemprop="jobLocation" itemscope itemtype="http://schema.org/Place">
+                    <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                        <span itemprop="addressLocality">@jobs.city</span>,
+                        <span itemprop="addressRegion">NCR</span>
+                    </span>
+                </p>
+
+                <p>
+                    <span itemprop="hiringOrganization" itemscope="" itemtype="http://schema.org/Organization">
+                        <span itemprop="name">KMC Solutions</span>
+                    </span> | @jobs.code
+                </p>
+
+                <!--This should open an Application Form page/modal-->
+                <button type="button" class="btn btn-primary"
+                        onclick="gtag('event', 'click', {'send_to':'UA-73943338-1', 'event_category': 'kmc-careers-job-description', 'event_action': 'click', 'event_label': '@jobs.position'});"
+                        data-toggle="modal" data-target="#applyNowForm">
+                    Apply Now
+                </button>
+                <div class="spacer-sm"></div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="container" id="categoryAndEduc">
+                    <p class="text-semibold mb-0 pb-0">Date Posted</p>
+                    <p itemprop="datePosted">@jobs.datePosted</p>
+
+                    <p class="text-semibold mb-0 pb-0">Career Category</p>
+                    <p>@jobs.category</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+
+                @if (!string.IsNullOrEmpty(jobs.kpi))
+                {
+                    var kpi = jobs.kpi.Split(new[] { "\r\n", "\r", "\n", "~" }, StringSplitOptions.None);
+
+                    <h2 class="text-semibold">Functional Overview</h2>
+                    <p>
+                        <ul itemprop="description">
+                            @foreach (var kpiItem in kpi)
+                            {
+                                if (kpiItem != "")
+                                {
+                                    @kpiItem
+                                }
+                            }
+                        </ul>
+                    </p>
+                }
+
+                @if (skills.Count() > 0)
+                {
+                    <h2 class="text-semibold">Duties and Responsibilities</h2>
+                    <ul itemprop="responsibilities">
+                        @foreach (var skillsItem in skills)
+                        {
+                            if (skillsItem != "")
+                            {
+                                <li>@skillsItem</li>
+                            }
+                        }
+                    </ul>
+                }
+
+                @if (exp.Count() > 1)
+                {
+                    <h2 class="text-semibold">Minimum Qualification</h2>
+                    <ul itemprop="experienceRequirements">
+                        @foreach (var expItem in exp)
+                        {
+                            if (expItem != "")
+                            {
+                                <li>@expItem</li>
+                            }
+                        }
+                    </ul>
+                }
+
+                @if (!string.IsNullOrEmpty(jobs.educationInformation))
+                {
+                    var educ = jobs.educationInformation.Split(new[] { "\r\n", "\r", "\n", "~" }, StringSplitOptions.None);
+                    <h2 class="text-semibold mb-0 pb-0">Minimum Competencies</h2>
+                    <ul itemprop="educationRequirements" style="list-style-type: none; padding-left:0">
+                        @foreach (var educItem in educ)
+                        {
+                            if (educItem != "")
+                            {
+                                <li>@educItem</li>
+                            }
+                        }
+                    </ul>
+                }
+
+
+            </div>
+        </div>
+    }
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="applyNowForm" tabindex="-1" role="dialog" aria-labelledby="applyNowForm" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title text-semibold m-auto" id="formTitle">Apply Now</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="spacer-sm"></div>
+            <div class="modal-body">
+                <!--[if lte IE 8]>
+                <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+                <![endif]-->
+                <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                <script>
+                    hbspt.forms.create({
+                        portalId: "2867266",
+                        formId: "fec38e2a-ebf0-43cb-acf9-33d9090ec8bb",
+                        css: ''
+                    });
+                </script>
+            </div>
+
+        </div>
+    </div>
+</div>

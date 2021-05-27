@@ -1,0 +1,274 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.TeamsRemote>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+}
+
+<div id="aboveTheFold_overlapped">
+    <!-- Above the Fold - Desktop View -->
+    <div class="container-fluid p-0 desktop-view">
+        <div class="row rowHeight">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-5"
+                 style="background: #000 url('@Model.AboveTheFoldCol1BgImage.Url');
+                        position:relative;
+                        background-repeat: repeat;">
+
+                <div class="overlapped_box center-items">
+                    <div>
+                        @Html.Raw(Model.AboveTheFoldHeading)
+                        <div class="orange-divider-2px"></div>
+                        @Html.Raw(Model.AboveTheFoldSubHeading)
+                        @Html.Raw(Model.AboveTheFoldDescription)
+                        <div class="spacer-sm"></div>
+                        <a class="btn btn-primary" role="button" href="@Model.AboveTheFoldButtonLink">@Model.AboveTheFoldButtonText</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-12 col-12 p-5 aboveTheFoldImage"
+                 style="background: url(@Model.AboveTheFoldCol2BgImage.Url);
+                    background-position:center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    min-height: 400px;">
+            </div>
+        </div>
+    </div>
+
+    <!--Above the Fold - Mobile View -->
+    <div class="container-fluid mobile-view"
+         style="background: url(@Model.AboveTheFoldCol2BgImage.Url);
+            background-position:center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 300px;">
+
+    </div>
+
+    <div class="container-fluid mobile-view">
+        <div class="overlapped_box">
+            <div class="">
+                @Html.Raw(Model.AboveTheFoldHeading)
+                <div class="orange-divider-2px"></div>
+                @Html.Raw(Model.AboveTheFoldSubHeading)
+                @Html.Raw(Model.AboveTheFoldDescription)
+                <div class="spacer-sm"></div>
+                <a class="btn btn-primary w-100" role="button" href="@Model.AboveTheFoldButtonLink">@Model.AboveTheFoldButtonText</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Casa by KMC section*@
+<div class="container-fluid pb-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12 text-center">
+                <img class="img-fluid mb-3"
+                     data-src="@Model.CasaLogo.Url"
+                     alt="@Model.CasaLogo.Name">
+            </div>
+
+            <div class="col-lg-8 col-md-8 col-sm-12 col-12 my-auto">
+                @Html.Raw(Model.CasaDescription)
+            </div>
+        </div>
+
+        <div class="spacer-lg"></div>
+        <div class="orange-divider-2px"></div>
+        <div class="spacer-lg"></div>
+
+        @*Employee Home Office Setup section*@
+        @Html.Raw(Model.EmployeeHomeOfficeSetupHeading)
+        <div class="spacer-sm"></div>
+
+        <div class="card-group">
+            <div class="card">
+                <div class="card-header text-center w-100 p-3"
+                     style="background-color: #f99d3a">
+                    @Html.Raw(Model.HardwareAndFurnitureHeading)
+                </div>
+                <div class="card-body"
+                     style="background-color: #f5f5f5">
+                    @Html.Raw(Model.HardwareAndFurnitureContent)
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header text-center w-100 p-3"
+                     style="background-color: #f99d3a">
+                    @Html.Raw(Model.SoftwareAndTechHeading)
+                </div>
+                <div class="card-body"
+                     style="background-color: #f5f5f5">
+                    @Html.Raw(Model.SoftwareAndTechContent)
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center">
+            <div class="spacer-sm"></div>
+            <a class="btn btn-primary w-25" role="button" href="/contact-us/">Get a Quote</a>
+        </div>
+    </div>
+</div>
+
+<!--Cards Section-->
+<div class="container-fluid">
+
+    @*Access to KMC Coworking Space Locations*@
+    <div class="container">
+            @{
+                foreach (var item in Model.Children)
+                {
+                    if (item.Name == "Access to KMC Coworking Space Locations")
+                    {
+                        var cardHeading = (CardsGroup)item;
+
+                        @Html.Raw(cardHeading.CardsHeading)
+                        <div class="orange-divider-2px"></div>
+
+                        <div class="row">
+                            @foreach (var cardGroup in item.Children)
+                            {
+                                if (cardGroup.IsDocumentType("cardItems"))
+                                {
+                                    var cardItem = (CardItems)cardGroup;
+
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-12 d-flex align-items-stretch">
+                                        <div class="card-effect">
+                                            <div class="card shadow mb-3 bg-white rounded w-100 h-100">
+                                                <figure class="card-img-style">
+                                                    <a href="@cardItem.CardLink"
+                                                       onclick="@cardItem.CTaonclick">
+                                                        <img class="card-img-top img-fluid"
+                                                             style="max-width:100%; max-height: 100%; object-fit: cover"
+                                                             data-src="@cardItem.CardImage.Url"
+                                                             alt="@cardItem.CardImageAltTag">
+                                                    </a>
+                                                </figure>
+                                                <div class="card-body d-flex flex-column">
+                                                    <h3 class="card-title text-semibold text-orange">@cardItem.CardTitle</h3>
+                                                    <div class="card-text mt-auto">@cardItem.CardDescription</div>
+
+                                                    @if (cardItem.Value<bool>("showReadMoreLink"))
+                                                    {
+                                                        <a class="card-link mt-auto" onclick="@cardItem.CTaonclick" href="@cardItem.CardLink">@cardItem.CTalabel</a>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+
+    <div class="spacer-md"></div>
+
+    @*Access to KMC KMC Office Amenities*@
+    <div class="container">
+        @{
+            foreach (var item in Model.Children)
+            {
+                if (item.Name == "Access to KMC Office Amenities")
+                {
+                    var cardHeading = (CardsGroup)item;
+
+                    @Html.Raw(cardHeading.CardsHeading)
+                    <div class="orange-divider-2px"></div>
+
+                    <div class="row">
+                        @foreach (var cardGroup in item.Children)
+                        {
+                            if (cardGroup.IsDocumentType("cardItems"))
+                            {
+                                var cardItem = (CardItems)cardGroup;
+
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-12 d-flex align-items-stretch">
+                                    <div class="card-effect">
+                                        <div class="card shadow mb-3 bg-white rounded">
+                                            <figure class="card-img-style">
+                                                <a href="@cardItem.CardLink"
+                                                   onclick="@cardItem.CTaonclick">
+                                                    <img class="card-img-top img-fluid"
+                                                         style="max-width:100%; max-height: 100%; object-fit: cover"
+                                                         data-src="@cardItem.CardImage.Url"
+                                                         alt="@cardItem.CardImageAltTag">
+                                                </a>
+                                            </figure>
+                                            <div class="card-body d-flex flex-column">
+                                                <h3 class="card-title text-semibold text-orange">@cardItem.CardTitle</h3>
+                                                <div class="card-text text-limit">@cardItem.CardDescription</div>
+
+                                                @if (cardItem.Value<bool>("showReadMoreLink"))
+                                                {
+                                                    <a class="card-link mt-auto" onclick="@cardItem.CTaonclick" href="@cardItem.CardLink">@cardItem.CTalabel</a>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>
+
+
+@*Mitigating Risks During COVID and other Pandemics or Calamities*@
+<div class="container-fluid p-0">
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class=" col-12 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.LeftHeading)
+                    @Model.LeftSubHeading
+                    <div class="orange-divider"></div>
+                    @Html.Raw(Model.LeftDescription)
+                    <a href="@Model.LeftButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.LeftButtonText</a>
+                </div>
+
+                <div class="col-12 col-lg-6">
+
+                    <div class="container overlap_right"
+                         style="position: relative;
+                                            height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             data-src="@Model.RightSupportingImage.Url"
+                             alt="@Model.RightSupportingImageAltTag"
+                             title="@Model.RightSupportingImageAltTag" />
+                    </div>
+
+                    <div class="overlap_border_right"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="spacer-lg"></div>
+    </div>
+
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             data-src="@Model.RightSupportingImage.Url"
+             alt="@Model.RightSupportingImageAltTag"
+             title="@Model.RightSupportingImageAltTag" />
+
+        <div class="container-fluid">
+            <div class="container">
+                @Html.Raw(Model.LeftHeading)
+                @Model.LeftSubHeading
+                <div class="orange-divider"></div>
+                @Html.Raw(Model.LeftDescription)
+                <a href="@Model.LeftButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.LeftButtonText</a>
+            </div>
+        </div>
+    </div>
+</div>

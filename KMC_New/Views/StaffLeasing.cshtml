@@ -1,0 +1,154 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.StaffLeasing>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+}
+
+<div id="aboveTheFold_overlapped">
+    <!-- Above the Fold - Desktop View -->
+    <div class="container-fluid p-0 desktop-view">
+        <div class="row rowHeight">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-5"
+                 style="background: #000 url('@Model.AboveTheFoldCol1BgImage.Url');
+                        position:relative;
+                        background-repeat: repeat;">
+
+                <div class="overlapped_box center-items">
+                    <div>
+                        @Html.Raw(Model.AboveTheFoldHeading)
+                        <div class="orange-divider-2px"></div>
+                        @Html.Raw(Model.AboveTheFoldSubHeading)
+                        @Html.Raw(Model.AboveTheFoldDescription)
+                        <div class="spacer-sm"></div>
+                        <a class="btn btn-primary" role="button" href="@Model.AboveTheFoldButtonLink">@Model.AboveTheFoldButtonText</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-12 col-12 p-5 aboveTheFoldImage"
+                 style="background: url(@Model.AboveTheFoldCol2BgImage.Url);
+                    background-position:center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    min-height: 400px;">
+            </div>
+        </div>
+    </div>
+
+    <!--Above the Fold - Mobile View -->
+    <div class="container-fluid mobile-view"
+         style="background: url(@Model.AboveTheFoldCol2BgImage.Url);
+                background-position:center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                min-height: 300px;">
+    </div>
+
+    <div class="container-fluid mobile-view">
+        <div class="container">
+            @Html.Raw(Model.AboveTheFoldHeading)
+            <div class="orange-divider-2px"></div>
+            @Html.Raw(Model.AboveTheFoldSubHeading)
+            @Html.Raw(Model.AboveTheFoldDescription)
+            <div class="spacer-sm"></div>
+            <a class="btn btn-primary w-100" role="button" href="@Model.AboveTheFoldButtonLink">@Model.AboveTheFoldButtonText</a>
+        </div>
+    </div>
+</div>
+
+<!--Section 1-->
+<div class="container-fluid p-0">
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container overlap_left"
+                         style="position: relative;
+                                height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             data-src="@Model.LeftSupportingImage.Url"
+                             alt="@Model.LeftSupportingImageAltTag"
+                             title="@Model.LeftSupportingImageAltTag" />
+                    </div>
+                    <div class="overlap_border_left"></div>
+                </div>
+
+                <div class="col-12 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.RightHeading)
+                    @Model.RightSubHeading
+                    <div class="orange-divider"></div>
+                    @Html.Raw(Model.RightDescription)
+                    <a href="@Model.RightButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.RightButtonText</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             data-src="@Model.LeftSupportingImage.Url"
+             alt="@Model.LeftSupportingImageAltTag"
+             title="@Model.LeftSupportingImageAltTag" />
+
+        <div class="container-fluid">
+            <div class="container">
+                @Html.Raw(Model.RightDescription)
+                @Model.RightSubHeading
+                <div class="orange-divider"></div>
+                @Html.Raw(Model.RightDescription)
+                <a href="@Model.RightButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.RightButtonText</a>
+            </div>
+        </div>
+    </div>
+
+    <!--Section 2-->
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class=" col-12 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.LeftHeading)
+                    @Model.LeftSubHeading
+                    <div class="orange-divider"></div>
+                    @Html.Raw(Model.LeftDescription)
+                    <a href="@Model.LeftButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.LeftButtonText</a>
+                </div>
+
+                <div class="col-12 col-lg-6">
+
+                    <div class="container overlap_right"
+                         style="position: relative;
+                                            height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             data-src="@Model.RightSupportingImage.Url"
+                             alt="@Model.RightSupportingImageAltTag"
+                             title="@Model.RightSupportingImageAltTag" />
+                    </div>
+
+                    <div class="overlap_border_right"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="spacer-lg"></div>
+    </div>
+
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             data-src="@Model.RightSupportingImage.Url"
+             alt="@Model.RightSupportingImageAltTag"
+             title="@Model.RightSupportingImageAltTag" />
+
+        <div class="container-fluid">
+            <div class="container">
+                @Html.Raw(Model.LeftHeading)
+                @Model.LeftSubHeading
+                <div class="orange-divider"></div>
+                @Html.Raw(Model.LeftDescription)
+                <a href="@Model.LeftButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.LeftButtonText</a>
+            </div>
+        </div>
+    </div>
+</div>

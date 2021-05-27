@@ -1,0 +1,402 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.CustomizedOfficeFloors>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web
+
+@{
+    Layout = "master.cshtml";
+
+    var selection = Model.Ancestor("home");
+    var home = (Home)selection;
+    string page = "Customized Office Floor";
+}
+
+<!--Above the Fold Column 1 and Carousel -->
+<div class="container-fluid p-0" id="aboveTheFold">
+    <div class="row rowHeight">
+        <div class="desktop-view col-lg-7 col-md-12"
+             style="background: #000 url('@Model.AboveTheFoldCol1BgImage.Url');
+                                         background-repeat: repeat;
+                                         background-position: center;
+                                         position: relative;
+                                         min-height: 250px;
+                                         padding: 0 80px;
+                                         color: #fff;">
+            <div class="vertical-center-transform">
+                @Html.Raw(Model.AboveTheFoldHeading)
+                <div class="orange-divider-1px"></div>
+                @Html.Raw(Model.AboveTheFoldSubHeading)
+                @Html.Raw(Model.AboveTheFoldDescription)
+                <a href="@Model.AboveTheFoldButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.AboveTheFoldButtonText</a>
+            </div>
+        </div>
+
+        <!-- Carousel -->
+        <div class="col-lg-5 col-md-12 col-sm-12 col-12 owl-carousel owl-theme px-0" id="aboveTheFold_carousel">
+
+            @{
+                int count = 0;
+                {
+                    foreach (var city in home.Children)
+                    {
+                        if (city.IsDocumentType("cityItems"))
+                        {
+                            foreach (var building in city.Children)
+                            {
+                                if (building.IsDocumentType("buildings"))
+                                {
+                                    var featured = (Buildings)building;
+                                    if (featured.AppearOnPage.Contains(page))
+                                    {
+                                        if (count >= 3)
+                                        {
+                                            break;
+                                        }
+
+                                        else
+                                        {
+                                            <div class="container-fluid h-100 p-0 kv-banner-100vh" 
+                                                        style="color: white;">
+                                                
+                                                <img class="img-bg owl-lazy"
+                                                     data-src="@featured.FeaturedPhoto.Url" />
+
+                                                <div class="spacer-sm"></div>
+
+                                                <div class="spaces-carousel-text" style="background-color: rgba(0,0,0,0.7);padding: 20px;">
+                                                    <h4 class="text-semibold text-orange text-uppercase">
+                                                        <a href="@featured.Url">@featured.FeaturedBuildingName</a>
+                                                    </h4>
+                                                    <h5>
+                                                        <i class="fa fa-map-marker-alt" aria-hidden="true"></i>&nbsp;
+                                                        @featured.FeaturedBuildingCity
+                                                    </h5>
+                                                    @Html.Raw(featured.BuildingAddress)
+                                                    <br />
+                                                    <a href="/locations/" class="viewAllLocations">View All Locations</a>
+                                                    <div class="spacer-sm"></div>
+                                                </div>
+                                            </div>
+                                            count++;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        </div>
+
+        <!--Title and Description On Mobile-->
+        <div class="container mobile-view"
+             style="background: #fff;
+                        min-height: 250px;
+                        padding: 30px;
+                        color: #333;">
+
+            <div>
+                @Html.Raw(Model.AboveTheFoldHeading)
+                <div class="orange-divider-1px"></div>
+                @Html.Raw(Model.AboveTheFoldSubHeading)
+                @Html.Raw(Model.AboveTheFoldDescription)
+                <a href="@Model.AboveTheFoldButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.AboveTheFoldButtonText</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Customized Office Solutions -->
+<div class="container-fluid p-0" id="customized-office"
+     style="background: #F99D3A url('@Model.CustomizedOfficeSolutionsBgImage.Url');
+             background-repeat: repeat;
+             background-position: center;
+             position: relative;">
+
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12 m-auto">
+                    @Html.Raw(Model.CustomizedOfficeSolutionsHeading)
+                </div>
+
+                <div class="col-lg-3 col-md-12 col-sm-12 col-12 my-2">
+                    <div class="card h-100 w-100 p-2 m-auto">
+                        <div class="card-body d-flex flex-column">
+                            <img class="center-element" data-src="@Model.CustomizedOfficeFloorIcon.Url" width="70" />
+                            <div class="spacer-sm"></div>
+                            <h3 class="card-title text-center text-orange">@Model.CustomizedOfficeFloorHeading</h3>
+                            <div class="card-text">@Html.Raw(Model.CustomizedOfficeFloorDetails)</div>
+                            <div class="text-center mt-auto">
+                                <a href="@Model.CustomizedOfficeFloorsButtonLink"
+                                   class="btn btn-primary mt-auto">@Model.CustomizedOfficeFloorsButtonText</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-12 col-sm-12 col-12 my-2">
+                    <div class="card h-100 w-100 p-2 m-auto">
+                        <div class="card-body d-flex flex-column">
+                            <img class="center-element" 
+                                data-src="@Model.YourOfficeFloorIcon.Url" width="70" />
+                            <div class="spacer-sm"></div>
+                            <h3 class="card-title text-center text-orange">@Model.YourOfficeFloorHeading</h3>
+                            <div class="card-text">@Html.Raw(Model.YourOfficeFloorDetails)</div>
+                            <div class="text-center mt-auto">
+                                <a href="@Model.YourOfficeFloorButtonLink"
+                                   class="btn btn-primary mt-auto">@Model.YourOfficeFloorButtonText</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--Branded Office Options -->
+<div class="container-fluid p-0" id="branded-office-options">
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container overlap_left"
+                         style="position: relative;
+                            height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             data-src="@Model.BrandedOfficeSupportingImage.Url"
+                             alt="@Model.BrandedOfficeSupportingImageAltTag"
+                             title="@Model.BrandedOfficeSupportingImageAltTag" />
+                    </div>
+
+                    <div class="overlap_border_left"></div>
+                </div>
+
+                <div class="col-12 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.BrandedOfficeHeading)
+                    <h3>@Model.BrandedOfficeSubHeading</h3>
+                    <div class="orange-divider"></div>
+                    @Html.Raw(Model.BrandedOfficeDescription)
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             data-src="@Model.BrandedOfficeSupportingImage.Url"
+             alt="@Model.BrandedOfficeSupportingImageAltTag"
+             title="@Model.BrandedOfficeSupportingImageAltTag" />
+        <div class="container-fluid">
+            <div class="container">
+                @Html.Raw(Model.BrandedOfficeHeading)
+                <h3>@Model.BrandedOfficeSubHeading</h3>
+                <div class="orange-divider"></div>
+                @Html.Raw(Model.BrandedOfficeDescription)
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!--How KMC Enterprises Works-->
+<div class="container-fluid p-0" id="kmc-enterprise-works">
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class=" col-12 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.EnterpriseWorksHeading)
+                    <div class="orange-divider"></div>
+                    @Html.Raw(Model.EnterpriseWorksDescription)
+                </div>
+
+                <div class="col-12 col-lg-6">
+
+                    <div class="container overlap_right"
+                         style="position: relative;
+                            height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             data-src="@Model.EnterpriseWorksSupportingImage.Url"
+                             alt="@Model.EnterpriseWorksImageAltTag"
+                             title="@Model.EnterpriseWorksImageAltTag" />
+                    </div>
+
+                    <div class="overlap_border_right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             data-src="@Model.EnterpriseWorksSupportingImage.Url"
+             alt="@Model.EnterpriseWorksImageAltTag"
+             title="@Model.EnterpriseWorksImageAltTag" />
+
+        <div class="container-fluid">
+            <div class="container">
+                @Html.Raw(Model.EnterpriseWorksHeading)
+                <div class="orange-divider"></div>
+                @Html.Raw(Model.EnterpriseWorksDescription)
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Case Studies -->
+<div class="container-fluid p-0" id="case-studies">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <h2 class="text-extrabold medium-text">Case <span class="orange-text">Studies</span></h2>
+                <div class="orange-divider-2px"></div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            </div>
+        </div>
+        
+        <div class="row m-0">
+            <div class="col-lg-8 col-md-6 col-sm-12 col-12 gutter-5px"
+                 style="background:url(@Model.CaseStudy1Image.Url);
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    min-height: 350px;
+                    width: 100%;">
+
+                <div class="transparent-black-bg">
+                    <h3 class="text-semibold text-orange">@Model.CaseStudy1Title</h3>
+                    <p class="text-limit text-white">@Model.CaseStudy1Description</p>
+                    <a href="@Model.CaseStudy1Link" target="_blank" class="text-white">Read More</a>
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 gutter-5px"
+                 style="background:url(@Model.CaseStudy2Image.Url);
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    min-height: 350px;
+                    width: 100%;">
+
+                <div class="transparent-black-bg">
+                    <h3 class="text-semibold text-orange">@Model.CaseStudy2Title</h3>
+                    <p class="text-limit text-white">@Model.CaseStudy2Description</p>
+                    <a href="@Model.CaseStudy2Link" target="_blank" class="text-white">Read More</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The KMC Advantage -->
+<div class="container-fluid p-0" id="the-kmc-advantage">
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container overlap_left"
+                         style="position: relative;
+                            height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             data-src="@Model.KMcadvantageSupportingImage.Url"
+                             alt="@Model.KMcadvantageImageAltTag"
+                             title="@Model.KMcadvantageImageAltTag" />
+                    </div>
+
+                    <div class="overlap_border_left"></div>
+                </div>
+
+                <div class="col-12 col-lg-6 overlap_contents">
+                    <h2 class="text-semibold">@Model.KMcadvantageHeading</h2>
+                    <div class="orange-divider"></div>
+                    @Html.Raw(Model.KMcadvantageDescription)
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-view">
+        <div class="container-fluid">
+            <div class="container">
+                <h2 class="text-semibold">@Model.KMcadvantageHeading</h2>
+                <div class="orange-divider"></div>
+                @Html.Raw(Model.KMcadvantageDescription)
+            </div>
+        </div>
+
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             data-src="@Model.KMcadvantageSupportingImage.Url"
+             alt="@Model.KMcadvantageImageAltTag"
+             title="@Model.KMcadvantageImageAltTag" />
+    </div>
+    
+</div>
+
+<!--FAQ-->
+@Html.Partial("~/Views/Partials/FAQSchema.cshtml")
+
+<!--Featured Locations Partial View -->
+<div class="container-fluid">
+
+    <div class="container">
+        <div class="container buildingsPerOfficeType" id="smallerOfficeHeading"
+             style="background:#F99D3A url(); padding: 15px 10px 5px 10px; border-radius: 5px;">
+            <div class="row">
+                <div class="col">
+                    <h2 class="text-white text-extrabold">Looking for Smaller or Larger Office Options?</h2>
+                </div>
+            </div>
+        </div>
+        <div class="spacer-md"></div>
+    </div>
+
+    <div class="container">
+        <!--Coworking Space Offices -->
+        @Html.Partial("~/Views/Partials/OfficeOptions/CoworkingSpace.cshtml")
+        <div class="spacer-lg"></div>
+
+        <!--Standard Private Offices -->
+        @Html.Partial("~/Views/Partials/OfficeOptions/StandardPrivateOffices.cshtml")
+        <div class="spacer-lg"></div>
+
+        <!-- Entire Customized Floors -->
+        @Html.Partial("~/Views/Partials/OfficeOptions/CustomizedOfficeFloors.cshtml")
+        <div class="spacer-lg"></div>
+
+        <div class="row" id="viewAllLocations">
+            <div class="col-lg-4"></div>
+
+            <div class="col-lg-4">
+                <a href="/locations/" class="btn btn-primary" role="button" aria-disabled="true" style="font-size:0.8rem;width:100%;">View All Locations </a>
+            </div>
+
+            <div class="col-lg-4"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/custom/aboveTheFold_Carousel.es5.min.js"></script>
+    <script>
+        $('.panel-collapse').on('show.bs.collapse', function () {
+            $(this).siblings('.panel-heading').addClass('active');
+        });
+
+        $('.panel-collapse').on('hide.bs.collapse', function () {
+            $(this).siblings('.panel-heading').removeClass('active');
+        });
+    </script>
+}

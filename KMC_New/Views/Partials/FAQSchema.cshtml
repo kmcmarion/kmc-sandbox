@@ -1,0 +1,82 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+<div class="container-fluid">
+    <div class="container contents-box">
+        <h2 class="text-extrabold">@Model.Value("fAqheading")</h2>
+        <div class="orange-divider"></div>
+        
+        <div class="panel-group" id="accordion-faqschema" role="tablist" aria-multiselectable="true">
+            @if (Model.HasValue("question1") && Model.HasValue("answer1"))
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading-faq-1">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion-faqschema" href="#collapse-faq-1" aria-expanded="true" aria-controls="collapse-faq-1">
+                                @Model.Value("question1")
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse-faq-1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-faq-1">
+                        <div class="panel-body">
+                            @Html.Raw(Model.Value("answer1"))
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model.HasValue("question2") && Model.HasValue("answer2"))
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading-faq-2">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion-faqschema" href="#collapse-faq-2" aria-expanded="true" aria-controls="collapse-faq-2">
+                                @Model.Value("question2")
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse-faq-2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-faq-2">
+                        <div class="panel-body">
+                            @Html.Raw(Model.Value("answer2"))
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model.HasValue("question3") && Model.HasValue("answer3"))
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading-faq-3">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion-faqschema" href="#collapse-faq-3" aria-expanded="true" aria-controls="collapse-faq-3">
+                                @Model.Value("question3")
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse-faq-3" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-faq-3">
+                        <div class="panel-body">
+                            @Html.Raw(Model.Value("answer3"))
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model.HasValue("question4") && Model.HasValue("answer4"))
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading-faq-4">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion-faqschema" href="#collapse-faq-4" aria-expanded="true" aria-controls="collapse-faq-4">
+                                @Model.Value("question4")
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse-faq-4" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-faq-4">
+                        <div class="panel-body">
+                            @Html.Raw(Model.Value("answer4"))
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

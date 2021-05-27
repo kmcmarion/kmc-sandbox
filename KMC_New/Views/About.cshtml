@@ -1,0 +1,285 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.About>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+
+    var selection = Model.Ancestor("home");
+    var home = (Home)selection;
+}
+
+<div class="container-fluid p-0" id="aboveTheFold_overlapped">
+    <div class="desktop-view">
+        <div class="row rowHeight">
+            <div class="col-lg-6 col-sm-12 col-12"
+                 style="background: #000 url('@Model.AboveTheFoldCol1BgImage.Url');
+                        position:relative;
+                        background-repeat: repeat;">
+                <div class="overlapped_box center-items">
+                    <div>
+                        @Model.AboveTheFoldHeading
+                        <div class="orange-divider-2px"></div>
+                        @Html.Raw(Model.AboveTheFoldDescription)
+                        <a href="@Model.AboveTheFoldButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.AboveTheFoldButtonText</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12 col-12 p-5"
+                 style="background: url(@Model.AboveTheFoldCol2BgImage.Url);
+                    background-position:center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    min-height: 400px;">
+            </div>
+        </div>
+    </div>
+
+    <!--Above the Fold - Mobile View -->
+    <div class="mobile-view"
+         style="background: url(@Model.AboveTheFoldCol2BgImage.Url);
+            background-position:center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 300px;">
+
+    </div>
+
+    <div class="container-fluid mobile-view">
+        <div class="container">
+            @Html.Raw(Model.AboveTheFoldHeading)
+            <div class="orange-divider-2px"></div>
+            @Html.Raw(Model.AboveTheFoldSubHeading)
+            @Html.Raw(Model.AboveTheFoldDescription)
+            <div class="spacer-sm"></div>
+            <a class="btn btn-primary w-100" role="button" href="@Model.AboveTheFoldButtonLink">@Model.AboveTheFoldButtonText</a>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-0" id="workspaceLandscape-section">
+    <div class="container-fluid"
+         style="background: #f99d3a url('@Model.WorkspaceTextureBg.Url')">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12"
+                 style="margin: auto; color: #fff">
+                <div class="container">
+                     @Html.Raw(Model.WorkspaceLandscapeHeading)
+                    <div class="spacer-md"></div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            @Html.Raw(Model.Workstations)
+                            <div class="spacer-sm"></div>
+                            @Html.Raw(Model.TotalWorkspace)
+                        </div>
+    
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            @Html.Raw(Model.OfficeLocations)
+                            <div class="spacer-sm"></div>
+                            @Html.Raw(Model.ManagedFloors)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12 col-sm-12 desktop-view">
+                <div class="" style="background: #fff; padding: 80px;">
+                    @Html.Raw(Model.ArticleHeading)
+                    <div class="orange-divider-2px"></div>
+                    @Html.Raw(Model.ArticleDescription)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid mobile-view">
+        <div class="container" style="background: #fff;">
+            @Html.Raw(Model.ArticleHeading)
+            <div class="orange-divider-2px"></div>
+            @Html.Raw(Model.ArticleDescription)
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-0" id="kmcAdvantage-section">
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class=" col-12 col-md-6 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.KMcadvantageHeading)
+                    <div class="orange-divider-2px"></div>
+                    @Html.Raw(Model.KMcadvantageDescription)
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <div class="container overlap_right"
+                         style="position: relative;
+                            height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             data-src="@Model.KMcadvantageSupportingImage.Url"
+                             alt="@Model.KMcadvantageImageAltTag"
+                             title="@Model.KMcadvantageImageAltTag" />
+                    </div>
+
+                    <div class="overlap_border_right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             data-src="@Model.KMcadvantageSupportingImage.Url"
+             alt="@Model.KMcadvantageImageAltTag"
+             title="@Model.KMcadvantageImageAltTag" />
+
+        <div class="container-fluid">
+            <div class="container">
+                @Html.Raw(Model.KMcadvantageHeading)
+                <div class="orange-divider-2px"></div>
+                @Html.Raw(Model.KMcadvantageDescription)
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Trusted By Logos -->
+@Html.Partial("~/Views/Partials/TrustedByLogos.cshtml")
+
+<!--People Behind KMC-->
+<div class="container-fluid" style="padding: 100px 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 vertical-align">
+                @Html.Raw(Model.PeopleHeading)
+                <div class="orange-divider-2px"></div>
+                @Html.Raw(Model.PeopleDescription)
+            </div>
+
+            <div class="col-lg-8 col-md-8 col-sm-12">
+                <div class="owl-carousel owl-theme" id="peopleBehindKMC_carousel">
+                    @{
+                        foreach (var item in Model.Children)
+                        {
+                            if (item.IsDocumentType("executiveTeamPhoto"))
+                            {
+                                var photo = (ExecutiveTeamPhoto)item;
+                                {
+                                    <div class="card-flip">
+                                        <div class="flip">
+                                            <div class="front">
+                                                <img data-src="@photo.ExecutiveImage.Url"
+                                                     alt="@photo.ExecutiveImageAltTag"
+                                                     title="@photo.ExecutiveImageAltTag"
+                                                     style="margin: auto; display:block; width: auto;" />
+                                                <div class="black-pattern-bg p-3 text-center" style="z-index:2;">
+                                                    <p class="text-extrabold text-orange m-0">@photo.ExecutiveName</p>
+                                                    <p class="text-white" style="margin:0;">@photo.ExecutiveTitle</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="back">
+                                                <div class="">
+                                                    <h3>@photo.ExecutiveName</h3>
+                                                    <p>@photo.ExecutiveTitle</p>
+                                                    <div class="executive-text-limit">@Html.Raw(photo.ExecutiveDescription)</div>
+                                                    <span class="text-white"><i class="fab fa-linkedin"></i> <a class="text-white" href="@photo.Link" target="_blank">@photo.LinkedIn</a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Mission and Vision-->
+<div class="container-fluid pt-0">
+    <div class="container-fluid desktop-view">
+        <div class="container-fluid"
+             style="padding:0;
+                    background: #000 url('@Model.MissionVisionTextureBg.Url');
+                    background-repeat:repeat;
+                    min-height: 250px;
+                    position:relative;">
+
+            <div class="container"
+                 style="margin-top: 0rem;
+                    position: absolute;
+                    top: -20%;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 100%;">
+
+                <div class="row" style="margin-top:-20px;">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="container h-100 center-items overlap_left"
+                             style="position: relative;
+                                min-height: 300px;">
+
+                            <img class="img-fluid img_object-fit img-overlap-style"
+                                 data-src="@Model.MissionVisionSupportingImage.Url"
+                                 alt="@Model.MissionVisionImageAltTag"
+                                 title="@Model.MissionVisionImageAltTag" />
+                        </div>
+                        <div class="overlap_border_left h-100" style="background: transparent;"></div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12" overlap_contents">
+                        <div style="margin:95px 0 auto;">
+                            @Html.Raw(Model.Mission)
+                            @Html.Raw(Model.Vision)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             data-src="@Model.MissionVisionSupportingImage.Url"
+             alt="@Model.MissionVisionImageAltTag"
+             title="@Model.MissionVisionImageAltTag" />
+
+        <div class="container-fluid"
+             style="background: #000 url('@Model.MissionVisionTextureBg.Url');
+                    background-repeat:repeat;">
+
+            <div class="container">
+                @Html.Raw(Model.Mission)
+                @Html.Raw(Model.Vision)
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Featured Banner-->
+@Html.Partial("~/Views/Partials/FeaturedBanner.cshtml")
+
+<!--Awards-->
+<div class="container-fluid" id="awards-section"
+     style="background: #F99D3A url(@Model.AwardsSectionBg.Url); background-repeat: repeat;">
+
+    <div class="container">
+        @Html.Raw(Model.AwardsSectionHeading)
+
+        <div class="row">
+            @{
+                var awards = Model.Value<IEnumerable<IPublishedContent>>("awardsImages");
+                foreach (var item in awards)
+                {
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12 m-auto text-center">
+                        <img class="img-fluid" data-src="@item.Url" />
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

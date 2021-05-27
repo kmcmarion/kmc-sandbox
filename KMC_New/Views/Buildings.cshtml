@@ -1,0 +1,485 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Buildings>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web
+@{
+    Layout = "master.cshtml";
+    var cityItems = Model.Ancestor("cityItems");
+    var cities = (CityItems)cityItems;
+}
+
+@Html.Partial("~/Views/Partials/Navigation/LocationsNavigation.cshtml")
+
+<!--Desktop View of Buildings Overview-->
+<div class="container-fluid desktop-view buildings_page_desktop">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-7">
+                <div class="overview-section1 mb-3">
+                    <h1 class="text-extrabold building-name-style">@Model.BuildingName, @cities.NavigationItemName</h1>
+                    <p>@Model.BuildingAddress</p>
+                    @if (Model.Value("TelephoneNumber").ToString() == "")
+                    {
+                        <p><a href="tel:+63287796540">(+632) 8779-6540</a></p> }
+                    else
+                    {
+                        <p><a href="tel:@Model.Value("TelephoneNumber").ToString().Replace("(", "").Replace(")", "").Replace(" ", "").Replace("-","")">@Model.Value("TelephoneNumber")</a></p>
+                    }
+                    <a href="/coworking-locations">View All Coworking Spaces</a>
+                    <div class="spacer-sm"></div>
+
+                    @if (Model.Value<bool>("newBuildingPreSelling"))
+                    {
+                        <!-- 2 carousels on sync -->
+                        <div class="wrap">
+                            <span class="ribbon text-semibold">@Model.BuildingOverviewCarouselRibbonText</span>
+                            <div class="owl-carousel owl-theme" id="building_sync1">
+                                @{
+                                    foreach (var item in Model.BuildingPhotos)
+                                    {
+                                        <div class="item">
+                                            <img class="img-fluid owl-lazy"
+                                                 data-src="@item.Url"
+                                                 alt="@item.Name"
+                                                 title="@item.Name">
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="container back-to-work-info"
+                             style="background: #000; border-radius: 5px; margin-bottom: 10px">
+                            <div class="row py-2">
+                                <div class="col-lg-9 col-md-9 col-sm-8 col-12 my-auto">
+                                    <p class="text-semibold text-white p-0 m-0">Come Back to Work Safely! <span class="text-orange">KMC Office Spaces are Now OPEN!</span></p>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-12 text-right">
+                                    <a class="btn btn-primary desktop-btn" href="/get-back-to-work-with-kmc/">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-carousel owl-theme" id="building_sync2">
+                            @{
+                                foreach (var item in Model.BuildingPhotos)
+                                {
+                                    <div class="item">
+                                        <img class="img-fluid owl-lazy"
+                                             data-src="@item.Url"
+                                             alt="@item.Name"
+                                             title="@item.Name">
+                                    </div>
+                                }
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="owl-carousel owl-theme" id="building_sync1">
+                            @{
+                                foreach (var item in Model.BuildingPhotos)
+                                {
+                                    <div class="item">
+                                        <img class="img-fluid owl-lazy"
+                                             data-src="@item.Url"
+                                             alt="@item.Name"
+                                             title="@item.Name">
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="container back-to-work-info"
+                             style="background: #000; border-radius: 5px; margin-bottom: 10px">
+                            <div class="row py-2">
+                                <div class="col-lg-9 col-md-9 col-sm-8 col-12 my-auto">
+                                    <p class="text-semibold text-white p-0 m-0">Come Back to Work Safely! <span class="text-orange">KMC Office Spaces are Now OPEN!</span></p>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-12 text-right">
+                                    <a class="btn btn-primary desktop-btn" href="/get-back-to-work-with-kmc/">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-carousel owl-theme" id="building_sync2">
+                            @{
+                                foreach (var item in Model.BuildingPhotos)
+                                {
+                                    <div class="item">
+                                        <img class="img-fluid owl-lazy"
+                                             data-src="@item.Url"
+                                             alt="@item.Name"
+                                             title="@item.Name">
+                                    </div>
+                                }
+                            }
+                        </div>
+                    }
+                </div>
+
+                <!--Building details in 4 columns -->
+                <div class="row mb-5" id="building-details">
+                    <div class="col-lg-4 col-4">
+                        <p><b>@Model.PrivateOffice</b></p>
+                        <p>Private Office</p>
+                    </div>
+
+                    <div class="col-lg-4 col-4" style="border-left: 1px solid #ccc">
+                        <p><b>@Model.CoworkingDesks</b></p>
+                        <p>Coworking Desks</p>
+                    </div>
+
+                    <div class="col-lg-4 col-4" style="border-left: 1px solid #ccc">
+                        <p><b>@Model.MeetingRooms</b></p>
+                        <p>Meeting Rooms</p>
+                    </div>
+                </div>
+
+                <!--Serviced Office & Coworking Space for Rent in ... -->
+                <div class="row mb-5">
+                    <div class="col">
+                        @Html.Raw(Model.OfficeTypeDescHeading)
+                        @Html.Raw(Model.OfficeTypeDescParagraph)
+                    </div>
+                </div>
+
+
+                <!--Amenities Section -->
+                <!--Looped Carousel and Amenities Description -->
+                <div class="row" id="amenities">
+                    <div class="col">
+                        @Model.AmenitiesHeading
+                        <div class="owl-carousel owl-theme mb-4" id="amenities_Carousel">
+                            @{
+                                foreach (var item in Model.AmenitiesPhotos)
+                                {
+                                    <div class="item">
+                                        <img class="img-fluid"
+                                             data-src="@item.Url"
+                                             alt="@item.Name"
+                                             title="@item.Name">
+                                    </div>
+                                }
+                            }
+                        </div>
+                        @Html.Raw(Model.AmenitiesContent)
+                    </div>
+                </div>
+
+                <!-- Solid Infrastructure to Enable Seamless Operations -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <h2 class="text-semibold mb-2">@Model.OperationsHeading</h2>
+                        <img class="img-fluid"
+                             data-src="@Model.OperationsPhoto.Url"
+                             alt="@Model.OperationsPhotoAltTag"
+                             title="@Model.OperationsPhotoAltTag">
+                    </div>
+                </div>
+
+                <div class="row mb-5">
+                    <div class="col">
+                        @Html.Raw(Model.OperationsContent)
+                    </div>
+                </div>
+
+                @if (!String.IsNullOrEmpty(Model.TourLink))
+                {
+                    <div class="tour-wrapper mb-5">
+                        <div class="title">
+                            <div style="display: block;">
+                                @Model.TourTitle
+                            </div>
+                        </div>
+
+                        @if(Model.TourPreviewImage != null) { 
+                            <img class="image" src="@Model.TourPreviewImage.Url" alt="@Model.Name" />
+                        }
+                    </div>
+                }
+
+                <!--Neighborhood-->
+                <div class="row mb-3">
+                    <div class="col">
+                        @Model.NeighborhoodHeading
+                        <div class="owl-carousel owl-theme mb-4" id="neighborhood_Carousel">
+                            @{
+                                foreach (var item in Model.NeighborhoodPhotos)
+                                {
+                                    <div class="item">
+                                        <img class="img-fluid owl-lazy"
+                                             data-src="@item.Url"
+                                             alt="@item.Name"
+                                             title="@item.Name">
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-5">
+                    @Model.NeighborhoodContents
+                </div>
+
+
+
+                <!--Featured Locations (4 Cards) (Partial View) -->
+                <h2 class="text-extrabold mb-2">Featured Locations</h2>
+                @Html.Partial("~/Views/Partials/FeaturedLocations/FeaturedLocations-4-Items.cshtml")
+
+            </div>
+
+            <div class="col-lg-5 col-md-5 pl-0">
+                <div class="col pl-5 pr-0 float_form">
+                    @{
+                        if (Model.Value<bool>("customContactForm"))
+                        {
+                            <!--Custom Form-->
+                            <div id="bookTour_form">
+                                <h2 class="text-extrabold" style="font-size: 1.5rem;">@Model.CustomFormHeading</h2>
+                                @Html.Raw(Model.CustomFormScript)
+                            </div>
+                        }
+                        else
+                        {
+                            <!--Default Book a Tour Form-->
+                            @Html.Partial("~/Views/Partials/BookATourForm.cshtml")
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Mobile View of Buildings Overview-->
+<div class="container-fluid mobile-view buildings_page_mobile">
+    <div class="container">
+        <div class="overview-section1">
+            <h1 class="text-extrabold building-name-style">@Model.BuildingName, @cities.NavigationItemName</h1>
+            <p>@Model.BuildingAddress</p>
+            @if (Model.Value("TelephoneNumber").ToString() == "")
+            {
+                <p><a href="tel:+63287796540">(+632) 8779-6540</a></p> }
+            else
+            {
+                <p><a href="tel:@Model.Value("TelephoneNumber").ToString().Replace("(", "").Replace(")", "").Replace(" ", "").Replace("-","")">@Model.Value("TelephoneNumber")</a></p>
+            }
+            <a href="/coworking-locations">View All Coworking Spaces</a>
+        </div>
+    </div>
+
+    @if (Model.Value<bool>("newBuildingPreSelling"))
+    {
+        <div class="wrap">
+            <span class="ribbon text-semibold">@Model.BuildingOverviewCarouselRibbonText</span>
+            <div class="owl-carousel owl-theme mb-5" id="buildings_mobile">
+                @{
+                    foreach (var item in Model.BuildingPhotos)
+                    {
+                        <div class="item">
+                            <img class="img-fluid owl-lazy"
+                                 data-src="@item.Url"
+                                 alt="@item.Name"
+                                 title="@item.Name"
+                                 style="border-radius:5px;">
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="container back-to-work-info"
+             style="background: #000; margin-bottom: 10px">
+            <div class="row py-2">
+                <div class="col-lg-9 col-md-9 col-sm-8 col-8 my-auto">
+                    <p class="text-semibold text-white p-0 m-0" style="line-height:1">Come Back to Work Safely! <span class="text-orange">KMC Office Spaces are Now OPEN!</span></p>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-4 col-4 text-right my-auto">
+                    <a class="btn btn-primary mobile-btn" href="/get-back-to-work-with-kmc/">Learn More</a>
+                </div>
+            </div>
+        </div>
+    }
+
+    else
+    {
+        <div class="owl-carousel owl-theme mb-2" id="buildings_mobile">
+            @{
+                foreach (var item in Model.BuildingPhotos)
+                {
+                    <div class="item">
+                        <img class="img-fluid owl-lazy"
+                             data-src="@item.Url"
+                             alt="@item.Name"
+                             title="@item.Name"
+                             style="border-radius:5px;">
+                    </div>
+                }
+            }
+        </div>
+        <div class="container back-to-work-info"
+             style="background: #000; margin-bottom: 10px">
+            <div class="row py-2">
+                <div class="col-lg-9 col-md-9 col-sm-8 col-8 my-auto">
+                    <p class="text-semibold text-white p-0 m-0" style="line-height:1">Come Back to Work Safely! <span class="text-orange">KMC Office Spaces are Now OPEN!</span></p>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-4 col-4 text-right my-auto">
+                    <a class="btn btn-primary mobile-btn" href="/get-back-to-work-with-kmc/">Learn More</a>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="container mb-4" id="building-details">
+        <div class="row">
+            <div class="col-lg-4 col-4">
+                <p><b>@Model.PrivateOffice</b></p>
+                <p>Private Office</p>
+            </div>
+
+            <div class="col-lg-4 col-4" style="border-left: 1px solid #ccc">
+                <p><b>@Model.CoworkingDesks</b></p>
+                <p>Coworking Desks</p>
+            </div>
+
+            <div class="col-lg-4 col-4" style="border-left: 1px solid #ccc">
+                <p><b>@Model.MeetingRooms</b></p>
+                <p>Meeting Rooms</p>
+            </div>
+        </div>
+    </div>
+
+    <!--Serviced Office & Coworking Space for Rent Mobile ... -->
+    <div class="container mb-4">
+        @Html.Raw(Model.OfficeTypeDescHeading)
+        @Html.Raw(Model.OfficeTypeDescParagraph)
+    </div>
+
+    <!--Amenities Mobile -->
+    <div class="container" id="amenities">
+        <h2 class="text-semibold">@Model.AmenitiesHeading</h2>
+    </div>
+
+    <div class="owl-carousel owl-theme mt-5 mb-5" id="amenities_Carousel_mobile">
+        @{
+            foreach (var item in Model.AmenitiesPhotos)
+            {
+                <div class="item" style="height: 250px;">
+                    <img class="img-fluid owl-lazy"
+                         style="max-width:100%; height: 250px; object-fit: cover"
+                         data-src="@item.Url"
+                         alt="@item.Name"
+                         title="@item.Name">
+                </div>
+            }
+        }
+    </div>
+
+    <div class="container mb-4">
+        @Html.Raw(Model.AmenitiesContent)
+    </div>
+
+    <!-- Solid Infrastructure to Enable Seamless Operations Mobile -->
+    <div class="container">
+        @Model.OperationsHeading
+    </div>
+    <div class="item mt-5 mb-4" style="height: 250px;">
+        <img class="img-fluid"
+             style="width:100%; height: 250px; object-fit: cover"
+             data-src="@Model.OperationsPhoto.Url"
+             alt="@Model.OperationsPhotoAltTag"
+             title="@Model.OperationsPhotoAltTag">
+    </div>
+    <div class="container mb-5">
+        @Html.Raw(Model.OperationsContent)
+    </div>
+
+    @if (!String.IsNullOrEmpty(Model.TourLink))
+    {
+        <div class="tour-wrapper mb-5">
+            <div class="title">
+                <div style="display: block;">
+                    @Model.TourTitle
+                </div>
+            </div>
+
+            @if (Model.TourPreviewImage != null)
+            {
+                <img class="image" src="@Model.TourPreviewImage.Url" alt="@Model.Name" />
+            }
+        </div>
+    }
+
+    <!-- Neighborhood Mobile -->
+    <div class="container">
+        @Model.NeighborhoodHeading
+    </div>
+
+    <div class="owl-carousel owl-theme mt-5 mb-5" id="neighborhood_Carousel_mobile">
+        @{
+            foreach (var item in Model.NeighborhoodPhotos)
+            {
+                <div class="item" style="height: 250px;">
+                    <img class="img-fluid owl-lazy"
+                         style="max-width:100%; height: 250px; object-fit: cover"
+                         data-src="@item.Url"
+                         alt="@item.Name"
+                         title="@item.Name">
+                </div>
+            }
+        }
+    </div>
+
+    <div class="container mb-5">
+        @Model.NeighborhoodContents
+    </div>
+
+
+
+
+    <!--Featured Locations (4 Cards) (Partial View) -->
+    <div class="container">
+        <h2 class="text-extrabold mb-2">Featured Locations</h2>
+        @Html.Partial("~/Views/Partials/FeaturedLocations/FeaturedLocations-4-Items.cshtml")
+    </div>
+
+    <!--Fixed Button for Form (Mobile)-->
+    @{
+        if (Model.Value<bool>("customContactForm"))
+        {
+            <div class="col p-2" id="fixed_bookButton">
+                <button class="btn btn-primary w-100" data-toggle="modal" data-target="#modal-fullscreen">Book My Space</button>
+            </div>
+
+            <div class="modal" id="modal-fullscreen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h3 class="text-extrabold" style="font-size: 2rem;">@Model.CustomFormHeading</h3>
+                        </div>
+
+                        <div class="modal-body">
+                            <div id="bookTour_form">
+                                @Html.Raw(Model.CustomFormScript)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <!--Modal for Mobile Book a Tour Form-->
+            @Html.Partial("~/Views/Partials/BookATourModal.cshtml")
+        }
+    }
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/custom/location-pages.js"></script>
+    <script>
+        
+    </script>
+}

@@ -1,0 +1,77 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var rootItem = Model.Ancestor("home");
+    var root = (Home)rootItem;
+}
+
+<div class="row">
+    <div class="col-12">       
+            <ul id="featured-locations-filter-li">
+                @foreach (var item in root.Children)
+                {
+                    if (item.IsDocumentType("cityItems"))
+                    {
+                        var city = (CityItems)item;
+                        <li>
+                            <a class="location-filter-4" data-value="@city.Name.Replace(" ", "-")">@city.NavigationItemName</a>
+                        </li>
+                    }
+                }
+            </ul> 
+    </div>
+</div>
+
+<div class="spacer-md"></div>
+
+<div class="row">
+
+    @{
+        {
+            foreach (var item in root.Children)
+            {
+                if (item.IsDocumentType("cityItems"))
+                {
+                    foreach (var building in item.Children)
+                    {
+                        if (building.IsDocumentType("buildings"))
+                        {
+                            var featured = (Buildings)building;
+
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 mb-3 featured-locations-style location-item-4 all-4 @featured.Parent.Name.Replace(" ","-")">
+                                 <figure class="card-img-style">
+                                     <a href="@featured.Url">
+                                        <img class="img_object-fit"
+                                             data-src="@featured.FeaturedPhoto.Url"
+                                             alt="@featured.FeaturedPhotoAltTag"
+                                             title="@featured.FeaturedPhotoAltTag">
+                                     </a>
+                                </figure>
+                                <div class="spacer-sm"></div>
+
+                                <h4 class="text-semibold text-orange text-uppercase">
+                                    <a href="@featured.Url">@featured.FeaturedBuildingName</a>
+                                </h4>
+                                <h5>
+                                    <i class="fa fa-map-marker-alt" aria-hidden="true"></i>&nbsp;
+                                    @featured.FeaturedBuildingCity
+                                </h5>
+                                <div class="spacer-sm"></div>
+                                <div class="text-limit">@Html.Raw(featured.FeaturedDescription)</div>
+                                <a class="card-link mt-auto" href="@featured.Url">Read More</a>
+                            </div>
+                        }
+                    }
+                }
+            }
+        }
+    }
+</div>
+
+<div class="spacer-md"></div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <a href="/locations/" class="btn btn-primary" role="button" aria-disabled="true" style="font-size:0.8rem;width:100%;">View All Locations </a>
+    </div>
+</div>

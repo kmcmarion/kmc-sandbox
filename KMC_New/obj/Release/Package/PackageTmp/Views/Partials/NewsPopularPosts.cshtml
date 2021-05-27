@@ -1,0 +1,88 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var homeSelection = Model.Ancestor("home");
+    var home = (Home)homeSelection;
+}
+
+@{
+    foreach (var selection in home.Children)
+    {
+        if (selection.IsDocumentType("news"))
+        {
+            var news = (News)selection;
+
+            <div class="container-fluid pt-0">
+                <div class="container">
+                    <div class="spacer-lg"></div>
+                    @Html.Raw(news.PopularPosts)
+                    <div class="spacer-sm"></div>
+                    <div class="row">
+                        @foreach (var item in news.Children)
+                        {
+                            if (item.IsDocumentType("newsArticle"))
+                            {
+                                var popularPost = (NewsArticle)item;
+
+                                if (popularPost.Value<bool>("popularPost"))
+                                {
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-12 mb-3">
+                                        <div class="card w-100 shadow mb-3 bg-white h-100 justify-content-center" style="border-radius: 0;">
+                                            <div style="height:275px;">
+                                                <a href="@popularPost.Url">
+                                                    <img class="card-img-top img_object-fit"
+                                                         src="@popularPost.ArticleListImage.Url"
+                                                         alt="@popularPost.ArticleListImage.Name" />
+                                                </a>
+                                            </div>
+
+                                            <div class="card-body d-flex flex-column">
+                                                <p class="mb-3">
+                                                    Published on @popularPost.DatePublished.ToShortDateString() by <b>@popularPost.Publisher</b>
+                                                </p>
+                                                <a href="@popularPost.Url">
+                                                    <h3 class="text-orange text-extrabold">@popularPost.ArticleHeading</h3>
+                                                </a>
+                                                <a class="mt-auto" href="@popularPost.Url"><u>Read More</u></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                            else if (item.IsDocumentType("newsRedirect"))
+                            {
+                                var popularPost = (NewsRedirect)item;
+
+                                if (popularPost.Value<bool>("popularPost"))
+                                {
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-12 mb-3">
+                                        <div class="card w-100 shadow mb-3 bg-white h-100 justify-content-center" style="border-radius: 0;">
+                                            <div style="height:275px;">
+                                                <a target="_blank" rel="nofollow" href="@popularPost.RedirectLink">
+                                                    <img class="card-img-top img_object-fit"
+                                                         src="@popularPost.ArticleListImage.Url"
+                                                         alt="@popularPost.ArticleListImage.Name" />
+                                                </a>
+                                            </div>
+
+                                            <div class="card-body d-flex flex-column">
+                                                <p class="mb-3">
+                                                    Published on @popularPost.DatePublished.ToShortDateString() by <b>@popularPost.Publisher</b>
+                                                </p>
+                                                <a target="_blank" rel="nofollow" href="@popularPost.RedirectLink">
+                                                    <h3 class="text-orange text-extrabold">@popularPost.ArticleHeading</h3>
+                                                </a>
+                                                <a class="mt-auto" target="_blank" rel="nofollow" href="@popularPost.RedirectLink"><u>Read More</u></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+}

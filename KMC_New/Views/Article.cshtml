@@ -1,0 +1,193 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Article>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web
+@{
+    Layout = "master.cshtml";
+    var blogs = Model.AncestorOrSelf(1).Descendants()
+        .Where(x => x.IsDocumentType("article"));
+}
+
+<head>
+    @* If there is already a structuredData existing for the previous blog entries *@
+    @if( Model.StructuredData == "" )
+    {
+        <script type="application/ld+json">
+        {
+            "@@context" : "http://schema.org",
+            "@@type" : "Article",
+            "name" : "@Model.Value("pageTitle")",
+            "author" : {
+                "@@type" : "Person",
+                "name" : "@Model.Value("articleAuthor")"
+            },
+            "datePublished" : "@Model.ArticlePublishedDate.ToShortDateString()",
+            "image" : "https://kmc.solutions@(Model.OgImage.Url)",
+            "articleSection" : "@Model.Value("articleSummary")",
+            "publisher" : {
+                "@@type" : "Organization",
+                "name" : "KMC Solutions",
+                "url" : "https://kmc.solutions/"
+            },
+            "url" : "@Request.Url.AbsoluteUri",
+            "logo": "https://kmc.solutions/media/aikesh01/kmc-solutions.png",
+            "headline" : "@Model.Value("pageTitle")"
+        }
+        </script>
+    }
+</head>
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-12 article-content">
+                @Html.Raw(Model.ArticleHeading)
+
+                <p>@Model.ArticlePublishedDate.ToShortDateString() | By @Model.ArticleAuthor</p>
+                
+                <div class="addthis_inline_share_toolbox"></div>
+                
+                <div class="spacer-md"></div>
+
+                @Html.Raw(Model.ArticleContent)
+                
+                @{
+                    if (Model.Value<bool>("displayPopup"))
+                    {
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="text-center my-2">
+                                    @Html.Raw(Model.HubspotCta)
+                                    @*<a class="btn btn-primary w-50" id="@Model.CTaid" href="@Model.CTalink" onclick='@Model.CTaonclick' role="button">@Model.CTalabel</a>*@
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12 article-modal">
+                                <div class="text-center my-2">
+                                    <button type="button" class="btn btn-primary w-50" data-toggle="modal" data-target="#@Model.PopupID" onclick="@Model.PopupOnclick">@Model.PopupCta</button>
+
+                                    <div class="modal fade" id="@Model.PopupID" tabindex="-1" role="dialog" aria-labelledby="article-popupform" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <div class="modal-title" id="article-modal-title">@Html.Raw(Model.PopupHeading)</div>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @Html.Raw(Model.PopupContent)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center">
+                            @*<a class="btn btn-primary w-25" id="@Model.CTaid" href="@Model.CTalink" onclick='@Model.CTaonclick' role="button">@Model.CTalabel</a>*@
+                            @Html.Raw(Model.HubspotCta)
+                        </div>
+                    }
+                }
+                
+                <div class="spacer-md"></div>
+                
+                <div id="disqus_thread"></div>
+
+                <div class="spacer-md"></div>
+                
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+               <div class="blogs-subscribe-form">
+                    <h2 class="text-extrabold" style="font-size: 1.5rem;">Get the latest updates on the Workspace Industry in Asia</h2>
+                    <!--[if lte IE 8]>
+                    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+                    <![endif]-->
+                    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                    <script>
+                        hbspt.forms.create({
+                            portalId: "2867266",
+                            formId: "17b69e52-8033-4fa1-a2e1-27eca7547792",
+                            css: ""
+                        });
+                    </script>
+                </div>
+                
+                <div class="spacer-md"></div>
+                
+                <div class="popular-posts-section">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h3 class="text-semibold text-white mb-0">Recent Posts</h3>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row">
+                                @{
+                                    var count = 0;
+
+                                    foreach (var article in blogs.OrderByDescending(x => x.Value("articlePublishedDate")))
+                                    {
+                                        if (count >= 4)
+                                        {
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            var articleImg = article.Value<IPublishedContent>("cardImage");
+
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-4 my-1">
+                                                <a href="@article.Url">
+                                                    <div class="blog-img-style">
+                                                        <img class="img_object-fit" 
+                                                             data-src="@articleImg.Url"
+                                                             loading="lazy"/>
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-8 my-1 vertical-align">
+                                                <a href="@article.Url">
+                                                    <h4>@article.Name</h4>
+                                                </a>
+                                            </div>
+                                        }
+                                        count++;
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e18141407a9ec8e"></script>
+
+<!--Disqus-->
+@*<script src="~/Scripts/custom/disqus.js"></script>*@
+<script>
+    var disqus_config = function () {
+            var pageId = window.location.pathname;
+            var pageUrl = window.location.href;
+            this.page.url = pageUrl;  
+            this.page.identifier = pageId; 
+        };
+
+        (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://kmc-solutions.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+}

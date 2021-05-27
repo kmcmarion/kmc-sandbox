@@ -1,0 +1,114 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.News>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+}
+
+<div class="container-fluid" style="background: #f5f5f5; padding: 20px 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-12 col-12 my-auto">
+                <h1 style="font-size:16px; margin-bottom: 0;">KMC News</h1>
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-12 col-12">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <form>
+                                <select class="form-control news-filter-type" id="category-options">
+                                    <option value="all">View All Categories</option>
+                                    <option value="company-announcements">Company Announcements</option>
+                                    <option value="kmc-in-the-media">KMC in the Media</option>
+                                </select>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid pb-0" id="news-list">
+    <div class="container">
+        @Html.Raw(Model.LatestPosts)
+
+        @{
+            foreach (var item in Model.Children.OrderByDescending(x => x.UpdateDate))
+            {
+                @*IF News Article is written and posted in KMC Solutions website*@
+                if (item.IsDocumentType("newsArticle"))
+                {
+                    var newsArticle = (NewsArticle)item;
+                    {
+                        <div class="newspost news-container" data-newstype="@newsArticle.NewsCategory">
+                            <div class="row mb-5">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12 my-auto py-3">
+                                    <a href="@newsArticle.Url">
+                                        <h3 class="medium-text mb-2">@newsArticle.ArticleHeading</h3>
+                                    </a>
+                                    <p class="mb-3">
+                                        Published on @newsArticle.DatePublished.ToShortDateString() by <b>@newsArticle.Publisher</b>
+                                    </p>
+                                    <p class="mb-3">@newsArticle.ShortOverview</p>
+                                    <a href="@newsArticle.Url"><u>Read More</u></a>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-12 col-12">
+                                </div>
+
+                                <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+                                    <a href="@newsArticle.Url"><img class="img-fluid w-100" src="@newsArticle.ArticleListImage.Url" /></a>
+                                </div>
+                            </div>
+                            <hr class="mb-5" />
+                        </div>
+                    }
+                }
+                @*If News Article should redirect to a different website*@
+                else if (item.IsDocumentType("newsRedirect"))
+                {
+                    var newsRedirect = (NewsRedirect)item;
+                    {
+                        <div class="newspost news-container" data-newstype="@newsRedirect.NewsCategory">
+                            <div class="row mb-5">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12 my-auto py-3">
+                                    <a href="@newsRedirect.RedirectLink" target="_blank">
+                                        <h3 class="medium-text mb-2">@newsRedirect.ArticleHeading</h3>
+                                    </a>
+                                    <p class="mb-3">
+                                        Published on @newsRedirect.DatePublished.ToShortDateString() by <b>@newsRedirect.Publisher</b>
+                                    </p>
+                                    <p class="mb-3">@newsRedirect.ShortOverview</p>
+                                    <a href="@newsRedirect.RedirectLink" target="_blank"><u>Read More</u></a>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-12 col-12">
+                                </div>
+
+                                <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+                                    <a href="@newsRedirect.RedirectLink" target="_blank"><img class="img-fluid w-100" src="@newsRedirect.ArticleListImage.Url" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        }
+    </div>
+</div>
+<!--Popular Posts-->
+@Html.Partial("~/Views/Partials/NewsPopularPosts.cshtml")
+
+@section Scripts{
+    <script>
+        $(".news-filter-type").change(function () {
+            var selectedNewsFilterType = this.options[this.selectedIndex].value;
+
+            if (selectedNewsFilterType == "all") {
+                $('.news-container').removeClass('hidden');
+            } else {
+                console.log(selectedNewsFilterType);
+                $('.news-container').addClass('hidden');
+                $('.news-container[data-newstype="' + selectedNewsFilterType + '"]').removeClass('hidden');
+            }
+        });
+    </script>
+}

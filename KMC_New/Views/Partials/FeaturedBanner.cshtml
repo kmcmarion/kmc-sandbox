@@ -1,0 +1,35 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var selection = Model.AncestorOrSelf("home");
+    var home = (Home)selection;
+
+    var desktopImg = Model.Value<IPublishedContent>("bannerImageDesktop");
+    var mobileImg = Model.Value<IPublishedContent>("bannerImageMobile");
+}
+
+@{
+    if (Model.Value<bool>("showBannerOnPage"))
+    {
+        <div class="container-fluid">
+            <div class="container">
+
+                <a href="@Model.Value("bannerLink")" class="desktop-view">
+                    <img class=""
+                         style="width: 100%; height:100%"
+                         data-src="@desktopImg.Url"
+                         alt="@Model.Value("bannerAltTag")"
+                         title="@Model.Value("bannerAltTag")" />
+                </a>
+
+                <a href="@Model.Value("bannerLink")" class="mobile-view text-center">
+                    <img class="img-fluid"
+                         style="height:100%;"
+                         data-src="@mobileImg.Url"
+                         alt="@Model.Value("bannerAltTag")"
+                         title="@Model.Value("bannerAltTag")" />
+                </a>
+            </div>
+        </div>
+    }
+}

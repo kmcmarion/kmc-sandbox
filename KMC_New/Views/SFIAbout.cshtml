@@ -1,0 +1,261 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.SFiabout>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+}
+@Html.Partial("~/Views/Partials/Navigation/SFINavigation.cshtml")
+
+<!--Overlapped Bg and Content Box-->
+<div class="container-fluid split-background-sfi" id="sfi-about">
+    <div class=""
+         style="background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('@Model.FullWidthBgImage.Url');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                position: relative;
+                height: 400px;
+                ">
+    </div>
+
+    <div class="container-fluid float-container-sfi">
+        <div class="container text-center">
+            @Html.Raw(Model.HeadingAndSubHeading)
+            <div class="spacer-lg"></div>
+        </div>
+
+        <div class="container contents-box-sfi">
+
+            <div class="wrapper row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12 d-flex align-items-stretch h-100" style="background:#f99d3a; padding: 20px;">
+                    <div class="d-flex flex-column w-100">
+                        <div>
+                            @Html.Raw(Model.WorkspacesContent)
+                        </div>
+
+                        <a href="@Model.WorkspacesAnchorLink" class="btn btn-white mt-auto">@Model.WorkspacesButtonText</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12 d-flex align-items-stretch" style="background:#FB9221; padding: 20px;">
+
+                    <div class="d-flex flex-column w-100">
+                        <div>
+                            @Html.Raw(Model.MentoringContent)
+                        </div>
+
+                        <a href="@Model.MentoringAnchorLink" class="btn btn-white mt-auto">@Model.MentoringButtonText</a>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12 d-flex align-items-stretch" style="background:#f99d3a; padding: 20px;">
+
+                    <div class="d-flex flex-column w-100">
+                        <div>
+                            @Html.Raw(Model.EventsContent)
+                        </div>
+
+                        <a href="@Model.EventsAnchorLink" class="btn btn-white mt-auto">@Model.EventsButtonText</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid pt-0" id="workspaces">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-6 col-12 h-100">
+                        <div class="card shadow-sm p-3 mb-5 bg-white">
+                            <div class="card-body">
+                                <div>
+                                    @Html.Raw(Model.WorkspaceBox1Content)
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12 col-sm-6 col-12 h-100">
+                        <div class="card shadow-sm p-3 mb-5 bg-white">
+                            <div class="card-body">
+                                <div>
+                                    @Html.Raw(Model.WorkspaceBox2Content)
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-12 h-100">
+                        <div class="card shadow-sm p-3 mb-5 bg-white">
+                            <div class="card-body">
+                                <div>
+                                    @Html.Raw(Model.WorkspaceBox3Content)
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-12 h-100">
+                        <div class="card shadow-sm p-3 mb-5" style="background: #F99D3A">
+                            <div class="card-body">
+                                <div class="text-center">
+
+                                    @Html.Raw(Model.JoinTheProgramContent)
+                                    <button data-toggle="modal" data-target="#sfiApply" class="btn btn-white">Apply Now</button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12">
+
+                @Html.Raw(Model.WorkspacesHeading)
+                <div class="orange-divider-2px"></div>
+
+                <div class="owl-carousel owl-theme" id="workspaces_carousel">
+                    @{
+                        foreach (var item in Model.WorkspacesCarouselImages)
+                        {
+                            <div class="item">
+                                <img class="img_object-fit owl-lazy" data-src="@item.Url" />
+                            </div>
+                        }
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid orange-pattern-bg" id="mentoring">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="owl-carousel owl-theme" id="mentors_carousel">
+                    @{
+                        foreach (var item in Model.MentorsCarouselImages)
+                        {
+                            <div class="item">
+                                <img class="img_object-fit owl-lazy" data-src="@item.Url" />
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                @Html.Raw(Model.Step1Contents)
+                <div class="spacer-sm"></div>
+                @Html.Raw(Model.Step2Contents)
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" id="events">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                @Html.Raw(Model.EventsHeading)
+                <div class="orange-divider-2px"></div>
+                <div class="spacer-sm"></div>
+                @Html.Raw(Model.EventsDescription)
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="owl-carousel owl-theme" id="events_carousel">
+                    @{
+                        foreach (var item in Model.EventsCarouselImages)
+                        {
+                            <div class="item">
+                                <img class="img_object-fit owl-lazy" data-src="@item.Url" />
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#workspaces_carousel').owlCarousel({
+                lazyLoad : true,
+                loop: true,
+                margin: 10,
+                nav: false,
+                dots: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 1
+                    },
+                    1200: {
+                        items: 1
+                    }
+                }
+            });
+
+            $('#mentors_carousel').owlCarousel({
+                lazyLoad : true,
+                loop: true,
+                margin: 10,
+                nav: false,
+                dots: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 1
+                    },
+                    1200: {
+                        items: 1
+                    }
+                }
+            });
+
+            $('#events_carousel').owlCarousel({
+                lazyLoad : true,
+                loop: true,
+                margin: 10,
+                nav: false,
+                dots: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 1
+                    },
+                    1200: {
+                        items: 1
+                    }
+                }
+            });
+        })
+    </script>
+}

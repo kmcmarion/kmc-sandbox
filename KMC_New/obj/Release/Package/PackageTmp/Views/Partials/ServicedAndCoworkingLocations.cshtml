@@ -1,0 +1,90 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web
+
+@{
+    <!--Locations Carousel-->
+
+    var selection = Umbraco.Content(Guid.Parse("22d51b69-8132-4c93-af34-0bb3b963e835"))
+    .Children("locationsCarouselItem")
+    .Where(x => x.IsVisible());
+}
+
+<div class="container-fluid" id="servicedOfficesSection">
+    <div class="container">
+        <h2 class="text-extrabold medium-text">Our Coworking and Private Offices in the Philippines</h2>
+    </div>
+    <div class="spacer-md"></div>
+
+
+    <div class="owl-carousel owl-theme" id="locations_carousel">
+
+        @{
+            foreach (var item in selection)
+            {
+                var building = (LocationsCarouselItem)item;
+
+                <div class="col d-flex align-items-stretch h-100 serviced_and_coworking_col">
+
+                    <div class="d-flex flex-column w-100">
+                        <a id="@building.ReadMoreID"
+                            href="@building.ReadMoreUrl"
+                            onclick="@building.ReadMoreButtonOnclick">
+                                <img class="owl-lazy"
+                                    data-src="@building.LocationImage.Url" 
+                                    alt="@building.LocationImageAltTag"
+                                    title="@building.LocationImageAltTag"
+                                    loading="lazy"
+                                    style="display: block;
+                                            object-fit: cover;
+                                            width:100%;
+                                            height: 175px;"/>
+                        </a>
+                        
+                        <div class="locationDetails_section">
+                            <h3 class="text-semibold">@building.BuildingName</h3>
+                            <p class="text-semibold text-orange"><i class="fa fa-map-marker-alt" aria-hidden="true"></i> @building.LocationAddress</p>
+                            <div class="spacer-sm"></div>
+
+                            @building.BuildingDescription
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                     <p class="details-bold">@building.PrivateOfficeCount</p>
+                                    <p>Private Office</p>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <p class="details-bold">@building.CoworkingDesksCount</p>
+                                    <p>Coworking Seats</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <p class="details-bold">@building.MeetingRoomsCount</p>
+                                    <p>Meeting Rooms</p>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-auto" style="background-color: #000000; padding: 0px 20px 20px;">
+                             <a id="@building.ReadMoreID"
+                                class="btn btn-secondary w-100" 
+                                onclick="@building.ReadMoreButtonOnclick" 
+                                role="button" 
+                                href="@building.ReadMoreUrl">
+                                    Learn More
+                             </a>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var enterprise = Umbraco.Content(Guid.Parse("86bfdf0d-c14b-4d98-ba69-b839d10597aa"));
+        
+}
+
+<div class="row">
+    @foreach (var item in enterprise.Children)
+    {
+        if (item.IsDocumentType("customizedOfficeSolutionsCards"))
+        {
+            var card = (CustomizedOfficeSolutionsCards)item;
+
+            <div class="col-lg-4 my-2">
+                <div class="card h-100 p-2" style="width: 100%;">
+                    <div class="card-body d-flex flex-column">
+                        <img class="center-element" data-src="@card.CustomizedOfficeIcon.Url" width="60"/>
+                        <div class="spacer-sm"></div>
+                        <div class="card-title text-center">@Html.Raw(card.CustomizedOfficeHeading)</div> 
+                        <div class="card-text">@Html.Raw(card.CustomizedOfficeDetails)</div>
+                        <div class="text-center mt-auto">
+                            <a href="@card.CustomizedOfficeButtonLink"
+                               class="btn btn-primary mt-auto">@card.CustomizedOfficeButtonText</a>
+                        </div>                       
+                    </div>
+                </div>
+            </div>       
+        }
+    }
+</div>

@@ -1,0 +1,36 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var rootItem = Model.AncestorOrSelf("buildings");
+    var root = (Buildings)rootItem;
+}
+
+    <div class="container-fluid" id="locationNav">
+        <div class="container">
+            <nav class="navbar navbar-expand navbar-light bg-light" id="scrollable_nav">
+                                 
+                <div class="" id="locationNavbar">
+                    <ul class="navbar-nav" id="locationUl">
+                        @if (root != null)
+                        {
+                            <li class="nav-item"><a class="nav-link" href="@root.Url">Overview</a></li>
+                        }
+
+                        @if (root != null && root.Children.Any())
+                        {
+                            foreach (var item in root.Children)
+                            {
+                            <li class="nav-item"><a class="nav-link" href="@item.Url">@item.Name</a></li>
+                            }
+                        }
+                    </ul>
+                </div>
+                
+                <div class="nav-contact-info ml-auto desktop-view">
+                    <ul>
+                        @*<li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/+639959658969">+63 995 965 8969</a></li>*@
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>

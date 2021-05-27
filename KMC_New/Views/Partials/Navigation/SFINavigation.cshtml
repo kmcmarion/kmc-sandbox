@@ -1,0 +1,89 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var rootItem = Model.AncestorOrSelf("sFIHome");
+    var root = (SFihome)rootItem;
+}
+
+<div class="container-fluid" id="sfiNav">
+    <div class="container">
+        <nav class="navbar navbar-expand navbar-light bg-light">
+
+            <div class="" id="sfiNavbar">
+                <ul class="navbar-nav mr-auto" id="locationUl">
+                    @if (root != null)
+                    {
+                        <li class="nav-item"><a class="nav-link" href="@root.Url">Overview</a></li>
+                    }
+
+                    @if (root != null && root.Children.Any())
+                    {
+                        foreach (var item in root.Children)
+                        {
+                            <li class="nav-item"><a class="nav-link" href="@item.Url">@item.Name</a></li>
+                        }
+                    }
+                    
+                     <li class="nav-item"><a class="nav-link" href="/blogs">Blogs</a></li>
+
+
+                </ul>
+            </div>
+
+            <div class="nav-contact-info ml-auto desktop-view">
+                <ul>                 
+                    <li> <button data-toggle="modal" data-target="#sfiApply" class="btn btn-primary">Apply  Now</button></li>
+                    <li> <button data-toggle="modal" data-target="#sfiSubscribe" class="btn btn-secondary">Subscribe Now</button></li>
+                </ul>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+<div class="modal fade" id="sfiApply" tabindex="-1" role="dialog" aria-labelledby="sfiApplyModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="background: #fff;">                                                    
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>                           
+            <div class="modal-body">
+                <!--[if lte IE 8]>
+                <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+                <![endif]-->
+                <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                <script>
+                  hbspt.forms.create({
+                	portalId: "2867266",
+                	formId: "b1856b8f-8c48-4d7f-93a1-f2b5b6621a96",
+                	css:""
+                });
+                </script>
+            </div>                           
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="sfiSubscribe" tabindex="-1" role="dialog" aria-labelledby="sfiSubscribeModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="background: #fff;">                                                    
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>                           
+            <div class="modal-body">
+                <h3 class="text-semibold text-orange">Subscribe</h3>
+                <!--[if lte IE 8]>
+                <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+                <![endif]-->
+                <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                <script>
+                  hbspt.forms.create({
+                	portalId: "2867266",
+                	formId: "447d31a0-1d8d-4eab-8739-29d14719a64e",
+                	css:""
+                });
+                </script>
+            </div>                           
+        </div>
+    </div>
+</div>

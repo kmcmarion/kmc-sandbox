@@ -1,0 +1,119 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    <!--Coworking Page-->
+    var rootItem = Model.Ancestor("home");
+    var root = (Home)rootItem;
+    var service = Umbraco.Content(Guid.Parse("d1b8e61b-ab4f-4859-9bcc-1139480620e7"));
+}
+
+<!-- Packages Section -->
+
+@{
+    foreach (var item in root.Children)
+    {
+        if (item.Id == 1402)
+        {
+            
+            var coworking = (CoworkingSpace)item;
+
+            <div class="packages-details row-width-75" id="coworking-package-partial">
+                <div class="row" id="coworking-package">
+                    <div class="owl-carousel owl-theme" id="packages-carousel">
+
+                        <!--KMC Lite-->
+                        @*<div class="item col-lg-4 col d-flex align-items-stretch h-100">
+
+                            <div class="card w-100 shadow mb-3 bg-white rounded d-flex flex-column">
+                                <div class="card-header text-center w-100 p-3 orange-pattern-bg">
+                                    <h3 style="margin-bottom: 0;">KMC Lite</h3>
+                                </div>
+
+
+                                <div class="card-body">
+                                    <p class="card-text">@coworking.KMcliteDescription</p>
+                                </div>
+
+                                <div class="price-background black-pattern-bg">
+                                    <div class="price-style center-items-justify">
+                                        <div class="wrapper">
+                                            <p>PHP</p>
+                                            <p><span class="price">@coworking.KMclitePrice</span> per month</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a class="btn btn-primary w-100 mt-auto" 
+                                   id="web-kmc-lite-book-now"
+                                   onclick="gtag('event', 'click', {'send_to':'UA-73943338-1', 'event_category': 'web-kmc-lite-book-now', 'event_action': 'click', 'event_label': 'web-kmc-lite-book-now'});"
+                                   href="@coworking.KMcliteBookingLink@Model.Parent.Name"
+                                   target="_blank"
+                                   style="border-radius: 0 0 5px 5px;">BOOK YOUR SPACE NOW</a>
+
+                            </div>
+                        </div>
+                        *@
+
+                        <!--Hot Desk-->
+                        <div class="item col-lg-6 col d-flex align-items-stretch h-100">
+                            <div class="card w-100 shadow mb-3 bg-white rounded">
+                                <div class="card-header text-center w-100 p-3 orange-pattern-bg">
+                                    <h3 style="margin-bottom: 0;">HOT DESK</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">@coworking.HotDeskDescription</p>
+                                </div>
+                                <div class="price-background black-pattern-bg">
+                                    <div class="price-style center-items-justify">
+                                        <div class="wrapper">
+                                            <p>PHP</p>
+                                            <p><span class="price">@coworking.HotDeskPrice</span> per month</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a class="btn btn-primary w-100 mt-auto" 
+                                   id="web-hot-desk-book-now"
+                                   onclick="gtag('event', 'click', {'send_to':'UA-73943338-1', 'event_category': 'web-hot-desk-book-now', 'event_action': 'click', 'event_label': 'web-hot-desk-book-now'});"
+                                   href="@coworking.HotDeskBookingLink" 
+                                   target="_blank"
+                                   style="border-radius: 0 0 5px 5px; padding: 1rem;">BOOK YOUR SPACE NOW</a>
+
+                            </div>
+                        </div>
+                        
+                        <!--Dedicated Desk-->
+                        <div class="item col-lg-6 col d-flex align-items-stretch h-100">
+                            <div class="card w-100 shadow mb-3 bg-white rounded d-flex flex-column">
+                                <div class="card-header text-center w-100 p-3 orange-pattern-bg">
+                                    <h3 style="margin-bottom: 0;">DEDICATED DESK</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">@coworking.DedicatedDeskDescription</p>
+                                </div>
+                                <div class="price-background black-pattern-bg">
+                                    <div class="price-style center-items-justify">
+                                        <div class="wrapper">
+                                            <p>PHP</p>
+                                            <p><span class="price">@coworking.DedicatedDeskPrice</span> per month</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a class="btn btn-primary w-100 mt-auto"
+                                   id="web-dedicated-desk-book-now"
+                                   onclick="gtag('event', 'click', {'send_to':'UA-73943338-1', 'event_category': 'web-dedicated-desk-book-now', 'event_action': 'click', 'event_label': 'web-dedicated-desk-book-now'});"
+                                   href="@coworking.DedicatedDeskBookingLink" 
+                                   target="_blank"
+                                   style="border-radius: 0 0 5px 5px; padding: 1rem;">TALK TO OUR EXPERTS</a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+              
+        }
+    }
+}

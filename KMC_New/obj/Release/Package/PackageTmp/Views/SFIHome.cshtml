@@ -1,0 +1,123 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.SFihome>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+@Html.Partial("~/Views/Partials/Navigation/SFINavigation.cshtml")
+
+<div class="container-fluid" id="aboveTheFold"
+     style="background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+            url('@Model.FullWidthBgImage.Url');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: relative;">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 col-12 text-white" style="min-height: 70vh;">
+                <div class="vertical-center-transform">
+                    @Html.Raw(Model.HeadingAndSubHeading)
+                    <button data-toggle="modal" data-target="#sfiApply" class="btn btn-primary">Apply  Now</button>
+                 </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" id="three-components-we-provide">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+                <div class="owl-carousel owl-theme h-100" id="components_carousel">
+                    @{
+                        foreach (var item in Model.CarouselImages)
+                        {
+                            <div class="item h-100">
+                                <img class="item img_object-fit owl-lazy" data-src="@item.Url">
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="container">
+                @Html.Raw(Model.ComponentsContent)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid orange-pattern-bg" id="members">
+    <div class="container">
+        <h2 class="text-extrabold text-center">Members</h2>
+        <div class="spacer-sm"></div>
+        <div class="owl-carousel owl-theme" id="membersLogo_carousel">
+            @{
+                foreach (var item in Model.MembersLogo)
+                {
+                    <div class="item">
+                        <img class="owl-lazy" data-src="@item.Url" style="height: 50px; width: auto; margin:auto;">
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#components_carousel').owlCarousel({
+                lazyLoad : true,
+                loop: true,
+                margin: 10,
+                nav: false,
+                dots: false,
+
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 1
+                    },
+                    1200: {
+                        items: 1
+                    }
+                }
+            });
+
+            $('#membersLogo_carousel').owlCarousel({
+                lazyLoad : true,
+                loop: true,
+                margin: 10,
+                nav: false,
+                dots: false,
+
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    900: {
+                        items: 3
+                    },
+                    1200: {
+                        items: 5
+                    }
+                }
+            });
+
+        })
+    </script>
+}

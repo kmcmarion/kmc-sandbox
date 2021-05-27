@@ -1,0 +1,95 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.SFimechanics>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+}
+@Html.Partial("~/Views/Partials/Navigation/SFINavigation.cshtml")
+
+<div class="container-fluid" style="background:#221133">
+    <div class="container"
+         style="background: url(@Model.FullWidthBgImage.Url);
+         min-height: 300px;
+         background-repeat: no-repeat;
+         background-size: contain;
+         background-position: center;">
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="container">
+        @Html.Raw(Model.MechanicsHeading)
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                <div class="row mt-4">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 center-items-justify">
+                        <div class="center-items-justify"
+                             style="border-radius: 50%; border: 2px solid #F99D3A; width: 160px; height: 160px;">
+                            <img data-src="@Model.Mechanics1Icon.Url" />
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-12 m-auto">
+                        @Html.Raw(Model.Mechanics1TitleAndDescription)
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 center-items-justify">
+                        <div class="center-items-justify"
+                             style="border-radius: 50%; border: 2px solid #F99D3A; width: 160px; height: 160px;">
+                            <img data-src="@Model.Mechanics2Icon.Url" />
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-12 m-auto">
+                        @Html.Raw(Model.Mechanics2TitleAndDescription)
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                <div class="row mt-4">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 center-items-justify">
+                        <div class="center-items-justify"
+                             style="border-radius: 50%; border: 2px solid #F99D3A; width: 160px; height: 160px;">
+                            <img data-src="@Model.Mechanics3Icon.Url" />
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-12 m-auto">
+                        @Html.Raw(Model.Mechanics3TitleAndDescription)
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 center-items-justify">
+                        <div class="center-items-justify"
+                             style="border-radius: 50%; border: 2px solid #F99D3A; width: 160px; height: 160px;">
+                            <img data-src="@Model.Mechanics3Icon.Url" />
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-12 m-auto">
+                        @Html.Raw(Model.Mechanics4TitleAndDescription)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid orange-pattern-bg text-white">
+    <div class="container text-center">
+        @Html.Raw(Model.Terms)
+        <div class="spacer-md"></div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 my-1">
+                <button data-toggle="modal" data-target="#sfiApply" class="btn btn-white w-75">Apply Now</button>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 my-1">
+                <a id="download-guidebook-button" 
+                    onclick="gtag('event', 'click', {'send_to':'UA-73943338-1', 'event_category': 'guidebook', 'event_action': 'click', 'event_label': 'download-guidebook-button'});"
+                    title="SFI batch 03_Guidebook (for applicants).pdf" 
+                    href="/media/3icgurqt/sfi-batch-03_guidebook-for-applicants.pdf" download 
+                    class="btn btn-white w-75">Download Guidebook</a>
+            </div>
+        </div>
+    </div>
+</div>

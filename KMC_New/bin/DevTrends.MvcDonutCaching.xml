@@ -1,0 +1,669 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevTrends.MvcDonutCaching</name>
+    </assembly>
+    <members>
+        <member name="P:DevTrends.MvcDonutCaching.ActionSettings.ActionName">
+            <summary>
+            Gets or sets the action name.
+            </summary>
+            <value>
+            The action's name.
+            </value>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.ActionSettings.ControllerName">
+            <summary>
+            Gets or sets the controller name.
+            </summary>
+            <value>
+            The the controller name.
+            </value>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.ActionSettings.RouteValues">
+            <summary>
+            Gets or sets the route values.
+            </summary>
+            <value>
+            The route values.
+            </value>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.CacheHeadersHelper.SetCacheHeaders(System.Web.HttpResponseBase,DevTrends.MvcDonutCaching.CacheSettings)">
+            <summary>
+            Sets the cache headers for the HTTP response given <see cref="!:settings" />.
+            </summary>
+            <param name="response">The HTTP response.</param>
+            <param name="settings">The cache settings.</param>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.CacheItem.ContentType">
+            <summary>
+            Gets or sets content type.
+            </summary>
+            <value>
+            The content type.
+            </value>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.CacheItem.Content">
+            <summary>
+            Gets or sets the content to be cached.
+            </summary>
+            <value>
+            The content.
+            </value>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.CacheSettings.IsCachingEnabled">
+            <summary>
+            Gets or sets a value indicating whether the cache is enabled.
+            </summary>
+            <value>
+              <c>true</c> if cache is enabled otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.CacheSettings.Duration">
+            <summary>
+            Gets or sets the cache duration.
+            </summary>
+            <value>
+            The cache duration.
+            </value>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.CacheSettings.VaryByParam">
+            <summary>
+            Gets or sets the VaryByParam cache parameter.
+            </summary>
+            <value>
+            The VaryByParam cache parameter.
+            </value>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.CacheSettings.VaryByHeader">
+            <summary>
+            Gets or sets the VaryByHeader cache parameter.
+            </summary>
+            <value>
+            The VaryByHeader cache parameter.
+            </value>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.CacheSettings.VaryByCustom">
+            <summary>
+            Gets or sets the VaryByCustom cache parameter.
+            </summary>
+            <value>
+            The VaryByCustom cache parameter.
+            </value>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.CacheSettings.Location">
+            <summary>
+            Gets or sets the output cache location.
+            </summary>
+            <value>
+            The output cache location.
+            </value>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.CacheSettings.NoStore">
+            <summary>
+            Gets or sets a value indicating whether store or not the result.
+            </summary>
+            <value>
+              <c>true</c> if no store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.CacheSettings.Options">
+            <summary>
+            Gets or sets the output cache options.
+            </summary>
+            <value>
+            The output cache options.
+            </value>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.CacheSettings.IsServerCachingEnabled">
+            <summary>
+            Gets a value indicating whether the server caching is enabled.
+            </summary>
+            <value>
+            <c>true</c> if the server caching enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.CacheSettingsManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DevTrends.MvcDonutCaching.CacheSettingsManager"/> class.
+            </summary>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.CacheSettingsManager.RetrieveOutputCacheProviderSettings">
+            <summary>
+            Returns the output cache provider settings.
+            </summary>
+            <returns>
+            A <see cref="T:System.Configuration.ProviderSettings" /> instance.
+            </returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.CacheSettingsManager.RetrieveOutputCacheProfile(System.String)">
+            <summary>
+            Returns an output cache profile for the asked <see cref="!:cacheProfileName" />.
+            </summary>
+            <param name="cacheProfileName">Name of the cache profile.</param>
+            <returns>
+            A <see cref="T:System.Web.Configuration.OutputCacheProfile" /> instance.
+            </returns>
+            <exception cref="T:System.Security.SecurityException">MvcDonutCaching does not have permission to read web.config section 'OutputCacheSettingsSection'.</exception>
+            <exception cref="T:System.Web.HttpException"></exception>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.CacheSettingsManager.IsCachingEnabledGlobally">
+            <summary>
+            Return a value indicating whether caching is globally enabled.
+            </summary>
+            <value>
+            <c>true</c> if caching is globally enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.ICacheHeadersHelper.SetCacheHeaders(System.Web.HttpResponseBase,DevTrends.MvcDonutCaching.CacheSettings)">
+            <summary>
+            Implementations should set the cache headers for the HTTP response given <see cref="!:settings"/>.
+            </summary>
+            <param name="response">The HTTP response.</param>
+            <param name="settings">The cache settings.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IEncryptor.Encrypt(System.String)">
+            <summary>
+            Implementations should encrypt the specified plain text.
+            </summary>
+            <param name="plainText">The plain text.</param>
+            <returns>An encrypted representation of <see cref="!:plainText"/></returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IEncryptor.Decrypt(System.String)">
+            <summary>
+            Implementations should Decrypt the specified encrypted text.
+            </summary>
+            <param name="encryptedText">The encrypted text.</param>
+            <returns>The original text</returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IReadWriteOutputCacheManager.AddItem(System.String,DevTrends.MvcDonutCaching.CacheItem,System.DateTime)">
+            <summary>
+            Implementations should add the given <see cref="!:cacheItem"/> in the cache.
+            </summary>
+            <param name="key">The cache key to add.</param>
+            <param name="cacheItem">The cache item to add.</param>
+            <param name="utcExpiry">The cache item UTC expiry date and time.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IReadWriteOutputCacheManager.GetItem(System.String)">
+            <summary>
+            Implementations should retrieve a cache item the given the <see cref="!:key"/>.
+            </summary>
+            <param name="key">The key.</param>
+            <returns>A <see cref="T:DevTrends.MvcDonutCaching.CacheItem"/> instance on cache hit, null otherwise.</returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IActionSettingsSerialiser.Serialise(DevTrends.MvcDonutCaching.ActionSettings)">
+            <summary>
+            Implementations should serialize as string the specified action settings.
+            </summary>
+            <param name="actionSettings">The action settings.</param>
+            <returns>A string representing the given <see cref="!:actionSettings"/></returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IActionSettingsSerialiser.Deserialise(System.String)">
+            <summary>
+            Implementations should deserializes the specified serialized action settings.
+            </summary>
+            <param name="serialisedActionSettings">The serialized action settings.</param>
+            <returns>An <see cref="T:DevTrends.MvcDonutCaching.ActionSettings"/> object</returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.ICacheSettingsManager.RetrieveOutputCacheProviderSettings">
+            <summary>
+            Implementations should return the output cache provider settings.
+            </summary>
+            <returns>A <see cref="T:System.Configuration.ProviderSettings"/> instance.</returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.ICacheSettingsManager.RetrieveOutputCacheProfile(System.String)">
+            <summary>
+            Implementation should return an output cache profile for the asked <see cref="!:cacheProfileName"/>.
+            </summary>
+            <param name="cacheProfileName">Name of the cache profile.</param>
+            <returns>A <see cref="T:System.Web.Configuration.OutputCacheProfile"/> instance.</returns>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.ICacheSettingsManager.IsCachingEnabledGlobally">
+            <summary>
+            Implementation should return a value indicating whether caching is globally enabled.
+            </summary>
+            <value>
+            <c>true</c> if caching is globally enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IDonutHoleFiller.RemoveDonutHoleWrappers(System.String,System.Web.Mvc.ControllerContext,DevTrends.MvcDonutCaching.OutputCacheOptions)">
+            <summary>
+            Implentations should remove the donut hole wrappers.
+            </summary>
+            <param name="content">The content.</param>
+            <param name="filterContext">The filter context.</param>
+            <param name="options">The output cache options.</param>
+            <returns>A donut hole wrapper free string</returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IDonutHoleFiller.ReplaceDonutHoleContent(System.String,System.Web.Mvc.ControllerContext,DevTrends.MvcDonutCaching.OutputCacheOptions)">
+            <summary>
+            Replaces the donut holes content of with fresh content.
+            </summary>
+            <param name="content">The content.</param>
+            <param name="filterContext">The filter context.</param>
+            <param name="options">The output cache options.</param>
+            <returns>A string containing the donut holes replaced by content.</returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IKeyGenerator.GenerateKey(System.Web.Mvc.ControllerContext,DevTrends.MvcDonutCaching.CacheSettings)">
+            <summary>
+            Implementations should generate a key given the <see cref="!:context"/> and <see cref="!:cacheSettings"/>.
+            </summary>
+            <param name="context">The controller context.</param>
+            <param name="cacheSettings">The cache settings.</param>
+            <returns>A string that can be used as an output cache key</returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IOutputCacheManager.RemoveItem(System.String,System.String)">
+            <summary>
+            Implementations should remove a single output cache entry for the specified controller and action.
+            </summary>
+            <param name="controllerName">The name of the controller that contains the action method.</param>
+            <param name="actionName">The name of the controller action method.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IOutputCacheManager.RemoveItem(System.String,System.String,System.Object)">
+            <summary>
+            Implementations should remove a single output cache entry for the specified controller, action and parameters.
+            </summary>
+            <param name="controllerName">The name of the controller that contains the action method.</param>
+            <param name="actionName">The name of the controller action method.</param>
+            <param name="routeValues">An object that contains the parameters for a route.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IOutputCacheManager.RemoveItem(System.String,System.String,System.Web.Routing.RouteValueDictionary)">
+            <summary>
+            Implementations should remove a single output cache entry for the specified controller, action and parameters.
+            </summary>
+            <param name="controllerName">The name of the controller that contains the action method.</param>
+            <param name="actionName">The name of the controller action method.</param>
+            <param name="routeValues">A dictionary that contains the parameters for a route.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IOutputCacheManager.RemoveItems">
+            <summary>
+            Implementations should remove all output cache entries.
+            </summary>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IOutputCacheManager.RemoveItems(System.String)">
+            <summary>
+            Implementations should remove all output cache entries for the specified controller.
+            </summary>
+            <param name="controllerName">The name of the controller.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IOutputCacheManager.RemoveItems(System.String,System.String)">
+            <summary>
+            Implementations should remove all output cache entries for the specified controller and action.
+            </summary>
+            <param name="controllerName">The name of the controller that contains the action method.</param>
+            <param name="actionName">The name of the controller action method.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IOutputCacheManager.RemoveItems(System.String,System.String,System.Web.Routing.RouteValueDictionary)">
+            <summary>
+            Implementations should remove all output cache entries for the specified controller, action and parameters.
+            </summary>
+            <param name="controllerName">The name of the controller that contains the action method.</param>
+            <param name="actionName">The name of the controller action method.</param>
+            <param name="routeValues">A dictionary that contains the parameters for a route.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.KeyGenerator.GenerateKey(System.Web.Mvc.ControllerContext,DevTrends.MvcDonutCaching.CacheSettings)">
+            <summary>
+            Generates a key given the <see cref="!:context"/> and <see cref="!:cacheSettings"/>.
+            </summary>
+            <param name="context">The controller context.</param>
+            <param name="cacheSettings">The cache settings.</param>
+            <returns>A string that can be used as an output cache key</returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute"/> class.
+            </summary>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute.#ctor(DevTrends.MvcDonutCaching.IKeyBuilder)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute"/> class.
+            </summary>
+            <param name="keyBuilder">The key builder.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute.#ctor(DevTrends.MvcDonutCaching.IKeyGenerator,DevTrends.MvcDonutCaching.IReadWriteOutputCacheManager,DevTrends.MvcDonutCaching.IDonutHoleFiller,DevTrends.MvcDonutCaching.ICacheSettingsManager,DevTrends.MvcDonutCaching.ICacheHeadersHelper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute"/> class.
+            </summary>
+            <param name="keyGenerator">The key generator.</param>
+            <param name="outputCacheManager">The output cache manager.</param>
+            <param name="donutHoleFiller">The donut hole filler.</param>
+            <param name="cacheSettingsManager">The cache settings manager.</param>
+            <param name="cacheHeadersHelper">The cache headers helper.</param>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute.Duration">
+            <summary>
+            Gets or sets the cache duration, in seconds.
+            </summary>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute.VaryByParam">
+            <summary>
+            Gets or sets the vary-by-param value.
+            </summary>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute.VaryByHeader">
+            <summary>
+            Gets or sets the vary-by-header value.
+            </summary>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute.VaryByCustom">
+            <summary>
+            Gets or sets the vary-by-custom value.
+            </summary>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute.CacheProfile">
+            <summary>
+            Gets or sets the cache profile name.
+            </summary>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute.Location">
+            <summary>
+            Gets or sets the location.
+            </summary>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute.NoStore">
+            <summary>
+            Gets or sets a value that indicates whether to store the cache.
+            </summary>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute.Options">
+            <summary>
+            Get or sets the <see cref="T:DevTrends.MvcDonutCaching.OutputCacheOptions"/> for this attributes. Specifying a value here will
+            make the <see cref="P:DevTrends.MvcDonutCaching.OutputCache.DefaultOptions"/> value ignored.
+            </summary>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+            Called before an action method executes.
+            </summary>
+            <param name="filterContext">The filter context.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute.OnResultExecuted(System.Web.Mvc.ResultExecutedContext)">
+            <summary>
+            Called after an action result executes.
+            </summary>
+            <param name="filterContext">The filter context.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute.BuildCacheSettings">
+            <summary>
+            Builds the cache settings.
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.Web.HttpException">
+            The 'duration' attribute must have a value that is greater than or equal to zero.
+            </exception>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute.ExecuteCallback(System.Web.Mvc.ControllerContext,System.Boolean)">
+            <summary>
+            Executes the callback.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="hasErrors">if set to <c>true</c> [has errors].</param>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.HtmlHelperExtensions.Serialiser">
+            <summary>
+            Gets or sets the serialiser.
+            </summary>
+            <value>
+            The serialiser.
+            </value>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.HtmlHelperExtensions.Action(System.Web.Mvc.HtmlHelper,System.String,System.Boolean)">
+            <summary>
+            Invokes the specified child action method and returns the result as an HTML string.
+            </summary>
+            <param name="h">The HTML helper instance that this method extends.</param>
+            <param name="actionName">The name of the action method to invoke.</param>
+            <param name="excludeFromParentCache">A flag that determines whether the action should be excluded from any parent cache.</param>
+            <returns>The child action result as an HTML string.</returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.HtmlHelperExtensions.Action(System.Web.Mvc.HtmlHelper,System.String,System.Object,System.Boolean)">
+            <summary>
+            Invokes the specified child action method using the specified parameters and returns the result as an HTML string.
+            </summary>
+            <param name="h">The HTML helper instance that this method extends.</param>
+            <param name="actionName">The name of the action method to invoke.</param>
+            <param name="routeValues">An object that contains the parameters for a route. You can use routeValues to provide the parameters that are bound to the action method parameters. The routeValues parameter is merged with the original route values and overrides them.</param>
+            <param name="excludeFromParentCache">A flag that determines whether the action should be excluded from any parent cache.</param>
+            <returns>The child action result as an HTML string.</returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.HtmlHelperExtensions.Action(System.Web.Mvc.HtmlHelper,System.String,System.Web.Routing.RouteValueDictionary,System.Boolean)">
+            <summary>
+            Invokes the specified child action method using the specified parameters and returns the result as an HTML string.
+            </summary>
+            <param name="h">The HTML helper instance that this method extends.</param>
+            <param name="actionName">The name of the action method to invoke.</param>
+            <param name="routeValues">A dictionary that contains the parameters for a route. You can use routeValues to provide the parameters that are bound to the action method parameters. The routeValues parameter is merged with the original route values and overrides them.</param>
+            <param name="excludeFromParentCache">A flag that determines whether the action should be excluded from any parent cache.</param>
+            <returns>The child action result as an HTML string.</returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.HtmlHelperExtensions.Action(System.Web.Mvc.HtmlHelper,System.String,System.String,System.Boolean)">
+            <summary>
+            Invokes the specified child action method using the specified parameters and controller name and returns the result as an HTML string.
+            </summary>
+            <param name="h">The HTML helper instance that this method extends.</param>
+            <param name="actionName">The name of the action method to invoke.</param>
+            <param name="controllerName">The name of the controller that contains the action method.</param>
+            <param name="excludeFromParentCache">A flag that determines whether the action should be excluded from any parent cache.</param>
+            <returns>The child action result as an HTML string.</returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.HtmlHelperExtensions.Action(System.Web.Mvc.HtmlHelper,System.String,System.String,System.Object,System.Boolean)">
+            <summary>
+            Invokes the specified child action method using the specified parameters and controller name and returns the result as an HTML string.
+            </summary>
+            <param name="h">The HTML helper instance that this method extends.</param>
+            <param name="actionName">The name of the action method to invoke.</param>
+            <param name="controllerName">The name of the controller that contains the action method.</param>
+            <param name="routeValues">An object that contains the parameters for a route. You can use routeValues to provide the parameters that are bound to the action method parameters. The routeValues parameter is merged with the original route values and overrides them.</param>
+            <param name="excludeFromParentCache">A flag that determines whether the action should be excluded from any parent cache.</param>
+            <returns>The child action result as an HTML string.</returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.HtmlHelperExtensions.RenderAction(System.Web.Mvc.HtmlHelper,System.String,System.Boolean)">
+            <summary>
+            Invokes the specified child action method using the specified parameters and controller name and renders the result inline in the parent view.
+            </summary>
+            <param name="h">The HTML helper instance that this method extends.</param>
+            <param name="actionName">The name of the child action method to invoke.</param>
+            <param name="excludeFromParentCache">A flag that determines whether the action should be excluded from any parent cache.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.HtmlHelperExtensions.RenderAction(System.Web.Mvc.HtmlHelper,System.String,System.Object,System.Boolean)">
+            <summary>
+            Invokes the specified child action method using the specified parameters and controller name and renders the result inline in the parent view.
+            </summary>
+            <param name="h">The HTML helper instance that this method extends.</param>
+            <param name="actionName">The name of the child action method to invoke.</param>
+            <param name="routeValues">A dictionary that contains the parameters for a route. You can use routeValues to provide the parameters that are bound to the action method parameters. The routeValues parameter is merged with the original route values and overrides them.</param>
+            <param name="excludeFromParentCache">A flag that determines whether the action should be excluded from any parent cache.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.HtmlHelperExtensions.RenderAction(System.Web.Mvc.HtmlHelper,System.String,System.Web.Routing.RouteValueDictionary,System.Boolean)">
+            <summary>
+            Invokes the specified child action method using the specified parameters and controller name and renders the result inline in the parent view.
+            </summary>
+            <param name="h">The HTML helper instance that this method extends.</param>
+            <param name="actionName">The name of the child action method to invoke.</param>
+            <param name="routeValues">A dictionary that contains the parameters for a route. You can use routeValues to provide the parameters that are bound to the action method parameters. The routeValues parameter is merged with the original route values and overrides them.</param>
+            <param name="excludeFromParentCache">A flag that determines whether the action should be excluded from any parent cache.</param>        
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.HtmlHelperExtensions.RenderAction(System.Web.Mvc.HtmlHelper,System.String,System.String,System.Boolean)">
+            <summary>
+            Invokes the specified child action method using the specified parameters and controller name and renders the result inline in the parent view.
+            </summary>
+            <param name="h">The HTML helper instance that this method extends.</param>
+            <param name="actionName">The name of the child action method to invoke.</param>
+            <param name="controllerName">The name of the controller that contains the action method.</param>
+            <param name="excludeFromParentCache">A flag that determines whether the action should be excluded from any parent cache.</param>        
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.HtmlHelperExtensions.RenderAction(System.Web.Mvc.HtmlHelper,System.String,System.String,System.Object,System.Boolean)">
+            <summary>
+            Invokes the specified child action method using the specified parameters and controller name and renders the result inline in the parent view.
+            </summary>
+            <param name="h">The HTML helper instance that this method extends.</param>
+            <param name="actionName">The name of the child action method to invoke.</param>
+            <param name="controllerName">The name of the controller that contains the action method.</param>
+            <param name="routeValues">A dictionary that contains the parameters for a route. You can use routeValues to provide the parameters that are bound to the action method parameters. The routeValues parameter is merged with the original route values and overrides them.</param>
+            <param name="excludeFromParentCache">A flag that determines whether the action should be excluded from any parent cache.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.HtmlHelperExtensions.RenderAction(System.Web.Mvc.HtmlHelper,System.String,System.String,System.Web.Routing.RouteValueDictionary,System.Boolean)">
+            <summary>
+            Invokes the specified child action method using the specified parameters and controller name and renders the result inline in the parent view.
+            </summary>
+            <param name="h">The HTML helper instance that this method extends.</param>
+            <param name="actionName">The name of the child action method to invoke.</param>
+            <param name="controllerName">The name of the controller that contains the action method.</param>
+            <param name="routeValues">A dictionary that contains the parameters for a route. You can use routeValues to provide the parameters that are bound to the action method parameters. The routeValues parameter is merged with the original route values and overrides them.</param>
+            <param name="excludeFromParentCache">A flag that determines whether the action should be excluded from any parent cache.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.HtmlHelperExtensions.Action(System.Web.Mvc.HtmlHelper,System.String,System.String,System.Web.Routing.RouteValueDictionary,System.Boolean)">
+            <summary>
+            Invokes the specified child action method using the specified parameters and controller name and returns the result as an HTML string.
+            </summary>
+            <param name="h">The HTML helper instance that this method extends.</param>
+            <param name="actionName">The name of the action method to invoke.</param>
+            <param name="controllerName">The name of the controller that contains the action method.</param>
+            <param name="routeValues">A dictionary that contains the parameters for a route. You can use routeValues to provide the parameters that are bound to the action method parameters. The routeValues parameter is merged with the original route values and overrides them.</param>
+            <param name="excludeFromParentCache">A flag that determines whether the action should be excluded from any parent cache.</param>
+            <returns>The child action result as an HTML string.</returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IKeyBuilder.BuildKey(System.String)">
+            <summary>
+            Implementations should build a cache key given <see cref="!:controllerName"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IKeyBuilder.BuildKey(System.String,System.String)">
+            <summary>
+            Implementations should build a cache key given the <see cref="!:controllerName"/> and <see cref="!:actionName"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IKeyBuilder.BuildKey(System.String,System.String,System.Web.Routing.RouteValueDictionary)">
+            <summary>
+            Builds a cache key given the <see cref="!:controllerName"/>, <see cref="!:actionName"/> and <see cref="!:routeValues"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="routeValues">The route values.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.IKeyBuilder.BuildKeyFragment(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
+            <summary>
+            Implementations should build a cache key fragment for given <see cref="!:routeValue"/>.
+            </summary>
+            <param name="routeValue">The route value to process.</param>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.OutputCache.Instance">
+            <summary>
+            Gets the current <see cref="T:DevTrends.MvcDonutCaching.OutputCacheManager"/> instance.
+            </summary>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.OutputCache.DefaultOptions">
+            <summary>
+            Specifies the default value for the <see cref="P:DevTrends.MvcDonutCaching.DonutOutputCacheAttribute.Options"/>
+            </summary>
+        </member>
+        <member name="P:DevTrends.MvcDonutCaching.OutputCacheManager.KeyBuilder">
+            <summary>
+            Gets the key builder.
+            </summary>
+            <value>
+            The key builder.
+            </value>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.OutputCacheManager.AddItem(System.String,DevTrends.MvcDonutCaching.CacheItem,System.DateTime)">
+            <summary>
+            Add sthe given <see cref="!:cacheItem" /> in the cache.
+            </summary>
+            <param name="key">The cache key to add.</param>
+            <param name="cacheItem">The cache item to add.</param>
+            <param name="utcExpiry">The cache item UTC expiry date and time.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.OutputCacheManager.GetItem(System.String)">
+            <summary>
+            Retrieves a cache item the given the <see cref="!:key" />.
+            </summary>
+            <param name="key">The key.</param>
+            <returns>
+            A <see cref="T:DevTrends.MvcDonutCaching.CacheItem" /> instance on cache hit, null otherwise.
+            </returns>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.OutputCacheManager.RemoveItem(System.String,System.String)">
+            <summary>
+            Removes a single output cache entry for the specified controller and action.
+            </summary>
+            <param name="controllerName">The name of the controller that contains the action method.</param>
+            <param name="actionName">The name of the controller action method.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.OutputCacheManager.RemoveItem(System.String,System.String,System.Object)">
+            <summary>
+            Removes a single output cache entry for the specified controller, action and parameters.
+            </summary>
+            <param name="controllerName">The name of the controller that contains the action method.</param>
+            <param name="actionName">The name of the controller action method.</param>
+            <param name="routeValues">An object that contains the parameters for a route.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.OutputCacheManager.RemoveItem(System.String,System.String,System.Web.Routing.RouteValueDictionary)">
+            <summary>
+            Removes a single output cache entry for the specified controller, action and parameters.
+            </summary>
+            <param name="controllerName">The name of the controller that contains the action method.</param>
+            <param name="actionName">The name of the controller action method.</param>
+            <param name="routeValues">A dictionary that contains the parameters for a route.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.OutputCacheManager.RemoveItems">
+            <summary>
+            Removes all output cache entries.
+            </summary>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.OutputCacheManager.RemoveItems(System.String)">
+            <summary>
+            Removes all output cache entries for the specified controller.
+            </summary>
+            <param name="controllerName">The name of the controller.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.OutputCacheManager.RemoveItems(System.String,System.String)">
+            <summary>
+            Removes all output cache entries for the specified controller and action.
+            </summary>
+            <param name="controllerName">The name of the controller that contains the action method.</param>
+            <param name="actionName">The name of the controller action method.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.OutputCacheManager.RemoveItems(System.String,System.String,System.Object)">
+            <summary>
+            Removes all output cache entries for the specified controller, action and parameters.
+            </summary>
+            <param name="controllerName">The name of the controller that contains the action method.</param>
+            <param name="actionName">The name of the controller action method.</param>
+            <param name="routeValues">An object that contains the parameters for a route.</param>
+        </member>
+        <member name="M:DevTrends.MvcDonutCaching.OutputCacheManager.RemoveItems(System.String,System.String,System.Web.Routing.RouteValueDictionary)">
+            <summary>
+            Removes all output cache entries for the specified controller, action and parameters.
+            </summary>
+            <param name="controllerName">The name of the controller that contains the action method.</param>
+            <param name="actionName">The name of the controller action method.</param>
+            <param name="routeValues">A dictionary that contains the parameters for a route.</param>
+        </member>
+        <member name="F:DevTrends.MvcDonutCaching.OutputCacheOptions.IgnoreQueryString">
+            <summary>
+            No matter what, never use the query string parameters to generate the cache key name
+            </summary>
+        </member>
+        <member name="F:DevTrends.MvcDonutCaching.OutputCacheOptions.IgnoreFormData">
+            <summary>
+            No matter what, never use the POST data to generate the cache key name
+            </summary>
+        </member>
+        <member name="F:DevTrends.MvcDonutCaching.OutputCacheOptions.NoCacheLookupForPosts">
+            <summary>
+            If the request is a POST, don't lookup for a cached result, execute the the result normally, 
+            caching it for subsequent GET (or any other non POST verb).
+            </summary>
+        </member>
+        <member name="F:DevTrends.MvcDonutCaching.OutputCacheOptions.ReplaceDonutsInChildActions">
+            <summary>
+            Replace donuts in child actions, may affect performance but needed if you intent to have nested
+            donut holes in child actions
+            </summary>
+        </member>
+    </members>
+</doc>

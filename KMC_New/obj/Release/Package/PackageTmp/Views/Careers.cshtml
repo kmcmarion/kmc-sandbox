@@ -1,0 +1,106 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Careers>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+
+    var home = Umbraco.Content(Guid.Parse("0a9b12f9-b934-4cc4-817d-a0a645785ad2"));
+}
+<div class="container-fluid center-items-justify"
+     style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('@Model.CareersBgImage.Url');
+            background-position:center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 50vh;">
+    <div class="container ">
+        <div style="text-align:center;margin:auto 0;">
+            @Html.Raw(Model.CareersHeading)
+            @Html.Raw(Model.CareersDescription)
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid" style="background: #f99d3a url(/media/5r3a4rfu/orange-tile.png);">
+    <div class="container">
+        <form action="/careers/jobs-list/" class="row" method="get">
+            <div class="col-lg-10 col-md-8 col-sm-12 col-12 my-1">
+                <input type="text" name="search" class="form-control" placeholder="Search for a position.." style="height: 42px">
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-sm-12 col-12 my-1">
+                <button type="submit" class="btn btn-white w-100">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <h2 class="text-extrabold">Recently Added Careers</h2>
+                <div class="spacer-sm"></div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                @*<select class="form-control" name="job-categories" id="jobCategories" style="padding:10px">
+
+                    </select>*@
+            </div>
+        </div>
+
+        @*Careers*@
+        @{
+            Html.RenderAction("RenderActiveJob", "Careers");
+        }
+
+    </div>
+</div>
+
+@*Overview Below the Fold*@
+<div class="container-fluid">
+    <div class="container-fluid pt-0 desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container overlap_left"
+                         style="position: relative;
+                                height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             src="@Model.LeftSupportingImage.Url"
+                             alt="@Model.LeftSupportingImageAltTag"
+                             title="@Model.LeftSupportingImageAltTag" />
+                    </div>
+                    <div class="overlap_border_left"></div>
+                </div>
+
+                <div class="col-12 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.RightHeading)
+                    @Model.RightSubHeading
+                    <div class="orange-divider"></div>
+                    @Html.Raw(Model.RightDescription)
+                    <a href="@Model.RightButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.RightButtonText</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             src="@Model.LeftSupportingImage.Url"
+             alt="@Model.LeftSupportingImageAltTag"
+             title="@Model.LeftSupportingImageAltTag" />
+
+        <div class="container-fluid">
+            <div class="container">
+                @Html.Raw(Model.RightHeading)
+                @Model.RightSubHeading
+                <div class="orange-divider"></div>
+                @Html.Raw(Model.RightDescription)
+                <a href="@Model.RightButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.RightButtonText</a>
+            </div>
+        </div>
+    </div>
+</div>

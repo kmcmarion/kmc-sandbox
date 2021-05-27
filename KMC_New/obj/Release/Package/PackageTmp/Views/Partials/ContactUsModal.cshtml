@@ -1,0 +1,123 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+<div class="modal fade" id="contactUsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="contactUsModalTitle">We'd love to help you out.</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="contactUsFormCol">
+                <div id="first-step-modal">
+                    <script>
+                        hbspt.forms.create({
+                            portalId: "2867266",
+                            formId: "6413777d-4cda-43c0-b2d6-2f179188e7c1",
+                            css: '',
+                            onFormSubmit: function (form) {
+                                //toggle next step
+                                $('#first-step-modal').hide();
+                                $('#second-step-modal').show();
+
+                                var email = $('#email-6413777d-4cda-43c0-b2d6-2f179188e7c1').val();
+                                console.log(email);
+                                $("input[name='email']").val(email);
+                                $('input[type="radio"]:checked').parent('label').addClass('active');
+                                $('#officeSpace_form-modal').show();
+                            }
+                        });
+                    </script>
+                    <div class="spacer-sm"></div>
+                    <p>By clicking the above button, you agree to our <a href=""><strong>Terms of Service</strong></a> and have read and understood our <a href=""><strong>Privacy Policy</strong></a>.</p>
+                </div>
+
+                <div id="second-step-modal" style="display: none;">
+                    <h3>
+                        Tell us what you need
+                    </h3>
+                    <div class="my-3">
+                        <div class="custom-control custom-radio mb-3">
+                            <input type="radio" id="officeSpace" name="inquiryType" class="custom-control-input" checked>
+                            <label class="custom-control-label" for="officeSpace">
+                                An Ideal Office Space Solutions (Private Office, Coworking Space and Enterprise Solutions)
+                            </label>
+                        </div>
+
+                        <div id="officeSpace_form" class="inquiry-form-modal">
+                            <script>
+                                hbspt.forms.create({
+                                    portalId: "2867266",
+                                    formId: "27d26a53-f0be-4068-96c1-40be022d9fca",
+                                    css: ''
+                                });
+                            </script>
+                        </div>
+
+                        <div class="custom-control custom-radio mb-3">
+                            <input type="radio" id="virtualOffice" name="inquiryType" class="custom-control-input">
+                            <label class="custom-control-label" for="virtualOffice">
+                                A virtual office solutions
+                            </label>
+                        </div>
+
+                        <div id="virtualOffice_form" class="inquiry-form-modal">
+                            <script>
+                                hbspt.forms.create({
+                                    portalId: "2867266",
+                                    formId: "ea288819-9b4a-4df9-ab6b-0ba188a6664f",
+                                    css: ''
+                                });
+                            </script>
+                        </div>
+
+                        <div class="custom-control custom-radio mb-3">
+                            <input type="radio" id="staffLeasing" name="inquiryType" class="custom-control-input">
+                            <label class="custom-control-label" for="staffLeasing">
+                                A talented offshore team (Staff Leasing / HR & Payroll Management)
+                            </label>
+                        </div>
+
+                        <div id="staffLeasing_form" class="inquiry-form-modal">
+                            <script>
+                                hbspt.forms.create({
+                                    portalId: "2867266",
+                                    formId: "8e8fb9f4-76c3-431b-b760-09d62d9d175d",
+                                    css: ''
+                                });
+                            </script>
+                        </div>
+
+
+                        <div class="custom-control custom-radio mb-3">
+                            <input type="radio" id="careers" name="inquiryType" class="custom-control-input">
+                            <label class="custom-control-label" for="careers">
+                                A career opportunity with a great company
+                            </label>
+                        </div>
+
+                        <div class="custom-control custom-radio mb-3">
+                            <input type="radio" id="otherDepartment" name="inquiryType" class="custom-control-input">
+                            <label class="custom-control-label" for="otherDepartment">
+                                Need to talk to a department
+                            </label>
+                        </div>
+
+                        <div id="otherDepartment_form" class="inquiry-form-modal">
+                            <script>
+                                hbspt.forms.create({
+                                    portalId: "2867266",
+                                    formId: "6b6e824a-10e4-43a6-b3f4-e1986968b7df",
+                                    css: ""
+                                });
+                            </script>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

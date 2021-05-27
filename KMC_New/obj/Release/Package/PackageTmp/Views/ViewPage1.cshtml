@@ -1,0 +1,581 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Home>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web
+@{
+    Layout = "master.cshtml";
+}
+
+@*Key Visual displayed here with the company slogan and search function for locations *@
+
+<div class="kv-banner-100vh" id="kvSection">
+    <img class="img-bg"
+         data-src="@Model.KeyVisual.Url" />
+    <div class="container vertical-center-transform" id="kvSectionContainer">
+        <div class="row">
+            <div class="col-lg-4 col-md-6" id="kv_search">
+                <form id="searchLocationForm">
+                    @Html.Raw(Model.KVslogan)
+                    @Html.Raw(Model.FormDescription)
+                    <div class="spacer-sm"></div>
+                    <div class="form-group">
+                        <label class="text-semibold" for="location-field">SELECT LOCATION</label>
+
+                        <select class="form-control" name="location-field" id="location-field" style="padding:10px">
+                            @{
+                                foreach (var item in Model.Children)
+                                {
+                                    if (item.IsDocumentType("cityItems"))
+                                    {
+                                        var city = (CityItems)item;
+                                        {
+                                            <option class="option-selected" value="@city.Name.Replace(" ","-")">
+                                                @city.Name
+                                            </option>
+                                        }
+                                    }
+                                }
+                            }
+                        </select>
+
+                        <div class="spacer-sm"></div>
+
+                        <select class="form-control" name="building-field" id="building-field" style="padding:10px">
+                            @{
+                                foreach (var item in Model.Children)
+                                {
+                                    if (item.IsDocumentType("cityItems"))
+                                    {
+                                        var city = (CityItems)item;
+
+                                        foreach (var cityItem in item.Children)
+                                        {
+                                            if (cityItem.IsDocumentType("buildings"))
+                                            {
+                                                var building = (Buildings)cityItem;
+
+                                                <option class="building-option @city.Name.Replace(" ","-")" value="@building.Url">
+                                                    @building.Name
+                                                </option>
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <div class="spacer-sm"></div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-6 my-auto select-location">
+                            <a href="/locations/" class="">Show All Locations ></a>
+                        </div>
+
+                        <div class="col-12 col-sm-6 my-auto select-location">
+                            <button type="submit" id="search-btn" class="btn btn-primary" style="float: right">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Mobile KV Section -->
+<div class="kv" id="mobile-KvSection">
+    <img class="img-fluid"
+         data-src="@Model.KeyVisual.Url"
+         height="300" />
+
+    <div class="container-fluid" style="padding-bottom: 0;">
+        <div class="container">
+            @Html.Raw(Model.KVslogan)
+            @Html.Raw(Model.FormDescription)
+
+            <div class="spacer-sm"></div>
+
+            <form id="searchLocationForm">
+                <div class="form-group">
+                    <label class="text-semibold" for="location-field-mobile">SELECT LOCATION</label>
+
+
+                    <select class="form-control" name="location-field" id="location-field" style="padding:10px">
+                        @{
+                            foreach (var item in Model.Children)
+                            {
+                                if (item.IsDocumentType("cityItems"))
+                                {
+                                    var city = (CityItems)item;
+
+                                    {
+                                        <option class="option-selected" value="@city.Name.Replace(" ","-")">
+                                            @city.Name
+                                        </option>
+                                    }
+                                }
+                            }
+                        }
+                    </select>
+
+                    <div class="spacer-sm"></div>
+
+                    <select class="form-control" name="building-field" id="building-field" style="padding:10px">
+                        @{
+                            foreach (var item in Model.Children)
+                            {
+                                if (item.IsDocumentType("cityItems"))
+                                {
+                                    var city = (CityItems)item;
+
+                                    foreach (var cityItem in item.Children)
+                                    {
+                                        if (cityItem.IsDocumentType("buildings"))
+                                        {
+                                            var building = (Buildings)cityItem;
+
+                                            <option class="building-option @city.Name.Replace(" ","-")" value="@building.Url">
+                                                @building.Name
+                                            </option>
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    </select>
+
+                    <div class="spacer-sm"></div>
+
+                    <div class="row">
+                        <div class="col-12 select-location">
+                            <button type="submit" id="search-btn" class="btn btn-primary w-100">Search</button>
+                        </div>
+
+                        <div class="col-12 spacer-sm"></div>
+
+                        <div class="col-12 select-location">
+                            <a href="/locations/">Show All Locations ></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    @*Home Overview Content*@
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12  center-items-justify">
+                <div>
+                    @Html.Raw(Model.HomeHeading)
+                    <div class="orange-divider-2px"></div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 h-100">
+                @Html.Raw(Model.HomeDescription)
+            </div>
+        </div>
+    </div>
+    <div class="spacer-lg"></div>
+
+    @*Ready for You - Cards*@
+    <div class="container">
+        <h2 class="text-semibold"><span class="text-orange">Ready for You</span> Office Spaces</h2>
+        <p class="text-semibold">Creatively Crafted Collection of  Spaces</p>
+        <div class="orange-divider-2px"></div>
+
+        <div class="row">
+
+            @{
+                foreach (var item in Model.Children)
+                {
+                    if (item.Name == "Home Page - Cards")
+                    {
+                        foreach (var cardGroup in item.Children)
+                        {
+                            if (cardGroup.IsDocumentType("readyForYouCards"))
+                            {
+                                var cardItem = (ReadyForYouCards)cardGroup;
+
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-12 d-flex align-items-stretch">
+                                    <div class="card-effect">
+                                        <div class="card shadow mb-3 bg-white rounded">
+                                            <figure class="card-img-style">
+                                                <a href="@cardItem.CardLink">
+                                                    <img class="card-img-top img-fluid"
+                                                         style="max-width:100%; max-height: 100%; object-fit: cover"
+                                                         data-src="@cardItem.CardImage.Url"
+                                                         alt="@cardItem.CardImageAltTag">
+                                                </a>
+
+                                            </figure>
+                                            <div class="card-body d-flex flex-column">
+
+                                                <h4 class="card-title text-semibold">@cardItem.CardTitle</h4>
+                                                <div class="card-text text-limit">@cardItem.CardDescription</div>
+
+                                                <a class="card-link mt-auto" href="@cardItem.CardLink">Read More</a>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            }
+                        }
+                    }
+                }
+            }
+        </div>
+    </div>
+    <div class="spacer-md"></div>
+
+    @*Made For You Cards Section*@
+    <div class="container">
+        <h2 class="text-semibold"><span class="text-orange">Made for You</span> Office Spaces</h2>
+        <p class="text-semibold">Customly Created Spaces Just for You</p>
+        <div class="orange-divider-2px"></div>
+
+        <div class="row">
+            @{
+                foreach (var item in Model.Children)
+                {
+                    if (item.Name == "Home Page - Cards")
+                    {
+                        foreach (var cardGroup in item.Children)
+                        {
+                            if (cardGroup.IsDocumentType("madeForYouCards"))
+                            {
+                                var cardItem = (MadeForYouCards)cardGroup;
+
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-12 d-flex align-items-stretch">
+                                    <div class="card shadow mb-3 bg-white rounded">
+
+                                        <figure class="card-img-style">
+                                            <img class="card-img-top img-fluid"
+                                                 style="max-width:100%; max-height: 100%; object-fit: cover"
+                                                 data-src="@cardItem.CardImage.Url"
+                                                 alt="@cardItem.CardImageAltTag">
+                                        </figure>
+                                        <div class="card-body d-flex flex-column">
+
+                                            <h4 class="card-title text-semibold">@cardItem.CardTitle</h4>
+                                            <div class="card-text text-limit">@cardItem.CardDescription</div>
+
+                                            <a class="card-link mt-auto" href="@cardItem.CardLink">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                }
+            }
+        </div>
+    </div>
+    <div class="spacer-md"></div>
+
+    @*KMC People cards section*@
+    <div class="container">
+        <h2 class="text-semibold"><span class="text-orange">KMC</span> People</h2>
+        <div class="orange-divider-2px"></div>
+
+        <div class="row">
+            @{
+                foreach (var item in Model.Children)
+                {
+                    if (item.Name == "Home Page - Cards")
+                    {
+                        foreach (var cardGroup in item.Children)
+                        {
+                            if (cardGroup.IsDocumentType("kmcPeopleCards"))
+                            {
+                                var cardItem = (KMcpeopleCards)cardGroup;
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-12 d-flex align-items-stretch">
+                                    <div class="card shadow mb-3 bg-white rounded">
+                                        <figure class="card-img-style">
+                                            <img class="card-img-top img-fluid"
+                                                 style="max-width:100%; max-height: 100%; object-fit: cover"
+                                                 data-src="@cardItem.CardImage.Url"
+                                                 alt="@cardItem.CardImageAltTag">
+                                        </figure>
+                                        <div class="card-body d-flex flex-column">
+
+                                            <h4 class="card-title text-semibold">@cardItem.CardTitle</h4>
+                                            <div class="card-text text-limit">@cardItem.CardDescription</div>
+
+                                            <a class="card-link mt-auto" href="@cardItem.CardLink">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                }
+            }
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Trusted By Logos -->
+@Html.Partial("~/Views/Partials/TrustedByLogos.cshtml")
+
+<!-- Serviced Offices & Coworking Location in the Philippines (Partial View)-->
+@Html.Partial("~/Views/Partials/ServicedAndCoworkingLocations.cshtml")
+
+
+<!--Coworking Passport Section -->
+<div>
+    @{
+        foreach (var item in Model.Children)
+        {
+            if (item.Name == "Home Page - KMC Coworking Section")
+            {
+                var coworkingParent = (KMccoworkingParent)item;
+
+                <div class="container-fluid" id="coworking_section_paragraph">
+                    <div class="container">
+
+                        <div class="coworking-columns">
+                            <h2 class="text-semibold">@coworkingParent.CoworkingHeading</h2>
+                            <div class="spacer-sm"></div>
+                            @Html.Raw(coworkingParent.CoworkingDescription)
+                            <div class="spacer-sm"></div>
+                            <a href="/serviced-offices/coworking-space/" class="btn btn-primary" role="button" aria-pressed="false">Read More</a>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-5">
+                                <div class="orange-divider-2px"></div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid p-0" id="playButton">
+                    <div class="row">
+                        <div class="col-lg-9 center-items-justify .gutter-20px"
+                             style="background:
+                                linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+                                url('@coworkingParent.CoworkingVideo.Url');
+                                background-repeat: no-repeat;
+                                background-size: cover;
+                                background-position: center;
+                                position: relative;
+                                min-height: 400px;
+                                padding: 20px;">
+
+                            <img class="video-btn"
+                                 src="@coworkingParent.CoworkingPlaybutton.Url"
+                                 width="110" height="110"
+                                 data-toggle="modal"
+                                 data-target="#video-target" />
+
+                            <!--Modal Code-->
+                            <div class="modal fade" id="video-target" tabindex="-1"
+                                 role="dialog" aria-labelledby="video-targetCenterTitle"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-centered"
+                                     role="document">
+
+                                    <div class="modal-content">
+                                        <button type="button"
+                                                class="close"
+                                                id="closemodal1"
+                                                data-dismiss="modal"
+                                                aria-label="Close"
+                                                data-video-src="@coworkingParent.VideoUrl?rel=0"
+                                                style="text-align: right;">
+
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+
+                                        <div class="modal-body">
+                                            <iframe src="@coworkingParent.VideoUrl?rel=0"
+                                                    height="400"
+                                                    width="100%"
+                                                    id="youtube"
+                                                    frameborder="0"
+                                                    allow="encrypted-media"
+                                                    allowfullscreen
+                                                    allowscriptaccess="always"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 " style="position: relative; max-height: 400px;">
+                            <img class="img-fluid img_object-fit w-100"
+                                 src="@coworkingParent.CoworkingImage.Url"
+                                 alt=""
+                                 title="" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid p-0" id="coworking-passport">
+                    <div class="container-fluid desktop-view">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-6">
+                                    <div class="container overlap_left"
+                                         style="position: relative;
+                                            height: 500px;">
+
+                                        <img class="img-fluid img_object-fit"
+                                             src="@coworkingParent.CoworkingPassportImage.Url"
+                                             alt=""
+                                             title="" />
+                                    </div>
+                                    <div class="overlap_border_left"></div>
+
+                                </div>
+
+                                <div class="col-12 col-md-6 col-lg-6 overlap_contents " id="coworking_passport">
+                                    @Html.Raw(coworkingParent.CoworkingPassportHeading)
+                                    <div class="orange-divider-2px"></div>
+                                    @Html.Raw(coworkingParent.CoworkingPassportDescription)
+
+                                    <a href="@coworkingParent.CoworkingPassportButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@coworkingParent.CoworkingPassportButtonText</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mobile-view">
+                        <img class="img-fluid img_object-fit-mobile img img-overlap-style-mobile"
+                             src="@coworkingParent.CoworkingPassportImage.Url"
+                             alt=""
+                             title="" />
+                        <div class="container-fluid">
+                            <div class="container">
+                                @Html.Raw(coworkingParent.CoworkingPassportHeading)
+                                <div class="orange-divider-2px"></div>
+                                @Html.Raw(coworkingParent.CoworkingPassportDescription)
+
+                                <a href="#" class="btn btn-primary" role="button" aria-pressed="false">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid p-0" id="join-the-community">
+                    <div class="container-fluid desktop-view">
+                        <div class="container">
+                            <div class="row">
+                                <div class=" col-12 col-md-5 col-lg-6 overlap_contents">
+                                    @Html.Raw(coworkingParent.CommunityHeading)
+                                    <div class="orange-divider"></div>
+                                    @Html.Raw(coworkingParent.CommunityDescription)
+
+                                    <a href="@coworkingParent.CommunityButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@coworkingParent.CommunityButtonText</a>
+                                </div>
+
+                                <div class="col-12 col-md-7 col-lg-6">
+
+                                    <div class="container overlap_right"
+                                         style="position: relative; height: 500px;">
+
+                                        <img class="img-fluid img_object-fit"
+                                             src="@coworkingParent.CommunityImage.Url"
+                                             alt=""
+                                             title="" />
+                                    </div>
+
+                                    <div class="overlap_border_right"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mobile-view">
+                        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+                             src="@coworkingParent.CommunityImage.Url"
+                             alt=""
+                             title="" />
+
+                        <div class="container-fluid">
+                            <div class="container">
+                                @Html.Raw(coworkingParent.CommunityHeading)
+                                <div class="orange-divider"></div>
+                                @Html.Raw(coworkingParent.CommunityDescription)
+
+                                <a href="/community-event-spaces/" class="btn btn-primary" role="button" aria-pressed="false">See All Events</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        }
+    }
+</div>
+
+<!--Featured Banner-->
+@Html.Partial("~/Views/Partials/FeaturedBanner.cshtml")
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            //KV Search Form on Desktop
+            $("#searchLocationForm").on('submit', function (e) {
+                e.preventDefault();
+                var x = document.getElementById("building-field");
+                var selectedBuilding = $('#building-field').children("option:selected").val();
+                window.location.href = selectedBuilding;
+            });
+
+            //KV Search Form on Mobile
+            $("#mobile-kv_search").on('submit', function (e) {
+                e.preventDefault();
+                var x = document.getElementById("building-field-mobile");
+                var selectedBuildingMobile = $('#building-field-mobile').children("option:selected").val();
+                window.location.href = selectedBuildingMobile;
+                console.log(selectedBuildingMobile);
+            });
+
+            //Modal Stop Video
+            $('#video-target').on('hidden.bs.modal', function () {
+                $('#youtube').attr('src', '');
+                $('#youtube').attr('src', $('#closemodal1').attr('data-video-src'));
+            });
+
+            //Modal Auto Play
+            $('#video-target').on('show.bs.modal', function () {
+                var ytSRC = $('#youtube').attr('src') + '&autoplay=1';
+                $('#youtube').attr('src', ytSRC);
+            });
+
+            //Cascading Dropdown
+            let options = $(this).children("option:selected").val();
+            console.log(options);
+            $('.building-option').hide();
+            $(`.building-option${options}`).show();
+            $('#building-field').find("option:not(:hidden):eq(0)");
+
+            $('#location-field').on('change', function () {
+                let options = $(this).children("option:selected").val();
+                console.log(options);
+                $('.building-option').hide();
+                $(`.building-option.${options}`).show();
+                $(`.building-option.${options}`).attr('selected', 'true');
+            }).trigger('change');
+
+        })
+    </script>
+}

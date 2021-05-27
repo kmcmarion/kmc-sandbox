@@ -1,0 +1,196 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Event>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web
+@{ Layout = "master.cshtml";
+                //Used for podcast gtag eventLabel
+                var eventLabel = Model.Name.Replace(" ", "-").ToLower(); }
+
+@* the fun starts here *@
+<p>@Model.PageTitle</p>
+@*@if(Model.PageTitle == "Bridging the Tech Talent Gap in Singapore")*@
+@if (Model.PageTitle == "Bridging the Tech Talent Gap in Singapore")
+{
+<script>
+    window.location.replace("https://kmc.solutions/bridging-the-tech-talent-gap-in-singapore-through-remote-teams/");
+</script>
+}
+
+<div class="container-fluid p-0" id="aboveTheFold_Events">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="desktop-view rowHeight">
+                <img class="img-fluid img_object-fit"
+                     style="border-right: 1px solid #ccc"
+                     data-src="@Model.EventPoster.Url"
+                     alt="@Model.EventPosterAltTag">
+            </div>
+
+            <div class="mobile-view">
+                <img class="img-fluid img_object-fit"
+                     style="border-right: 1px solid #ccc"
+                     data-src="@Model.EventPoster.Url"
+                     alt="@Model.EventPosterAltTag">
+            </div>
+
+        </div>
+
+
+        @{ if (Model.Value<bool>("hostedByPartner"))
+                        {
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="partner-event-section">
+                    <h1 class="text-extrabold">@Model.EventName</h1>
+                    <div class="orange-divider-2px"></div>
+                    @if (Model.Value<bool>("enableManualInput"))
+                    {
+    <p class="text-semibold">Date and Time: <br>@Model.EventDateAndTime</p> }
+                    else
+                    {
+    <p class="text-semibold">Date and Time: <br>@Model.EventDateFrom.ToString("MMMM dd, yyyy h:mm tt")</p>}
+                    <a role="button" class="btn btn-primary" href="@Model.PartnerEventRegistrationLink" target="_blank">Register Now</a>
+                    <div class="spacer-sm"></div>
+                    @Html.Raw(Model.EventContents)
+                </div>
+            </div> }
+                        else
+                        if (Model.Value<bool>("customKMCForm"))
+                        {
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="event-form">
+                    <h2 class="text-extrabold text-orange">@Model.CustomFormHeading</h2>
+                    @Html.Raw(Model.CustomFormScript)
+                </div>
+
+            </div>
+
+                            <div class="container-fluid">
+                                <div class="container p-5">
+                                    <h1 class="text-extrabold">@Model.EventName</h1>
+                                    <div class="orange-divider-2px"></div>
+                                    @Html.Raw(Model.EventContents)
+                                </div>
+                            </div> }
+
+                                        else
+                                        if (Model.Value<bool>("kMCWebinar"))
+                                        {
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="partner-event-section">
+                                    <h1 class="text-extrabold">@Model.EventName</h1>
+                                    <div class="orange-divider-2px"></div>
+                                    @if (Model.Value<bool>("enableManualInput"))
+                                    {
+                    <p class="text-semibold">Date and Time: <br>@Model.EventDateAndTime</p> }
+                                    else
+                                    {
+                    <p class="text-semibold">Date and Time: <br>@Model.EventDateFrom.ToString("MMMM dd, yyyy h:mm tt")</p>}
+                                    <a href="@Model.WebinarLink" class="btn btn-primary" target="_blank">@Model.WebinarCta</a>
+                                    <div class="spacer-sm"></div>
+                                    @Html.Raw(Model.EventContents)
+                                </div>
+                            </div> }
+
+                                        else
+                                        if (Model.Value<bool>("watchOnDemand"))
+                                        {
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="event-form">
+                                    <h2 class="text-extrabold text-orange">Watch On Demand</h2>
+                                    <!--[if lte IE 8]>
+                                    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+                                    <![endif]-->
+                                    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                                    <script>
+                                        hbspt.forms.create({
+                                            portalId: "2867266",
+                                            formId: "2de58080-cbde-4ce3-aad6-261d2a1d5722",
+                                            css: ""
+                                        });
+                                    </script>
+
+                                    <div class="spacer-sm"></div>
+
+                                    <small>By clicking the above button, you agree to our <a href="/terms-of-service/"><strong>Terms of Service</strong></a> and have read and understood our <a href="/privacy-policy/"><strong>Privacy Policy</strong></a>.</small>
+                                </div>
+
+                            </div>
+                                            <div class="container-fluid">
+                                                <div class="container p-5">
+                                                    <h1 class="text-extrabold">@Model.EventName</h1>
+                                                    <div class="orange-divider-2px"></div>
+                                                    @Html.Raw(Model.EventContents)
+                                                </div>
+                                            </div> }
+
+                                                        else
+                                                        if (Model.Value<bool>("podcastPage"))
+                                                        {
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-12 my-auto">
+                                                <div class="container p-5">
+                                                    <h2 class="text-extrabold text-orange">@Model.PodcastSignUpFormHeading</h2>
+                                                    @Html.Raw(Model.PodcastSignUpForm)
+                                                    <div class="spacer-sm"></div>
+                                                    <small>By clicking the above button, you agree to our <a href="/terms-of-service/"><strong>Terms of Service</strong></a> and have read and understood our <a href="/privacy-policy/"><strong>Privacy Policy</strong></a>.</small>
+
+                                                    <hr class="my-4" />
+                                                    <div class="text-center">
+                                                        <h5 class="text-semibold mb-3">@Model.ListenToSpotifyHeading</h5>
+                                                        <a href="@Model.SpotifyLink"
+                                                           target="_blank"
+                                                           class="btn btn-secondary w-100"
+                                                           onclick="gtag('event', 'click', {'send_to':'UA-73943338-1', 'event_category': 'podcast-listen-to-spotify', 'event_action': 'click', 'event_label': @eventLabel});">
+                                                            <i class="fab fa-spotify"></i> @Model.ListenOnSpotifyCta
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                                            <div class="container-fluid">
+                                                                <div class="container p-5">
+                                                                    <h1 class="text-extrabold">@Model.EventName</h1>
+                                                                    <div class="orange-divider-2px"></div>
+                                                                    @Html.Raw(Model.EventContents)
+                                                                </div>
+                                                            </div> }
+
+                                                                        else
+                                                                        {
+                                                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                                <div class="event-form">
+                                                                    <h2 class="text-extrabold text-orange">Engage with Our Community</h2>
+                                                                    <!--[if lte IE 8]>
+                                                                     <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+                                                                     <![endif]-->
+                                                                    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                                                                    <script>
+                                                                        hbspt.forms.create({
+                                                                            portalId: "2867266",
+                                                                            formId: "bcc797c8-c9c0-44bb-85ef-c199f13d154c",
+                                                                            css: ""
+                                                                        });
+                                                                    </script>
+                                                                    <div class="spacer-sm"></div>
+                                                                    <small>By clicking the above button, you agree to our <a href="/terms-of-service/"><strong>Terms of Service</strong></a> and have read and understood our <a href="/privacy-policy/"><strong>Privacy Policy</strong></a>.</small>
+                                                                </div>
+                                                            </div>
+
+                                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                                <div class="container-fluid">
+                                                                                    <div class="container">
+                                                                                        <h1 class="text-extrabold">@Model.EventName</h1>
+                                                                                        <div class="orange-divider-2px"></div>
+                                                                                        @Html.Raw(Model.EventContents)
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div> } }
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('input[name="event_name"]').val('@Model.EventName.Trim()');
+            console.log('@Model.EventName.Trim()');
+        });
+    </script>
+}

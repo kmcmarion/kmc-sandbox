@@ -1,0 +1,23 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.TermsOfService>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+<!--Overlapped Bg and Content Box-->
+<div class="container-fluid split-background" id="terms-of-service">
+    <div class="background-style">
+    </div>
+
+    <div class="container-fluid float-container">
+        <div class="container text-center">
+            @Html.Raw(Model.TermsHeading)
+            <div class="spacer-lg"></div>
+        </div>
+        <div class="container contents-box">
+            <div class="wrapper">
+                @Html.Raw(Model.TermsContent)
+            </div>
+        </div>
+    </div>
+</div>

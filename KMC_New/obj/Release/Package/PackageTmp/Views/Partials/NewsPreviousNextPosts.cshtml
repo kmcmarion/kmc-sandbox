@@ -1,0 +1,34 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{ 
+    IPublishedContent parent = Umbraco.AssignedContentItem.Parent;
+    IEnumerable<IPublishedContent> children = parent.ChildrenOfType("newsArticle");
+    List<int> childrenIds = children.Select(x => x.Id).ToList();
+    int currentIndex = childrenIds.IndexOf(Umbraco.AssignedContentItem.Id);
+
+    IPublishedContent prev = null;
+    IPublishedContent next = null;
+
+    if (currentIndex > 0)
+    {
+        prev = children.ElementAt(currentIndex - 1);
+    }
+    if (currentIndex < (children.Count() - 1))
+    {
+        next = children.ElementAt(currentIndex + 1);
+    }
+}
+
+<div>
+    @if (prev != null)
+    { 
+        <a class="btn btn-secondary mr-3" title="@prev.Name" href="@prev.Url">
+            Previous
+        </a>
+    }
+    @if (next != null)
+    {
+        <a class="btn btn-primary" title="@next.Name" href="@next.Url">
+            Next
+        </a>
+    }
+</div>

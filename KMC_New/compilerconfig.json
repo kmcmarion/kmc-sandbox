@@ -1,0 +1,174 @@
+﻿[
+  {
+    "outputFile": "Content/bootstrap/bootstrap.css",
+    "inputFile": "Content/bootstrap/bootstrap.scss"
+  },
+  {
+    "outputFile": "css/main.css",
+    "inputFile": "css/main.scss"
+  },
+  {
+    "outputFile": "css/_nav.css",
+    "inputFile": "css/_nav.scss"
+  },
+  {
+    "outputFile": "Content/bootstrap/_forms.css",
+    "inputFile": "Content/bootstrap/_forms.scss"
+  },
+  {
+    "outputFile": "Content/bootstrap/_variables.css",
+    "inputFile": "Content/bootstrap/_variables.scss"
+  },
+  {
+    "outputFile": "css/media queries.css",
+    "inputFile": "Content/bootstrap/_utilities.scss"
+  },
+  {
+    "outputFile": "css/media queries.css",
+    "inputFile": "Content/bootstrap/_utilities.scss"
+  },
+  {
+    "outputFile": "css/media queries.css",
+    "inputFile": "css/media queries.scss"
+  },
+  {
+    "outputFile": "css/locations-style.css",
+    "inputFile": "css/locations-style.scss"
+  },
+  {
+    "outputFile": "css/spaces-style.css",
+    "inputFile": "css/spaces-style.scss"
+  },
+  {
+    "outputFile": "css/_spaces-style.css",
+    "inputFile": "css/_spaces-style.scss"
+  },
+  {
+    "outputFile": "css/sass/_locations-style.css",
+    "inputFile": "css/sass/_locations-style.scss"
+  },
+  {
+    "outputFile": "css/sass/_home-style.css",
+    "inputFile": "css/sass/_home-style.scss"
+  },
+  {
+    "outputFile": "css/sass/_spaces-style.css",
+    "inputFile": "css/sass/_spaces-style.scss"
+  },
+  {
+    "outputFile": "css/sass/_people-style.css",
+    "inputFile": "css/sass/_people-style.scss"
+  },
+  {
+    "outputFile": "css/sass/_careers-style.css",
+    "inputFile": "css/sass/_careers-style.scss"
+  },
+  {
+    "outputFile": "css/sass/_contact-style.css",
+    "inputFile": "css/sass/_careers-style.scss"
+  },
+  {
+    "outputFile": "css/sass/_contact-style.css",
+    "inputFile": "css/sass/_contact-style.scss"
+  },
+  {
+    "outputFile": "css/sass/_about-style.css",
+    "inputFile": "css/sass/_about-style.scss"
+  },
+  {
+    "outputFile": "Scripts/custom/map.es5.js",
+    "inputFile": "Scripts/custom/map.es5.js"
+  },
+  {
+    "outputFile": "Scripts/custom/navitem-active.es5.js",
+    "inputFile": "Scripts/custom/navitem-active.js"
+  },
+  {
+    "outputFile": "Scripts/custom/commonOwlCarousel.es5.js",
+    "inputFile": "Scripts/custom/commonOwlCarousel.js"
+  },
+  {
+    "outputFile": "css/sass/_sfi-style.css",
+    "inputFile": "css/sass/_sfi-style.scss"
+  },
+  {
+    "outputFile": "css/sass/_sfi-style.css",
+    "inputFile": "css/sass/_sfi-style.scss"
+  },
+  {
+    "outputFile": "Scripts/custom/map.es5.js",
+    "inputFile": "Scripts/custom/map.es5.js"
+  },
+  {
+    "outputFile": "Scripts/lazy-load.es5.js",
+    "inputFile": "Scripts/lazy-load.js"
+  },
+  {
+    "outputFile": "css/sass/_blogs-style.css",
+    "inputFile": "css/sass/_blogs-style.scss"
+  },
+  {
+    "outputFile": "Scripts/custom/aboveTheFold_Carousel.es5.js",
+    "inputFile": "Scripts/custom/aboveTheFold_Carousel.js"
+  },
+  {
+    "outputFile": "Scripts/custom/custom_scripts.es5.js",
+    "inputFile": "Scripts/custom/custom_scripts.js"
+  },
+  {
+    "outputFile": "Scripts/custom/external-scripts.es5.js",
+    "inputFile": "Scripts/custom/external-scripts.js"
+  },
+  {
+    "outputFile": "Scripts/custom/featuredLocations-4.es5.js",
+    "inputFile": "Scripts/custom/featuredLocations-4.js"
+  },
+  {
+    "outputFile": "Scripts/custom/featuredLocations-6.es5.js",
+    "inputFile": "Scripts/custom/featuredLocations-6.js"
+  },
+  {
+    "outputFile": "Scripts/custom/featuredLocationsNav.es5.js",
+    "inputFile": "Scripts/custom/featuredLocationsNav.js"
+  },
+  {
+    "outputFile": "Scripts/custom/homepagescripts.es5.js",
+    "inputFile": "Scripts/custom/homepagescripts.js"
+  },
+  {
+    "outputFile": "Scripts/custom/location-pages.es5.js",
+    "inputFile": "Scripts/custom/location-pages.js"
+  },
+  {
+    "outputFile": "Scripts/custom/map.es5.js",
+    "inputFile": "Scripts/custom/map.js"
+  },
+  {
+    "outputFile": "Scripts/custom/modal-script.es5.js",
+    "inputFile": "Scripts/custom/modal-script.js"
+  },
+  {
+    "outputFile": "Scripts/custom/lazy-load.es5.js",
+    "inputFile": "Scripts/custom/lazy-load.js"
+  },
+  {
+    "outputFile": "Scripts/custom/careers_scripts.es5.js",
+    "inputFile": "Scripts/custom/careers_scripts.js"
+  },
+  {
+    "outputFile": "css/sass/_partnerships-style.css",
+    "inputFile": "css/sass/_partnerships-style.scss"
+  },
+  {
+    "outputFile": "Scripts/custom/cards-group-four.es5.js",
+    "inputFile": "Scripts/custom/cards-group-four.js"
+  },
+  {
+    "outputFile": "css/sass/_footer-style.css",
+    "inputFile": "css/sass/_footer-style.scss"
+  },
+  {
+    "outputFile": "css/sass/_landingpage-style.css",
+    "inputFile": "css/sass/_landingpage-style.scss"
+  }
+]

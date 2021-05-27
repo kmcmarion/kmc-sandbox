@@ -1,0 +1,59 @@
+﻿@{
+    var jobs = (ICollection<KMC_New.Models.ActiveJobs>)ViewBag.Jobs;
+}
+
+
+<div class="container" id="careers-job-list">
+    <div class="row">
+
+        <table class="careers table">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-uppercase">Position</th>
+                    <th scope="col" class="text-uppercase">Category</th>
+                    <th scope="col" class="text-uppercase"></th>
+                </tr>
+            </thead>
+
+            <tbody id="careers_tb">
+
+                @{
+
+                    if (jobs != null)
+                    {
+                        {
+                            int i = 0;
+
+                            foreach (var job in jobs.OrderBy(x => x.position).ToArray())
+                            {
+                                if (i < 5)
+                                {
+                                    <tr>
+                                        <td><a class="job_opening uppercase" href=@("/careers/opportunity/?p=" + job.id + "&position_applying_for=" + job.position.Replace(" ", "%20"))>@job.position</a></td>
+
+                                        <td>@job.category</td>
+
+                                        <td style="text-align: right;">
+                                        <a class="btn btn-primary" 
+                                           id="kmc-careers-openings"
+                                           onclick="gtag('event', 'click', {'send_to':'UA-73943338-1', 'event_category': 'kmc-job-list', 'event_action': 'click', 'event_label': '@job.position'});"
+                                           href=@("/careers/opportunity/?p=" + job.id + "&position_applying_for=" + job.position.Replace(" ", "%20"))>Apply Now</a></td>
+
+                                    </tr>
+
+                                    i++;
+                                }
+
+                            }
+
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+
+        <a href="/careers/jobs-list/" role="button" class="btn btn-primary viewMoreJobs m-auto">View More Careers</a>
+    </div>
+
+
+</div>

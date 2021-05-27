@@ -1,0 +1,126 @@
+﻿/*_sfi-style.scss*/
+//Nav Styles
+#sfiNav {
+    padding: 0px;
+    background-color: #F8F9FA;
+    border-bottom: 1px solid #ccc;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 81px;
+    overflow: hidden;
+    z-index: 5;
+
+    .container {
+        padding: 8px 20px;
+        padding: 0.5rem 20px;
+    }
+}
+
+@include laptop--sm {
+    #sfiNav {
+        top: 61px;
+    }
+}
+
+#sfiNavbar > .navbar-nav > li > a.nav-link {
+    border-right: 1px solid #ccc;
+    line-height: 1rem;
+}
+
+#sfiNavbar > .navbar-nav > li:first-child > a.nav-link {
+    padding-left: 0;
+}
+
+#sfiNavbar > .navbar-nav > li:last-child > a.nav-link {
+    border-right: 0px;
+    line-height: 1rem;
+}
+
+
+#sfiNavbar > .navbar-nav > li > a.nav-link:active {
+    color: $primary-orange;
+}
+
+//Active Status
+#sfiNav {
+    #sfiNavbar {
+
+        .nav-link:hover {
+            color: #f99d3a;
+        }
+
+        a {
+            color: #333;
+        }
+
+        li {
+            .active {
+                color: #F99D3A;
+            }
+        }
+    }
+}
+
+@include tablet--md {
+    #scrollable_nav {
+        padding-bottom: 20px;
+        overflow-x: scroll; /* 1 */
+        -webkit-overflow-scrolling: touch; /* 2 */
+        .nav-item {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+        }
+    }
+}
+
+.split-background-sfi {
+    padding: 0;
+}
+
+.float-container-sfi {
+    position: relative;
+    margin-top: -220px;
+    padding-top: 0px;
+
+    .contents-box-sfi {
+        .wrapper {
+            padding: 20px;
+        }
+    }
+}
+
+#workspaces {
+    .card {
+        border-radius: 0;
+        border: none;
+        min-height: 300px;
+
+        .card-body {
+            display: -webkit-box;
+            display: flex;
+            display: -ms-flexbox;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            vertical-align: middle;
+        }
+    }
+}
+
+#workspaces_carousel {
+    .item {
+        height: 530px;
+    }
+}
+
+@include tablet--lg {
+    #workspaces_carousel {
+        .item {
+            height: 300px;
+        }
+    }
+}

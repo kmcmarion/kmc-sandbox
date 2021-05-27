@@ -1,0 +1,137 @@
+﻿/*_contact-style.scss*/
+#contactUsHeading{
+    padding: 0;
+}
+
+.background-style {
+    height: 300px;
+    padding-top: 80px;
+}
+
+#contactUsFloat {
+    position: relative;
+    margin-top: -220px;
+    padding-top: 0px;
+
+
+    #contactUsBox {
+
+        .wrapper {
+            border-radius: 5px;
+            box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14),0 1px 10px 0 rgba(0,0,0,0.12),0 2px 4px -1px rgba(0,0,0,0.3);
+        }
+    }
+
+    h1 {
+        padding-bottom: 3rem;
+        font-family: PROXIMANOVA-SEMIBOLD, Arial, Helvetica, sans-serif;
+    }
+
+    #contactUsInfoCol {
+
+        p {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        p > strong {
+            font-family: PROXIMANOVA-EXTRABOLD, Arial, Helvetica, sans-serif;
+        }
+
+        ul {
+            padding-left: 0px;
+
+            li {
+                display: inline-block;
+                margin-right: 0.75rem;
+
+                a {
+                    color: #fff;
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}
+
+#contactUsFormCol {
+    background-color: #fff;
+
+    .hbspt-form {
+        font-size: 0.8rem !important;
+
+        .actions {
+            margin-bottom: 1rem;
+
+            input {
+                text-transform: none;
+                font-size: 0.7rem;
+                width: 20% !important;
+            }
+        }
+
+        label {
+            color: #8c8484;
+        }
+
+        input {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        .hs-error-msg {
+            color: red;
+        }
+
+        #label-service_interested_in_checkbox-27d26a53-f0be-4068-96c1-40be022d9fca, #label-staff_support_service_type-8e8fb9f4-76c3-431b-b760-09d62d9d175d {
+            display: none;
+        }
+
+        ul {
+            padding-left: 0px;
+        }
+
+        ul > li {
+            list-style: none;
+        }
+
+       
+
+        select, fieldset.form-columns-1 div.hs-richtext {
+            min-height: 2rem !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        select, fieldset.form-columns-1 .input {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+    }
+
+    .inquiry-form {
+        display: none;
+        max-width: 95%;
+        margin: auto;
+    }
+
+    .inquiry-form-modal {
+        display: none;
+        max-width: 95%;
+        margin: auto;
+    }
+
+    .custom-control-label {
+        font-size: 0.8rem;
+    }
+}
+
+@include tablet--lg {
+    #contactUsFormCol {
+        .hs-form-field {
+            width: 100% !important;
+        }
+    }
+}

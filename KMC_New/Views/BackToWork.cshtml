@@ -1,0 +1,180 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.BackToWork>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+<!-- Above the Fold -->
+<div class="container-fluid"
+     style="background: #000 url('@Model.AboveTheFoldCol1BgImage.Url');
+                        position:relative;
+                        background-repeat: repeat;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 vertical-align">
+                <div>
+                    @Html.Raw(Model.AboveTheFoldHeading)
+                    <div class="orange-divider-2px"></div>
+                    @Html.Raw(Model.AboveTheFoldDescription)
+                    <div class="spacer-sm"></div>
+                    @if (Model.AboveTheFoldButtonText != "") { 
+                        <a class="btn btn-primary" role="button" onclick="gtag('event', 'click', {'send_to':'UA-73943338-1', 'event_category': 'safety-measures-page', 'event_action': 'click', 'event_label': 'kmc-guidelines'});" href="@Model.AboveTheFoldButtonLink" target="_blank">@Model.AboveTheFoldButtonText</a>
+                        <div class="spacer-sm"></div>
+                    }     
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-12 col-12">
+                <a class="video-btn"
+                   data-toggle="modal"
+                   data-src="@Model.VideoLink"
+                   data-target="#videoModal"
+                   style="cursor:pointer;">
+                    <img class="img-fluid"
+                            data-src="@Model.AboveTheFoldCol2BgImage.Url"
+                            alt="@Model.AboveTheFoldCol2BgImage.Name">
+                </a>
+
+                <!--Modal Code-->
+                <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="video-targetCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <div class="modal-body">
+                                <!-- 16:9 aspect ratio -->
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always" allow="autoplay"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="spacer-sm"></div>
+                @Html.Raw(Model.AboveTheFoldSubHeading)
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@{
+    foreach (var item in Model.Children)
+    {
+        if (item.IsDocumentType("imageWithBorder"))
+        {
+            var imageGroup = (ImageWithBorder)item;
+
+            <!--Section 1-->
+            <div class="container-fluid p-0">
+                <div class="container-fluid desktop-view">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <div class="container overlap_left"
+                                     style="position: relative;
+                                height: 500px;">
+
+                                    <img class="img-fluid img_object-fit img-overlap-style"
+                                         src="@imageGroup.LeftSupportingImage.Url"
+                                         alt="@imageGroup.LeftSupportingImageAltTag"
+                                         title="@imageGroup.LeftSupportingImageAltTag" />
+                                </div>
+                                <div class="overlap_border_left"></div>
+                            </div>
+
+                            <div class="col-12 col-lg-6 overlap_contents">
+                                @Html.Raw(imageGroup.RightHeading)
+                                @imageGroup.RightSubHeading
+                                <div class="orange-divider"></div>
+                                @Html.Raw(imageGroup.RightDescription)
+                                @if (@imageGroup.RightButtonText != "")
+                                {
+                                    <a href="@imageGroup.RightButtonLink" class="btn btn-primary" onclick="@imageGroup.RightButtonOnclick" role="button" aria-pressed="false">@imageGroup.RightButtonText</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-view">
+                    <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+                         src="@imageGroup.LeftSupportingImage.Url"
+                         alt="@imageGroup.LeftSupportingImageAltTag"
+                         title="@imageGroup.LeftSupportingImageAltTag" />
+
+                    <div class="container-fluid">
+                        <div class="container">
+                            @Html.Raw(imageGroup.RightHeading)
+                            @imageGroup.RightSubHeading
+                            <div class="orange-divider"></div>
+                            @Html.Raw(imageGroup.RightDescription)
+                            @if (@imageGroup.RightButtonText != "")
+                            {
+                                <a href="@imageGroup.RightButtonLink" class="btn btn-primary" onclick="@imageGroup.RightButtonOnclick" role="button" aria-pressed="false">@imageGroup.RightButtonText</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!--Section 2-->
+                <div class="container-fluid desktop-view">
+                    <div class="container">
+                        <div class="row">
+                            <div class=" col-12 col-lg-6 overlap_contents">
+                                @Html.Raw(imageGroup.LeftHeading)
+                                @imageGroup.LeftSubHeading
+                                <div class="orange-divider"></div>
+                                @Html.Raw(imageGroup.LeftDescription)
+
+                                @if (@imageGroup.LeftButtonText != "")
+                                {
+                                    <a href="@imageGroup.LeftButtonLink" class="btn btn-primary" onclick="@imageGroup.LeftButtonOnclick" role="button" aria-pressed="false">@imageGroup.LeftButtonText</a>
+                                }
+                            </div>
+
+                            <div class="col-12 col-lg-6">
+
+                                <div class="container overlap_right"
+                                     style="position: relative;
+                                            height: 500px;">
+                                    <img class="img-fluid img_object-fit img-overlap-style"
+                                         src="@imageGroup.RightSupportingImage.Url"
+                                         alt="@imageGroup.RightSupportingImageAltTag"
+                                         title="@imageGroup.RightSupportingImageAltTag" />
+                                </div>
+                                <div class="overlap_border_right"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spacer-lg"></div>
+                </div>
+
+                <div class="mobile-view">
+                    <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+                         src="@imageGroup.RightSupportingImage.Url"
+                         alt="@imageGroup.RightSupportingImageAltTag"
+                         title="@imageGroup.RightSupportingImageAltTag" />
+                    <div class="container-fluid">
+                        <div class="container">
+                            @Html.Raw(imageGroup.LeftHeading)
+                            @imageGroup.LeftSubHeading
+                            <div class="orange-divider"></div>
+                            @Html.Raw(imageGroup.LeftDescription)
+
+                            @if (@imageGroup.LeftButtonText != "")
+                            {
+                                <a href="@imageGroup.LeftButtonLink" class="btn btn-primary" onclick="@imageGroup.LeftButtonOnclick" role="button" aria-pressed="false">@imageGroup.LeftButtonText</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+}
+
+@section Scripts{
+    <script src="~/Scripts/custom/modal-script.js"></script>
+}

@@ -1,0 +1,74 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.FAQ>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+
+<div class="container-fluid split-background" id="faq">
+    <div class="background-style">
+    </div>
+
+    <div class="container-fluid float-container">
+        <div class="container text-center">
+            @Html.Raw(Model.FAqheading)
+            <div class="spacer-lg"></div>
+        </div>
+
+        <!--Virrtual Office -->
+
+                    @{
+                        var virtualCount = 0;
+
+                        foreach (var category in Model.Children)
+                        {
+
+                            <div class="container contents-box">
+                                <div class="wrapper">
+                                <h2 class="text-extrabold">@category.Name</h2>
+                                <div class="panel-group" id="accordion-virtual" role="tablist" aria-multiselectable="true">
+                            
+                                @foreach (var items in category.Children)
+                                {
+                                    if (items.IsDocumentType("fAQContents"))
+                                    {
+                                        var faq = (FAqcontents)items;
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="heading-virtual_@virtualCount">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion-virtual" href="#collapse-virtual_@virtualCount" aria-expanded="true" aria-controls="collapse-virtual_@virtualCount">
+                                                        @faq.Question
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse-virtual_@virtualCount" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-virtual_@virtualCount">
+                                                <div class="panel-body">
+                                                    @Html.Raw(faq.Answer)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        virtualCount++;
+                                    }
+
+                                }
+                                </div>
+                                </div>
+                            </div>
+                         <div class="spacer-lg"></div>
+                        }
+                    }
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $('.panel-collapse').on('show.bs.collapse', function () {
+            $(this).siblings('.panel-heading').addClass('active');
+        });
+
+        $('.panel-collapse').on('hide.bs.collapse', function () {
+            $(this).siblings('.panel-heading').removeClass('active');
+        });
+    </script>
+}

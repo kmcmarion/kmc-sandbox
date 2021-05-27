@@ -1,0 +1,209 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+    //Parent Node
+    var items = Model.Value<IEnumerable<IPublishedElement>>("schema");
+    var ogImage = Model.Value<IPublishedContent>("ogImage");
+
+    foreach (var item in items)
+    {
+
+        // Shortened date string
+        var date = item.Value<DateTime>("datePublished").ToShortDateString();
+
+        //Article Schema
+        if (item.Value("articleName") != null)
+        {
+            <script type="application/ld+json">
+                    {
+                        "@@context": "http://schema.org",
+                        "@@type": "Article",
+                        "author": {
+                            "@@type": "Person",
+                            "name": "@item.Value("author")"
+                        },
+                        "datePublished": "@date",
+                        "image": "https://kmc.solutions@(ogImage.Url)",
+                        "articleSection": "@item.Value("articleSection")",
+                        "publisher": {
+                            "@@type":   "Organization",
+                            "name": "KMC Solutions",
+                            "url": "https://kmc.solutions/"
+                        },
+                        "url": "@Request.Url.AbsoluteUri",
+                        "logo": "https://kmc.solutions/media/aikesh01/kmc-solutions.png",
+                        "headline": "@Model.Value("pageTitle")"
+                    }
+            </script>
+        }
+
+        // Events Schema
+        if (item.Value("eventName") != null)
+        {
+            <script type="application/ld+json">
+                    {
+                        "@@context": "http://schema.org",
+                        "@@type": "Event",
+                        "name": "@item.Value("eventName")",
+                        "location": {
+                            "name": "@item.Value("location")",
+                            "address": {
+                                "@@type": "Place",
+                                "streetAddress": "@item.Value("locationAddress")",
+                                "addressLocality": "@item.Value("locationCity")",
+                                "addressRegion": "@item.Value("locationCountry")",
+                                "postalCode": "@item.Value("locationPostalCode")"
+                            },
+                        },
+                        "image": "https://kmc.solutions@(ogImage.Url)",
+                        "description": "@item.Value("eventDescription")",
+                        "url": "@Request.Url.AbsoluteUri",
+                        "offer": "@item.Value("offer")"
+                    }
+            </script>
+        }
+
+        // Job Posting Schema
+        if (item.Value("jobTitle") != null)
+        {
+            <script type="application/ld+json">
+                    {
+                        "@@context": "http://schema.org",
+                        "@@type": "JobPosting",
+                        "title": "@item.Value("jobTitle")",
+                        "hiringOrganization": "@item.Value("hiringOrganization")",
+                        "jobLocation": {
+                            "@@type": "Place",
+                            "address": "@item.Value("jobLocation")"
+                        },
+                        "datePosted": "@date",
+                        "description": "@item.Value("jobDescription")",
+                        "baseSalary": {
+                            "@@type": "MonetaryAmount",
+                            "currency": "@item.Value("salaryCurrency")",
+                            "value": "@item.Value("salaryAmount")"
+                        },
+                        "employmentType": "@item.Value("employmentType")",
+                        "validThrough": "@item.Value("validThrough")"
+                    }
+            </script>
+        }
+
+        // Products Schema
+        if (item.Value("productName") != null)
+        {
+            <script type="application/ld+json">
+                    {
+                        "@@context": "http://schema.org",
+                        "@@type": "Product",
+                        "name": "@item.Value("productName")",
+                        "description": "@item.Value("productDescription")",
+                        "image": "https://kmc.solutions@(ogImage.Url)",
+                        "url": "@Request.Url.AbsoluteUri",
+                        "offers": {
+                            "@@type": "Offer",
+                            "price": "@item.Value("price")"
+                        }
+                    }
+            </script>
+        }
+
+        // Local Business Schema
+        if (item.Value("businessName") != null)
+        {
+            <script type="application/ld+json">
+                    {
+                        "@@context": "http://schema.org",
+                        "@@type": "LocalBusiness",
+                        "name": "@item.Value("businessName")",
+                        "image": "https://kmc.solutions@(ogImage.Url)",
+                        "telephone": "@item.Value("telephoneNumber")",
+                        "email": "@item.Value("emailAddress")",
+                        "address": {
+                            "@@type": "Place",
+                            "streetAddress": "@item.Value("locationAddress")",
+                            "addressLocality": "@item.Value("locationCity")",
+                            "addressRegion": "@item.Value("locationCountry")",
+                            "postalCode": "@item.Value("locationPostalCode")"
+                        },
+                        "openingHoursSpecification": {
+                            "@@type": "OpeningHoursSpecification",
+                            "dayOfWeek": {
+                                "@@type": "DayOfWeek",
+                                "name": "@item.Value("dayOfWeekOpen")"
+                            }
+                        },
+                        "url": "@Request.Url.AbsoluteUri",
+                    }
+            </script>
+        }
+
+        // Restaurant Schema
+        if (item.Value("restaurantName") != null)
+        {
+            var reviewDate = item.Value<DateTime>("reviewDate").ToShortDateString(); //Review date in short string format
+            <script type="application/ld+json">
+                    {
+                        "@@context": "http://schema.org",
+                        "@@type": "Restaurant",
+                        "name": "@item.Value("restaurantName")",
+                        "image": "https://kmc.solutions@(ogImage.Url)",
+                        "telephone": "@item.Value("telephone")",
+                        "email": "@item.Value("email")",
+                        "address": {
+                            "@@type": "Place",
+                            "streetAddress": "@item.Value("streetAddress")",
+                            "addressLocality": "@item.Value("city")",
+                            "addressRegion": "@item.Value("country")",
+                            "postalCode": "@item.Value("postalCode")"
+                        },
+                        "menu": "@item.Value("menuURL")",
+                        "servesCuisine": "@item.Value("cuisine")",
+                        "openingHoursSpecification": {
+                            "@@type": "OpeningHoursSpecification",
+                            "dayOfWeek": {
+                                "@@type": "DayOfWeek"
+                                "name": "@item.Value("dayOfWeekOpen")"
+                            }
+                        },
+                        "url": "@Request.Url.AbsoluteUri",
+                        "review": {
+                            "@@type": "Review",
+                            "author": {
+                                "@@type": "Person",
+                                "name": "@item.Value("reviewer")"
+                            },
+                            "datePublished": "@reviewDate"
+                        }
+                    }
+            </script>
+        }
+
+        // Software Application Schema
+        if (item.Value("softwareName") != null)
+        {
+            <script type="application/ld+json">
+                    {
+                        "@@context": "http://schema.org",
+                        "@@type": "SoftwareApplication",
+                        "name": "@item.Value("softwareName")",
+                        "image": "https://kmc.solutions@(ogImage.Url)",
+                        "url": "@Request.Url.AbsoluteUri",
+                        "author": {
+                            "@@type": "Person",
+                            "name": "@item.Value("author")"
+                        },
+                        "datePublished": "@date",
+                        "publisher": {
+                            "@@type": "Organization",
+                            "name": "@item.Value("publisher")"
+                        },
+                        "applicationCategory": "@item.Value("category")",
+                        "downloadUrl": "@item.Value("downloadURL")",
+                        "operatingSystem": "@item.Value("operatingSystem")",
+                        "requirements": "@item.Value("requirements")",
+                        "softwareVersion": "@item.Value("softwareVersion")"
+                    }
+            </script>
+        }
+    }
+}

@@ -1,0 +1,146 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+    <header class="container-fluid nav-bg">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg" id="header-nav">
+
+                @if (home.SiteLogo != null && !string.IsNullOrEmpty(home.SiteLogo.Url))
+                {
+                    <div class="nav-link--home navbar-brand">
+                        <a class="nav-link nav-link--home nav-link--home__text logo-text" href="/"><img class="logo-image img-fluid" src="@home.SiteLogo.Url" alt="KMC Solutions" title="KMC Solutions"></a>
+                    </div>
+                }
+                else
+                {
+                    <a class="nav-link nav-link--home nav-link--home__text logo-text" href="/">@home.Sitename</a>
+                }
+
+                <a href="/locations/" class="nav-link ml-auto locations-link">Locations <i class="fas fa-caret-down"></i></a>
+
+                <button class="navbar-toggler" type="button" onclick="openMobileNav()">
+                    <span class="hamburger"><i class="fas fa-bars"></i></span>
+                </button>
+
+                <div class="mobileMenu" id="mobileNav">
+                    <a href="#" class="btn-close" onclick="closeMobileNav()">&times;</a>
+                    <ul class="sidepanel-links">
+                        <li class="dropdownLink">
+                            <a href="/kmc-spaces/">KMC Spaces</a>
+                            <a class="dropdown-toggle" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            </a>
+                            <div class="spaces-dropdown-menu">
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li class="dropdown-item"><a href="/serviced-offices/">Serviced Offices</a></li>
+                                    <li class="dropdown-item"><a href="/coworking-space/">Coworking Spaces</a></li>
+                                    <li class="dropdown-item"><a href="/standard-private-offices/">Standard Private Offices</a></li>
+                                    <li class="dropdown-item"><a href="/enterprise-offices/">Enterprise Offices</a></li>
+                                    <li class="dropdown-item"><a href="/customized-private-office-suites/">Customized Private Office Suites</a></li>
+                                    <li class="dropdown-item"><a href="/customized-office-floors/">Customized Office Floors</a></li>
+                                    <li class="dropdown-item"><a href="/business-continuity-planning/">Business Continuity Planning</a></li>
+                                    <li class="dropdown-item"><a href="/virtual-offices/">Virtual Offices</a></li>
+                                    <li class="dropdown-item"><a href="/community-event-spaces/">Community & Event Spaces</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li><a href="/staff-leasing-services-philippines/">KMC People</a></li>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/careers-culture/">Careers &amp; Culture</a></li>
+                        <li><a href="/blogs/">Blogs</a></li>
+                        <li><a href="#">Incubation Program</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li class="sm-icons-sidepanel">
+                            <p>Follow Us</p>
+                            <a href="https://www.facebook.com/kmcsolutionsPH"
+                               target="_blank"
+                               style="padding-right:10px">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+
+                            <a href="https://www.linkedin.com/company/kmc-solutions-inc/"
+                               target="_blank"
+                               style="padding-right:10px"><i class="fab fa-linkedin"></i></a>
+
+                            <a href="https://www.instagram.com/kmcsolutions/"
+                               target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    <ul class="navbar-nav ml-auto" id="header-nav">
+                        <li class="nav-item dropdownLink">
+                            <a class="nav-link"
+                               aria-expanded="true"
+                               href="/locations/">
+                                Locations
+                            </a>
+                            <ul class="dropdown-content">
+                                @{
+                                    foreach (var item in home.Children)
+                                    {
+                                        if (item.IsDocumentType("cityItems"))
+                                        {
+                                            var city = (CityItems)item;
+
+                                            <li><a href="@city.Url">@city.Name</a></li>
+                                        }
+                                    }
+                                }
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdownLink">
+                            <a class="nav-link"
+                               aria-expanded="true"
+                               href="/kmc-spaces/">KMC Spaces</a>
+
+                            <ul class="dropdown-content">
+                                <li class="dropdownLink-child">
+                                    <a href="/coworking-space/">
+                                        Coworking Spaces
+                                        <i class="fas fa-caret-right float-right" style="padding-top:3px;"></i>
+                                    </a>
+                                    <ul class="dropdown-content-child">
+                                        <li><a href="/serviced-offices/">Serviced Offices</a></li>
+                                        <li><a href="/standard-private-offices/">Standard Private Offices</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdownLink-child">
+                                    <a href="/enterprise-offices/">
+                                        Enterprise Offices
+                                        <i class="fas fa-caret-right float-right" style="padding-top:3px;"></i>
+                                    </a>
+                                    <ul class="dropdown-content-child">
+                                        <li><a href="/customized-private-office-suites/">Customized Private Office Suites</a></li>
+                                        <li><a href="/customized-office-floors/">Customized Office Floors</a></li>
+                                        <li><a href="/business-continuity-planning/">Business Continuity Planning</a></li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="/virtual-offices/">Virtual Offices</a></li>
+                                <li><a href="/community-event-spaces/">Community & Event Spaces</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdownLink">
+                            <a class="nav-link" aria-expanded="true" href="/staff-leasing-services-philippines/">KMC People</a>
+                            <ul class="dropdown-content">
+                                <li><a href="/hr-payroll-management/">HR &amp; Payroll Management</a></li>
+                                <li><a href="/staff-leasing/">Staff Leasing</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/careers-culture/">Careers &amp; Culture</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/blogs/">Blogs</a></li>
+                    </ul>
+
+                    <button data-toggle="modal" data-target="#contactUsModal" class="btn btn-primary navbar-btn" style="margin-left:30px; padding: 0.6rem 1rem;">Contact Us</button>
+                </div>
+            </nav>
+        </div>
+    </header>

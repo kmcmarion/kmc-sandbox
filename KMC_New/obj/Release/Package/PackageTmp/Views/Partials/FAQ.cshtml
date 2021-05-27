@@ -1,0 +1,68 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+<div class="container-fluid">
+    <div class="container pt-5" id="faq">
+        <div class="row">
+            <div class="col-lg-4">
+
+                <div class="col p-5" id="getConsultation_form">
+                    <h3 class="text-semibold" style="font-size: 30px">Get a Free Consultation</h3>
+                    <!--[if lte IE 8]>
+                    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+                    <![endif]-->
+                    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                    <script>
+                        hbspt.forms.create({
+                            portalId: "2867266",
+                            formId: "9cc5a72a-95d7-4ee1-9feb-b4c5c635fb0d",
+                            css: ""
+                        });
+                    </script>
+                </div>
+
+            </div>
+
+            <div class="col-lg-8">
+                <div class="col">
+                    <h2 class="text-semibold">Frequently Asked Questions</h2>
+                    <div class="spacer-sm"></div>
+                    <div class="panel-group i-accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                        @{
+                            int count = 0;
+                            var home = Model.AncestorOrSelf("home");
+                            var homePages = (Home)home;
+
+                            foreach (var item in homePages.Children)
+                            {
+                                if (item.Name == "FAQ")
+                                {
+                                    foreach (var item2 in item.Children)
+                                    {
+                                        if (item2.IsDocumentType("fAQSpacesOverview"))
+                                        {
+                                            var faq = (FAqspacesOverview)item2;
+                                            var countStr = "id" + count.ToString();
+                                            var hrefVal = "#" + countStr;
+
+                                            <div class="panel panel-primary">
+                                                <div class="panel-heading" data-toggle="collapse" data-parent=".i-accordion" href='@hrefVal'>
+                                                    <h4 class="panel-title">@faq.Questions <i class="fa fa-angle-down pull-right"></i></h4>
+                                                </div>
+                                                <div class="panel-collapse collapse in" id='@countStr'>
+                                                    <div class="panel-body">
+                                                        @faq.Answer
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            count++;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

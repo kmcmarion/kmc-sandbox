@@ -1,0 +1,405 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.KMcspaces>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web
+
+@{
+    Layout = "master.cshtml";
+
+    var home = Umbraco.Content(Guid.Parse("0a9b12f9-b934-4cc4-817d-a0a645785ad2"));
+}
+
+<div id="aboveTheFold_overlapped">
+    <!-- Above the Fold - Desktop View -->
+    <div class="container-fluid p-0 desktop-view">
+        <div class="row rowHeight">
+            <div class="col-lg-6 col-sm-12 col-12"
+                 style="background: #000 url('@Model.AboveTheFoldCol1BgImage.Url');
+             position:relative;
+             background-repeat: repeat;">
+
+                <div class="overlapped_box center-items">
+                    <div>
+                        @Html.Raw(Model.AboveTheFoldHeading)
+                        <div class="orange-divider-2px"></div>
+                        @Html.Raw(Model.AboveTheFoldSubHeading)
+                        @Html.Raw(Model.AboveTheFoldDescription)
+                        <div class="spacer-sm"></div>
+                        <a class="btn btn-primary" role="button" href="@Model.AboveTheFoldButtonLink">@Model.AboveTheFoldButtonText</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-12 col-12 p-5 aboveTheFoldImage"
+                 style="background: url(@Model.AboveTheFoldCol2BgImage.Url);
+                    background-position:center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    min-height: 400px;">
+            </div>
+        </div>
+
+    </div>
+
+    <!--Above the Fold - Mobile View -->
+    <div class="container-fluid mobile-view"
+         style="background: url(@Model.AboveTheFoldCol2BgImage.Url);
+            background-position:center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 300px;">
+
+    </div>
+
+    <div class="container-fluid mobile-view">
+        <div class="container">
+            @Html.Raw(Model.AboveTheFoldHeading)
+            <div class="orange-divider-2px"></div>
+            @Html.Raw(Model.AboveTheFoldSubHeading)
+            @Html.Raw(Model.AboveTheFoldDescription)
+            <div class="spacer-sm"></div>
+            <a class="btn btn-primary w-100" role="button" href="@Model.AboveTheFoldButtonLink">@Model.AboveTheFoldButtonText</a>
+        </div>
+    </div>
+</div>
+
+<!--Serviced Offices Heading Section-->
+<div class="container-fluid heading-section"
+     style="border-top:1px solid #ccc;">
+    <div class="container">
+        @{
+            foreach (var item in home.Children)
+            {
+                if (item.IsDocumentType("servicedOffices"))
+                {
+                    var serviced = (ServicedOffices)item;
+                    <div class="row">
+                        <div class="col-lg-8 col-md-12 col-sm-12 col-1-2">
+                            <h2 class="text-extrabold">@serviced.Heading</h2>
+                            <div class="text-limit">@serviced.Description</div>
+                            <a class="text-semibold" href="/locations/">View our Office Spaces <i class="fas fa-angle-right align-middle"></i></a>
+                        </div>
+
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-1-2 btn-right-style">
+                            <a href="@serviced.Url" class="btn btn-primary" role="button" aria-pressed="false">@serviced.ButtonText</a>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>
+
+<!--1st row - office type in boxes-->
+<div class="container-fluid kmcSpaces_services p-0" id="servicedOffices">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-12 kmcSpaces_services p-0 gutter-5px" id="standardPrivateOffices">
+            @{
+                foreach (var item in home.Children)
+                {
+                    if (item.IsDocumentType("standardPrivateOffices"))
+                    {
+                    var officeType = (StandardPrivateOffices)item;
+
+                    <div class="h-100 w-100"
+                         style="position: relative;
+                                min-height:400px;">
+                        <img class="img_object-fit" data-src="@officeType.BgImage.Url" />
+                        <div class="spaces-boxes">
+                            @Html.Raw(officeType.Heading)
+                            <div class="text-limit">@officeType.Description</div>
+                            <a href="@officeType.Url" class="btn btn-secondary" role="button" aria-pressed="false">@officeType.ButtonText</a>
+                        </div>
+                    </div>
+                    }
+                }
+            }
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-12 col-12 kmcSpaces_services p-0 gutter-5px" id="coworkingSpace">
+
+            @{
+                foreach (var item in home.Children)
+                {
+                    if (item.IsDocumentType("coworkingSpace"))
+                    {
+                        var officeType = (CoworkingSpace)item;
+                        <div class="h-100 w-100"
+                             style="position: relative;
+                                    min-height:400px;">
+                            <img class="img_object-fit" data-src="@officeType.BgImage.Url" />
+                            <div class="spaces-boxes">
+                                @Html.Raw(officeType.Heading)
+                                <div class="text-limit">@officeType.Description</div>
+                                <a href="@officeType.Url" class="btn btn-secondary" role="button" aria-pressed="false">@officeType.ButtonText</a>
+                            </div>
+
+                        </div>
+                         
+                    }
+                }
+            }
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-12 col-12 kmcSpaces_services p-0" id="coworkingSpace">
+            @{
+                foreach (var item in home.Children)
+                {
+                    if (item.IsDocumentType("virtualOffices"))
+                    {
+                        var officeType = (VirtualOffices)item;
+
+                        <div class="h-100 w-100"
+                             style="position: relative;
+                                    min-height:400px;">
+                            <img class="img_object-fit" data-src="@officeType.BgImage.Url" />
+                            <div class="spaces-boxes">
+                                @Html.Raw(officeType.Heading)
+                                <div class="text-limit">@officeType.Description</div>
+                                <a href="@officeType.Url" class="btn btn-secondary" role="button" aria-pressed="false">@officeType.ButtonText</a>
+                            </div>
+
+                        </div>
+
+                    }
+                }
+            }
+
+        </div>
+    </div>
+</div>
+
+<!--Enterprise Offices Heading Section-->
+<div class="container-fluid heading-section">
+    <div class="container extended-width">
+        @{
+            foreach (var item in home.Children)
+            {
+                if (item.IsDocumentType("enterpriseOffices"))
+                {
+                    var enterprise = (EnterpriseOffices)item;
+                    <div class="row">
+                        <div class="col-lg-8 col-md-12 col-sm-12 col-1-2">
+                            <h2 class="text-extrabold">@enterprise.Heading</h2>
+                            <div class="text-limit">@enterprise.Description</div>
+                            @*<a class="text-semibold" href="/locations/">View list of Locations ></a>*@
+                        </div>
+
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-1-2 btn-right-style">
+                            <a href="@enterprise.Url" class="btn btn-primary" role="button" aria-pressed="false">@enterprise.ButtonText</a>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>
+
+<div class="container-fluid kmcSpaces_services p-0" id="enterpriseOffices">
+    <!--2nd row - office type in boxes-->
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-12 kmcSpaces_services p-0 gutter-5px" id="customizedPrivateOfficeSuites">
+            @{
+                foreach (var item in home.Children)
+                {
+                    if (item.IsDocumentType("customizedPrivateOfficeSuites"))
+                    {
+                        var officeType = (CustomizedPrivateOfficeSuites)item;
+
+                        <div class="h-100 w-100"
+                             style="position: relative;
+                                    min-height:400px;">
+                            <img class="img_object-fit" data-src="@officeType.BgImage.Url" />
+                            <div class="spaces-boxes">
+                                @Html.Raw(officeType.Heading)
+                                <div class="text-limit">@officeType.Description</div>
+                                <a href="@officeType.Url" class="btn btn-secondary" role="button" aria-pressed="false">@officeType.ButtonText</a>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+
+
+        <div class="col-lg-4 col-md-4 col-sm-12 col-12 kmcSpaces_services p-0 gutter-5px" id="customizedOfficeFloors">
+            @{
+                foreach (var item in home.Children)
+                {
+                    if (item.IsDocumentType("customizedOfficeFloors"))
+                    {
+                        
+                        var officeType = (CustomizedOfficeFloors)item;
+
+                        <div class="h-100 w-100"
+                             style="position: relative;
+                                    min-height:400px;">
+                            <img class="img_object-fit" data-src="@officeType.BgImage.Url" />
+                            <div class="spaces-boxes">
+                                @Html.Raw(officeType.Heading)
+                                <div class="text-limit">@officeType.Description</div>
+                                <a href="@officeType.Url" class="btn btn-secondary" role="button" aria-pressed="false">@officeType.ButtonText</a>
+                            </div>
+                        </div>
+                         
+                    }
+                }
+            }
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-12 col-12 kmcSpaces_services p-0">
+            @{
+                foreach (var item in home.Children)
+                {
+                    if (item.IsDocumentType("businessContinuityPlanning"))
+                    {
+                        var officeType = (BusinessContinuityPlanning)item;
+
+                        <div class="h-100 w-100"
+                             style="position: relative;
+                                    min-height:400px;">
+                            <img class="img_object-fit" data-src="@officeType.BgImage.Url" />
+                            <div class="spaces-boxes">
+                                @Html.Raw(officeType.Heading)
+                                <div class="text-limit">@officeType.Description</div>
+                                <a href="@officeType.Url" class="btn btn-secondary" role="button" aria-pressed="false">@officeType.ButtonText</a>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container-fluid p-0" id="virtual-and-events">
+
+    @{
+        <!--Virtual Offices -->
+        foreach (var item in home.Children)
+        {
+            if (item.IsDocumentType("virtualOffices"))
+            {
+                var officeType = (VirtualOffices)item;
+
+                <!--Desktop-->
+                <div class="container-fluid desktop-view">
+                    <div class="spacer-lg"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <div class="container overlap_left"
+                                     style="position: relative;
+                                            height: 500px;">
+
+                                    <img class="img-fluid img_object-fit img-overlap-style"
+                                         data-src="@officeType.OfficeSubTypeSupportingImage.Url"
+                                         alt="@officeType.OfficeSubTypeImageAltTag"
+                                         title="@officeType.OfficeSubTypeImageAltTag" />
+                                </div>
+
+                                <div class="overlap_border_left"></div>
+                            </div>
+
+                            <div class="col-12 col-lg-6 overlap_contents">
+                                @Html.Raw(officeType.OfficeSubTypeHeading)
+                                <h2 class="text-semibold">@officeType.OfficeSubTypeSubHeading</h2>
+                                <div class="orange-divider"></div>
+                                @Html.Raw(officeType.OfficeSubTypeDescription)
+                                <a href="@officeType.Url" class="btn btn-primary" role="button" aria-pressed="false">@officeType.OfficeSubTypeButtonText</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile -->
+
+                <div class="mobile-view">
+                    <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+                         data-src="@officeType.OfficeSubTypeSupportingImage.Url"
+                         alt="@officeType.OfficeSubTypeImageAltTag"
+                         title="@officeType.OfficeSubTypeImageAltTag" />
+                    <div class="container-fluid">
+                        <div class="container">
+                            <div class="col-12 col-lg-6">
+                                @Html.Raw(officeType.OfficeSubTypeHeading)
+                                @Html.Raw(officeType.OfficeSubTypeSubHeading)
+                                <div class="orange-divider"></div>
+                                @Html.Raw(officeType.OfficeSubTypeDescription)
+                                <a href="@officeType.Url" class="btn btn-primary" role="button" aria-pressed="false">@officeType.OfficeSubTypeButtonText</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+
+    <div>
+        @{
+            <!--Community & Event Spaces -->
+            foreach (var item in home.Children)
+            {
+                if (item.IsDocumentType("communityEventSpaces"))
+                {
+                    var officeType = (CommunityEventSpaces)item;
+                    <!--Desktop-->
+                    <div class="container-fluid desktop-view">
+                        <div class="container">
+                            <div class="row">
+                                <div class=" col-12 col-lg-6 overlap_contents">
+                                    <h2 class="text-semibold">@officeType.Heading</h2>
+                                    <div class="orange-divider"></div>
+                                    @Html.Raw(officeType.Description)
+                                    <a href="@officeType.Url" class="btn btn-primary" role="button" aria-pressed="false">@officeType.ButtonText</a>
+                                </div>
+
+
+                                <div class="col-12 col-lg-6">
+
+                                    <div class="container overlap_right"
+                                         style="position: relative; height: 500px;">
+
+                                        <img class="img-fluid img_object-fit img-overlap-style"
+                                             data-src="@officeType.BgImage.Url"
+                                             alt="@officeType.BgImageAltTag"
+                                             title="@officeType.BgImageAltTag" />
+                                    </div>
+
+                                    <div class="overlap_border_right"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile -->
+
+                    <div class="mobile-view">
+                        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+                             data-src="@officeType.BgImage.Url"
+                             alt=""
+                             title="" />
+                        <div class="container-fluid">
+                            <div class="container">
+                                <div class="col-12 col-lg-6">
+                                    <h2 class="text-semibold">@officeType.Heading</h2>
+                                    <div class="orange-divider"></div>
+                                    @Html.Raw(officeType.Description)
+                                    <a href="@officeType.Url" class="btn btn-primary" role="button" aria-pressed="false">@officeType.ButtonText</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>
+
+<!--Featured Banner-->
+@Html.Partial("~/Views/Partials/FeaturedBanner.cshtml")
+
+<!--Featured Locations Section with Links -->
+@Html.Partial("~/Views/Partials/FeaturedLocations/FeaturedLocations-6-Items.cshtml")

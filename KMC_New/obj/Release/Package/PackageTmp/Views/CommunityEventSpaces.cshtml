@@ -1,0 +1,356 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.CommunityEventSpaces>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+
+    var selection = Umbraco.Content(Guid.Parse("02eee460-950f-4610-a8b1-b516aa54e706"))
+    .Children("event")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.Value<DateTime>("eventDateFrom"));
+}
+
+<div class="container-fluid" id="aboveTheFold"
+     style="background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+            url('@Model.AboveTheFoldCol1BgImage.Url');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            min-height: 250px;
+            padding-bottom: 100px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-12 col-12 my-auto text-white">
+                <h1>@Model.AboveTheFoldHeading</h1>
+                <div class="orange-divider-1px"></div>
+                @Html.Raw(Model.AboveTheFoldDescription)
+                <a href="@Model.AboveTheFoldButtonLink" class="btn btn-primary mb-5" role="button" aria-pressed="false">@Model.AboveTheFoldButtonText</a>
+            </div>
+
+            <div class="col-lg-5 col-md-6 col-sm-12 col-12" id="event_carousel-style">
+                <h3 class="text-semibold text-white text-center mb-3">
+                    Featured Event
+                </h3>
+                @{
+                    <!--Insert event poster carousel here -->
+                    <div class="owl-carousel owl-theme" id="event_carousel">
+
+                        <!-- Events Sorted by Event Date -->
+                        @{
+                            int count_carousel = 0;
+                        }
+
+                        @foreach (var item in selection.OrderBy(x => x.Value("eventDateFrom")))
+                        {
+                            if (item.IsDocumentType("event"))
+                            {
+                                var eventPage = (Event)item;
+
+                                if (count_carousel >= 3)
+                                {
+                                    break;
+                                }
+
+                                else
+                                if (eventPage.EventDateFrom.Date >= DateTime.Now.Date && eventPage.EventDateTo.Date >= DateTime.Now.Date && eventPage.EventPoster != null)
+                                {
+                                    if (eventPage.Value<bool>("redirectToHubspotLandingPage"))
+                                    {
+                                        <div class="container item">
+                                            <a href="@eventPage.LandingPageLink" target="_blank">
+                                                <img class="img-fluid img-style owl-lazy"
+                                                     data-src="@eventPage.EventPoster.Url"
+                                                     alt="@eventPage.EventPosterAltTag"
+                                                     title="@eventPage.EventPosterAltTag" />
+                                            </a>
+                                        </div>
+                                        count_carousel++;
+                                    }
+
+                                    else
+                                    {
+                                        <div class="container item">
+                                            <a href="@eventPage.Url">
+                                                <img class="img-fluid img-style owl-lazy"
+                                                     data-src="@eventPage.EventPoster.Url"
+                                                     alt="@eventPage.EventPosterAltTag"
+                                                     title="@eventPage.EventPosterAltTag" />
+                                            </a>
+                                        </div>
+                                        count_carousel++;
+                                    }
+                                }
+                            }
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid center-items-justify pt-0" style="position: relative;">
+    <div class="container nav-overlap" style="position: absolute; top: -60px; z-index:1;">
+        <nav id="event-categories">
+            <ul id="categories-list">
+                <li class="category-item">
+                    <a class="category-link" title="View All" href="/events/" id="all-categories">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65.5 65.5" class="svg-icon">
+                            <g transform="translate(-4 -4)"><path class="a" d="M12,47h4.68v3.509H12Z" transform="translate(1.357 7.295)" /><path class="a" d="M50.866,38A12.866,12.866,0,1,0,63.732,50.866,12.866,12.866,0,0,0,50.866,38Zm8.412,9.617-9.924,9.924a1.17,1.17,0,0,1-1.654,0l-4.962-4.963a1.17,1.17,0,1,1,1.654-1.654l4.135,4.136,9.1-9.1a1.17,1.17,0,1,1,1.654,1.654Z" transform="translate(5.768 5.768)" /><path class="a" d="M24,29h4.68v3.509H24Z" transform="translate(3.393 4.241)" /><path class="a" d="M36,29h4.679v3.509H36Z" transform="translate(5.429 4.241)" /><path class="a" d="M12,38h4.68v3.509H12Z" transform="translate(1.357 5.768)" /><path class="a" d="M24,38h4.68v3.509H24Z" transform="translate(3.393 5.768)" /><path class="a" d="M12,29h4.68v3.509H12Z" transform="translate(1.357 4.241)" /><path class="a" d="M16.339,15.7a2.346,2.346,0,0,0,2.339-2.339V6.339a2.339,2.339,0,0,0-4.679,0v7.018A2.346,2.346,0,0,0,16.339,15.7Z" transform="translate(1.696)" /><path class="a" d="M32.339,15.7a2.346,2.346,0,0,0,2.339-2.339V6.339a2.339,2.339,0,1,0-4.679,0v7.018A2.346,2.346,0,0,0,32.339,15.7Z" transform="translate(4.411)" /><path class="a" d="M48.339,15.7a2.346,2.346,0,0,0,2.339-2.339V6.339a2.339,2.339,0,1,0-4.679,0v7.018A2.346,2.346,0,0,0,48.339,15.7Z" transform="translate(7.125)" /><path class="a" d="M48,29h4.679v3.509H48Z" transform="translate(7.464 4.241)" /><path class="a" d="M65.991,10H60.143v2.339a4.679,4.679,0,1,1-9.357,0V10H41.429v2.339a4.679,4.679,0,1,1-9.357,0V10H22.714v2.339a4.679,4.679,0,1,1-9.357,0V10H7.509A3.519,3.519,0,0,0,4,13.509V21.7H69.5V13.509A3.519,3.519,0,0,0,65.991,10Z" transform="translate(0 1.018)" /><path class="a" d="M24,47h4.68v3.509H24Z" transform="translate(3.393 7.295)" /><path class="a" d="M4,22V58.259a3.519,3.519,0,0,0,3.509,3.509H43.842A15.188,15.188,0,0,1,69.5,45.51V22ZM20.375,54.75a2.339,2.339,0,0,1-2.339,2.339H13.357a2.339,2.339,0,0,1-2.339-2.339V51.241A2.339,2.339,0,0,1,13.357,48.9h4.679a2.339,2.339,0,0,1,2.339,2.339Zm0-10.527a2.339,2.339,0,0,1-2.339,2.339H13.357a2.339,2.339,0,0,1-2.339-2.339V40.714a2.339,2.339,0,0,1,2.339-2.339h4.679a2.339,2.339,0,0,1,2.339,2.339Zm0-10.527a2.339,2.339,0,0,1-2.339,2.339H13.357A2.339,2.339,0,0,1,11.018,33.7V30.187a2.339,2.339,0,0,1,2.339-2.339h4.679a2.339,2.339,0,0,1,2.339,2.339ZM34.411,54.75a2.339,2.339,0,0,1-2.339,2.339H27.393a2.339,2.339,0,0,1-2.339-2.339V51.241A2.339,2.339,0,0,1,27.393,48.9h4.679a2.339,2.339,0,0,1,2.339,2.339Zm0-10.527a2.339,2.339,0,0,1-2.339,2.339H27.393a2.339,2.339,0,0,1-2.339-2.339V40.714a2.339,2.339,0,0,1,2.339-2.339h4.679a2.339,2.339,0,0,1,2.339,2.339Zm0-10.527a2.339,2.339,0,0,1-2.339,2.339H27.393A2.339,2.339,0,0,1,25.054,33.7V30.187a2.339,2.339,0,0,1,2.339-2.339h4.679a2.339,2.339,0,0,1,2.339,2.339Zm11.7,7.018H41.429v3.509a1.17,1.17,0,0,1,0,2.339,2.339,2.339,0,0,1-2.339-2.339V40.714a2.339,2.339,0,0,1,2.339-2.339h4.679a1.17,1.17,0,0,1,0,2.339ZM48.446,33.7a2.339,2.339,0,0,1-2.339,2.339H41.429A2.339,2.339,0,0,1,39.089,33.7V30.187a2.339,2.339,0,0,1,2.339-2.339h4.679a2.339,2.339,0,0,1,2.339,2.339Zm14.036,0a2.339,2.339,0,0,1-2.339,2.339H55.464A2.339,2.339,0,0,1,53.125,33.7V30.187a2.339,2.339,0,0,1,2.339-2.339h4.679a2.339,2.339,0,0,1,2.339,2.339Z" transform="translate(0 3.054)" /></g>
+                        </svg>
+                        <div class="category-name">All Events</div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a class="category-link" title="Work Life Balance" href="/events/" id="work-life-balance">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.818 63.904" class="svg-icon">
+                            <g transform="translate(-61.81)"><g transform="translate(61.81)"><g transform="translate(12.478 52.507)"><path class="a" d="M147.411,294.1H132.827a3.681,3.681,0,0,1-.975-.146l-.2-.057v7.672a1.465,1.465,0,0,0,1.463,1.461h2.82l1.522,1.757a1.462,1.462,0,0,0,1.108.507H141.6a1.457,1.457,0,0,0,1.1-.5l1.529-1.761h2.824a1.464,1.464,0,0,0,1.459-1.463V293.92l-.2.054A3.729,3.729,0,0,1,147.411,294.1Z" transform="translate(-131.652 -293.893)" /></g><g transform="translate(0)"><path class="a" d="M82.717,0A20.778,20.778,0,0,0,61.81,20.6a27.541,27.541,0,0,0,6.565,17.1l.172.23c.536.682,5.237,6.8,5.237,11.076a1.678,1.678,0,0,0,1.679,1.677h5.586c.053-1.256.8-3.123,1.973-5.923a42.271,42.271,0,0,0,2.913-8.633l-.8-.355c-2.965-1.42-9.915-5.366-10.359-11.321-.2-2.836,1.288-4.909,2.731-6.921,1.288-1.8,2.5-3.489,2.276-5.551L79.5,9.442l1.86,1.748c.468.438.941.88,1.419,1.318C88.368,17.662,94.7,23.5,89.006,32.227l-1.083,1.164c.009.063.018.115.024.178.386,3.388-1.592,8.109-3.184,11.908a29.49,29.49,0,0,0-1.858,5.21l7.8-.133a1.677,1.677,0,0,0,1.024-1.545c0-3.776,3.78-9.273,5.235-11.076a1.144,1.144,0,0,0,.144-.221l.137-.22A27.643,27.643,0,0,0,103.628,20.6,20.78,20.78,0,0,0,82.717,0Z" transform="translate(-61.81)" /></g><g transform="translate(14.825 13.917)"><path class="a" d="M150.35,83.829c3.186,3.818,4.6,6.616,5.38,11.1,4.543-7.24-.585-12-6.042-17.034a13.276,13.276,0,0,1-2.5,4.708c-1.308,1.821-2.54,3.538-2.385,5.694.379,5.109,7.211,8.761,9.293,9.758l.146.072c-.009-.119,0-.252-.009-.369-.661-5.762-1.805-8.5-5.33-12.726l-.2-.241,1.446-1.2Z" transform="translate(-144.791 -77.894)" /></g></g></g>
+                        </svg>
+                        <div class="category-name">Work Life Balance</div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a class="category-link" title="Business on Demand" href="/events/" id="business-on-demand">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65.787 55.808" class="svg-icon">
+                            <g transform="translate(0 -4.363)"><g transform="translate(0 13.972)"><path class="a" d="M63.57,53.792h0V12.767H51V53.792h-3.7V23.856H34.742V53.793h-3.7V32.724H18.48V53.791h-3.7v-12.2H2.217v12.2H0v5.174H65.787V53.792ZM43.611,32.724H38.437V27.55h5.174ZM59.874,21.638H54.7V16.464h5.174Z" transform="translate(0 -12.767)" /></g><g transform="translate(12.838 4.363)"><path class="a" d="M26.489,4.363l3.578,5.164L11.228,22.574l2.947,4.254L33.012,13.78l3.578,5.166L41.262,4.921Z" transform="translate(-11.228 -4.363)" /></g></g>
+                        </svg>
+                        <div class="category-name">Business on Demand</div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a class="category-link" title="Hustle & Grind Podcast" href="/events/" id="hustle-grind-podcast">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62.968 60.904" class="svg-icon">
+                            <g transform="translate(-0.02 0)"><g transform="translate(0.02 0)"><path class="a" d="M26.2,2.373A30.665,30.665,0,0,1,30.25,2.1a29.2,29.2,0,0,1,11.432,2.31.924.924,0,0,0,.409.084A1.05,1.05,0,0,0,42.5,2.478,31.2,31.2,0,0,0,30.25,0,33.457,33.457,0,0,0,25.9.294,1.05,1.05,0,1,0,26.2,2.373Z" transform="translate(1.224 0)" /><path class="a" d="M18.768,4.437a.955.955,0,0,0,.409-.084,31.305,31.305,0,0,1,3.328-1.176,1.044,1.044,0,1,0-.546-2.016A31.9,31.9,0,0,0,18.4,2.422a1.05,1.05,0,0,0,.409,2.016Z" transform="translate(0.864 0.056)" /><path class="a" d="M30.535,4A27.211,27.211,0,0,0,19.911,6.1a1.054,1.054,0,1,0,.819,1.942,25.2,25.2,0,0,1,19.61,0,1.123,1.123,0,0,0,.409.073A1.05,1.05,0,0,0,41.159,6.1,27.211,27.211,0,0,0,30.535,4Z" transform="translate(0.939 0.199)" /><path class="a" d="M1.5,35.862a1.05,1.05,0,0,0,.892-1.186A30.665,30.665,0,0,1,2.1,30.612,29.111,29.111,0,0,1,4.429,19.17,1.051,1.051,0,0,0,2.5,18.34a31.715,31.715,0,0,0-2.184,16.6,1.05,1.05,0,0,0,1.05.9Z" transform="translate(-0.02 0.882)" /><path class="a" d="M3.2,37.749a1.05,1.05,0,1,0-2.016.577,30.445,30.445,0,0,0,1.26,3.559,1.05,1.05,0,0,0,.966.64,1.144,1.144,0,0,0,.409-.084,1.05,1.05,0,0,0,.556-1.375A31.127,31.127,0,0,1,3.2,37.749Z" transform="translate(0.035 1.84)" /><path class="a" d="M7.537,19.334a1.05,1.05,0,0,0-1.375.556,27.421,27.421,0,0,0,0,21.248,1.05,1.05,0,0,0,.966.64.955.955,0,0,0,.409-.084,1.05,1.05,0,0,0,.556-1.375,25.342,25.342,0,0,1,0-19.61,1.05,1.05,0,0,0-.556-1.375Z" transform="translate(0.179 0.959)" /><path class="a" d="M57.717,18.354a1.05,1.05,0,1,0-1.932.808,29.237,29.237,0,0,1,2.331,11.453,30.444,30.444,0,0,1-.273,4.052,1.05,1.05,0,0,0,.871,1.2h.147a1.05,1.05,0,0,0,1.05-.9,31.494,31.494,0,0,0,.3-4.346,31.106,31.106,0,0,0-2.5-12.262Z" transform="translate(2.752 0.879)" /><path class="a" d="M58.262,37a1.05,1.05,0,0,0-1.3.724,31.127,31.127,0,0,1-1.176,3.317,1.05,1.05,0,0,0,.556,1.375,1.144,1.144,0,0,0,.409.084,1.05,1.05,0,0,0,.966-.64,30.444,30.444,0,0,0,1.26-3.559,1.05,1.05,0,0,0-.714-1.3Z" transform="translate(2.754 1.841)" /><path class="a" d="M54.036,19.89a1.049,1.049,0,0,0-1.932.819,25.342,25.342,0,0,1,0,19.61,1.05,1.05,0,0,0,.556,1.375.924.924,0,0,0,.409.084,1.05,1.05,0,0,0,.966-.64,27.421,27.421,0,0,0,0-21.248Z" transform="translate(2.57 0.959)" /><path class="a" d="M26.149,35.2H23a7.349,7.349,0,1,0,14.7,0H30.349a1.05,1.05,0,1,1,0-2.1H37.7V31H23v2.1h3.149a1.05,1.05,0,1,1,0,2.1Z" transform="translate(1.125 1.544)" /><path class="a" d="M37.7,21.349a7.349,7.349,0,1,0-14.7,0v8.4H37.7ZM32.448,16.1a1.05,1.05,0,1,1-1.05,1.05A1.05,1.05,0,0,1,32.448,16.1Zm-2.1,3.149A1.05,1.05,0,1,1,29.3,20.3,1.05,1.05,0,0,1,30.349,19.249Zm-2.1-3.149a1.05,1.05,0,1,1-1.05,1.05A1.05,1.05,0,0,1,28.249,16.1Zm-2.1,3.149A1.05,1.05,0,1,1,25.1,20.3,1.05,1.05,0,0,1,26.149,19.249Zm0,8.4A1.05,1.05,0,1,1,27.2,26.6,1.05,1.05,0,0,1,26.149,27.648Zm2.1-3.149a1.05,1.05,0,1,1,1.05-1.05A1.05,1.05,0,0,1,28.249,24.5Zm2.1,3.149A1.05,1.05,0,1,1,31.4,26.6,1.05,1.05,0,0,1,30.349,27.648Zm2.1-3.149a1.05,1.05,0,1,1,1.05-1.05A1.05,1.05,0,0,1,32.448,24.5Zm2.1,3.149A1.05,1.05,0,1,1,35.6,26.6,1.05,1.05,0,0,1,34.548,27.648Zm0-6.3A1.05,1.05,0,1,1,35.6,20.3,1.05,1.05,0,0,1,34.548,21.349Z" transform="translate(1.125 0.697)" /><path class="a" d="M41.046,32A1.05,1.05,0,0,0,40,33.05v2.1a9.448,9.448,0,1,1-18.9,0v-2.1a1.05,1.05,0,0,0-2.1,0v2.1a11.548,11.548,0,1,0,23.1,0v-2.1A1.05,1.05,0,0,0,41.046,32Z" transform="translate(0.926 1.594)" /><path class="a" d="M31,10a21,21,0,0,0-5.428,41.279,1.05,1.05,0,0,1,.672.567l3.821,7.979a1.05,1.05,0,0,0,1.879,0l3.811-7.958a1.05,1.05,0,0,1,.672-.567A21,21,0,0,0,31,10ZM44.644,36.245a13.648,13.648,0,1,1-27.3,0v-2.1a3.149,3.149,0,0,1,4.2-2.96V21.548a9.448,9.448,0,1,1,18.9,0v9.637a3.149,3.149,0,0,1,4.2,2.96Z" transform="translate(0.477 0.498)" /></g></g>
+                        </svg>
+                        <div class="category-name">Hustle &amp; Grind Podcast</div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a class="category-link active" title="Community Events" href="/community-events/" id="community-events-redirect">
+                        <svg class="svg-icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.979 96.979" style="enable-background:new 0 0 96.979 96.979;" xml:space="preserve">
+                        <g><g><path d="M59.07,46.021L59.07,46.021c4.576-3.373,7.31-8.754,7.31-14.393c0-9.863-8.025-17.889-17.89-17.889
+                    c-9.864,0-17.889,8.025-17.889,17.889c0,5.717,2.66,10.959,7.297,14.385c-18.244,6.451-21.092,28.71-21.531,35.378
+                    c-0.031,0.479,0.137,0.949,0.465,1.3c0.328,0.35,0.785,0.549,1.264,0.549h60.788c0.479,0,0.938-0.199,1.266-0.549
+                    c0.328-0.351,0.496-0.82,0.465-1.3C80.175,74.736,77.32,52.511,59.07,46.021z" /> <path d="M82.761,46.861c3.02-2.227,4.821-5.779,4.821-9.502c0-6.508-5.297-11.805-11.807-11.805c-1.867,0-3.627,0.447-5.199,1.223
+                    c0.345,1.564,0.529,3.184,0.529,4.852c0,4.68-1.484,9.219-4.137,12.988c10.448,6.572,14.981,18.07,16.944,26.81h11.923
+                    c0.315,0,0.618-0.131,0.836-0.361c0.215-0.23,0.325-0.541,0.305-0.857C96.688,65.812,94.805,51.144,82.761,46.861z" /> <path d="M29.976,44.617c-2.654-3.748-4.104-8.238-4.104-12.988c0-1.668,0.188-3.287,0.531-4.852
+                    c-1.572-0.775-3.332-1.223-5.199-1.223c-6.51,0-11.807,5.297-11.807,11.805c0,3.775,1.754,7.236,4.816,9.496
+                    C2.172,51.113,0.291,65.806,0.002,70.207c-0.021,0.316,0.09,0.627,0.307,0.857c0.217,0.229,0.52,0.36,0.836,0.36H13.06
+                    C15.019,62.685,19.543,51.179,29.976,44.617z" /></g></g></svg>
+                        <div class="category-name">Community Events</div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="container-fluid p-0" id="unique-spaces">
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container overlap_left"
+                         style="position: relative;
+                            height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             data-src="@Model.UniqueSpacesSupportingImage.Url"
+                             alt="@Model.UniqueSpacesImageAltTag"
+                             title="@Model.UniqueSpacesImageAltTag" />
+                    </div>
+
+                    <div class="overlap_border_left"></div>
+                </div>
+
+                <div class="col-12 col-lg-6 overlap_contents">
+                    @Html.Raw(@Model.UniqueSpacesHeading)
+                    <div class="orange-divider-2px"></div>
+                    @Html.Raw(Model.UniqueSpacesDescription)
+                    <a href="@Model.UniqueSpacesButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.UniqueSpacesButtonText</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             data-src="@Model.UniqueSpacesSupportingImage.Url"
+             alt="@Model.UniqueSpacesImageAltTag"
+             title="@Model.UniqueSpacesImageAltTag" />
+
+        <div class="container-fluid">
+            <div class="container">
+                @Html.Raw(@Model.UniqueSpacesHeading)
+                <div class="orange-divider-2px"></div>
+                @Html.Raw(Model.UniqueSpacesDescription)
+                <a href="@Model.UniqueSpacesButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.UniqueSpacesButtonText</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid p-0" id="join-our-community">
+
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             data-src="@Model.JoinOurCommunitySupportingImage.Url"
+             alt="@Model.JoinOurCommunityImageAltTag"
+             title="@Model.JoinOurCommunityImageAltTag" />
+    </div>
+
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class=" col-12 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.JoinOurCommunityHeading)
+                    <div class="orange-divider-2px"></div>
+
+                    <!--Accordion Collapse-->
+                    @Html.Partial("~/Views/Partials/KMC Spaces/JoinOurCommunityAccordion.cshtml")
+
+                </div>
+
+                <div class="col-12 col-lg-6 desktop-view">
+
+                    <div class="container overlap_right"
+                         style="position: relative;
+                            height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             data-src="@Model.JoinOurCommunitySupportingImage.Url"
+                             alt="@Model.JoinOurCommunityImageAltTag"
+                             title="@Model.JoinOurCommunityImageAltTag" />
+                    </div>
+
+                    <div class="overlap_border_right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    if (Model.Value<bool>("displayFeaturedVideo"))
+    {
+        <!--Featured Video is Optional-->
+        <div class="container-fluid" id="featured-event-video">
+            <div class="container">
+                @Html.Raw(Model.FeaturedVideoHeading)
+                <div class="orange-divider-2px"></div>
+                <div class="container center-items-justify"
+                     style="background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                        url('@Model.FeaturedVideoImage.Url');
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-position: center;
+                        position: relative;
+                        min-height: 500px;
+                        padding: 20px;">
+
+                    <button class="video-btn"
+                            data-toggle="modal"
+                            data-src="@Model.FeaturedVideoLink"
+                            data-target="#videoModal">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal Code-->
+        <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="video-targetCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <div class="modal-body">
+                        <!-- 16:9 aspect ratio -->
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always" allow="autoplay"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+}
+
+<div class="container-fluid pt-0" id="function-rooms">
+    <div class="container">
+        <h2 class="text-semibold">Function Rooms</h2>
+        <div class="orange-divider-1px"></div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-12 d-flex align-items-stretch">
+                <div class="card shadow mb-3 bg-white rounded">
+
+                    <div style="height: 175px;">
+                        <img class="card-img-top img-fluid"
+                             style="max-width:100%; max-height: 100%; object-fit: cover"
+                             data-src="@Model.FunctionRoomMakatiImage.Url"
+                             alt="">
+                    </div>
+                    <div class="card-body d-flex flex-column">
+
+                        <h4 class="card-title text-semibold">@Model.FunctionRoomMakatiHeading</h4>
+                        <p class="card-text text-limit">@Model.FunctionRoomMakatiDescription</p>
+
+                        <a role="button" class="btn btn-primary mt-auto" href="@Model.FunctionRoomMakatiLink">Inquire</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-12 d-flex align-items-stretch">
+                <div class="card shadow mb-3 bg-white rounded">
+
+                    <div style="height: 175px;">
+                        <img class="card-img-top img-fluid"
+                             style="max-width:100%; max-height: 100%; object-fit: cover"
+                             data-src="@Model.FunctionRoomBgcimage.Url"
+                             alt="">
+                    </div>
+                    <div class="card-body d-flex flex-column">
+
+                        <h4 class="card-title text-semibold">@Model.FunctionRoomBgcheading</h4>
+                        <p class="card-text text-limit">@Model.FunctionRoomBgcdescription</p>
+
+                        <a role="button" class="btn btn-primary mt-auto" href="@Model.FunctionRoomBgclink">Inquire</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-12 d-flex align-items-stretch">
+                <div class="card shadow mb-3 bg-white rounded">
+
+                    <div style="height: 175px;">
+                        <img class="card-img-top img-fluid"
+                             style="max-width:100%; max-height: 100%; object-fit: cover"
+                             data-src="@Model.FunctionRoomMandaluyongImage.Url"
+                             alt="">
+                    </div>
+                    <div class="card-body d-flex flex-column">
+
+                        <h4 class="card-title text-semibold">@Model.FunctionRoomMandaluyongHeading</h4>
+                        <p class="card-text text-limit">@Model.FunctionRoomMandaluyongDescription</p>
+
+                        <a role="button" class="btn btn-primary mt-auto" href="@Model.FunctionRoomMandaluyongLink">Inquire</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/custom/commonOwlCarousel.es5.min.js"></script>
+    <script src="~/Scripts/custom/modal-script.es5.min.js"></script>
+}

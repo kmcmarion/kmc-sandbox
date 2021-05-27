@@ -1,0 +1,33 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.NewsArticle>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+}
+
+<div class="container-fluid"
+     style="background: url('@Model.ArticleHeroImage.Url');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            height: 350px;">
+</div>
+
+<div class="container-fluid">
+    <div class="container" style="max-width: 800px;">
+        <div class="article-content">
+            <h1 class="text-center text-orange medium-text mb-5">@Model.ArticleHeading</h1>
+            <p class="mb-3">
+                Published on @Model.DatePublished.ToShortDateString() by <b>@Model.Publisher</b>
+            </p>
+            <div class="spacer-sm"></div>
+            @Html.Raw(Model.ArticleContent)
+        </div>
+        
+        <!--Previous and Next Post buttons-->
+        @Html.Partial("~/Views/Partials/NewsPreviousNextPosts.cshtml")
+    </div>
+</div>
+
+<!--Popular Posts-->
+@Html.Partial("~/Views/Partials/NewsPopularPosts.cshtml")

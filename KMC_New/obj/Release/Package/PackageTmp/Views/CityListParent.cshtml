@@ -1,0 +1,51 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.CityListParent>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web
+
+@{
+    @*This is the Locations page (View All Locations)*@
+    Layout = "master.cshtml";
+    var selection = Model.Ancestor("home");
+    var home = (Home)selection;
+}
+
+@section Header{
+     @*Mapbox*@
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.0/mapbox-gl.css' rel='stylesheet'/>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.0/mapbox-gl.js'></script>
+}
+  
+<div class="container-fluid p-0">
+    <!-- NEW MAP -->
+    <div class="row" id="map-style">
+
+        <!-- Side panel for the list of offices -->
+        <div class="col-12 mobile-view" id="map-title-and-text-mobile">
+            <h1 class="text-extrabold text-orange">Office Space in the Philippines</h1>
+            <h2 class="text-semibold" style="font-size: 1rem;">Coworking Space &amp; Private Offices in Metro-Manila, Cebu, Clark &amp; Iloilo</h2>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-sm-5 col-5 text-white listings" id="listings">
+            <div class="m-auto desktop-view" id="map-title-and-text">
+                <h1 class="text-extrabold text-orange">Office Space in the Philippines</h1>
+                <h2 class="text-semibold" style="font-size: 1rem;">Coworking Space &amp; Private Offices in Metro-Manila, Cebu, Clark &amp; Iloilo</h2>
+                <div class="spacer-sm"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-8 col-md-6 col-sm-7 col-7 mx-auto"
+             style="background: #eee; padding: 0">
+
+            <!-- Where the map is displayed -->
+            <div class="map" id="map" style="height: 90vh;"></div>
+        </div>
+
+
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/Scripts/custom/map.js"></script>
+    <script src="~/Scripts/custom/modal-script.es5.min.js"></script>
+}

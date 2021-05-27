@@ -1,0 +1,146 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.LocationsCustomizedOfficeFloors>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+
+    var buildingsItem = Model.Ancestor("buildings");
+    var buildings = (Buildings)buildingsItem;
+}
+
+@Html.Partial("~/Views/Partials/Navigation/LocationsNavigation.cshtml")
+
+<div class="container-fluid" id="buildings_page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="overview-section1">
+                    <h1 class="text-extrabold building-name-style">@buildings.BuildingName</h1>
+                    <p>@buildings.BuildingAddress</p>
+
+                    <div class="spacer-md"></div>
+
+                    <!-- 2 Carousels on Sync -->
+
+                    <div class="owl-carousel owl-theme" id="building_sync1">
+                        @{
+                            foreach (var item in buildings.BuildingPhotos)
+                            {
+                                <div class="item" id="test">
+                                    <img class="img-fluid" data-src="@item.Url">
+                                </div>
+                            }
+                        }
+                    </div>
+
+                    <div class="owl-carousel owl-theme" id="building_sync2">
+                        @{
+                            foreach (var item in buildings.BuildingPhotos)
+                            {
+                                <div class="item" id="test">
+                                    <img class="img-fluid" data-src="@item.Url">
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-5">
+                <!--Add Fixed Form Here -->
+
+                <div class="col pr-0 float_form">
+
+                    <div id="bookTour_form">
+                        <h2 class="text-extrabold" style="font-size: 1.5rem;">Reimagine Your Workspace</h2>
+                        <!--[if lte IE 8]>
+                        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+                        <![endif]-->
+                        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                        <script>
+                            hbspt.forms.create({
+                                portalId: "2867266",
+                                formId: "ddd79bc8-ca30-4d42-8766-4232dc8c9d82",
+                                css: ""
+                            });
+                        </script>
+
+                    </div>
+
+                    <div class="spacer-sm">
+
+                    </div>
+                    <div class="row">
+                        <div class="col text-center" style="font-size:12px;">
+
+                            <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> View Map Location</a>
+                            &nbsp;
+                            <a href="#"><i class="fa fa-building" aria-hidden="true"></i> View All Locations</a>    &nbsp;
+                            <a href="#"><i class="fa fa-phone" aria-hidden="true"></i> Contact Us Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="container h-100 center-items overlap_left"
+                     style="position: relative;
+                            min-height: 300px;">
+
+                    <img class="img-fluid img_object-fit img-overlap-style"
+                         data-src="@Model.LeftSupportingImage.Url"
+                         alt="@Model.LeftSupportingImageAltTag"
+                         title="@Model.LeftSupportingImageAltTag" />
+                </div>
+                <div class="overlap_border_left h-100"></div>
+            </div>
+
+            <div class="col-12 col-lg-6 overlap_contents" id="coworking_passport">
+                <h2 class="text-semibold">@Model.RightHeading</h2>
+                <div class="orange-divider-2px"></div>
+                @Html.Raw(Model.RightDescription)
+                @*<a href="#" class="btn btn-primary" role="button"></a>*@
+            </div>
+        </div>
+
+    </div>
+    <div class="spacer-lg"></div>
+    <div class="spacer-lg"></div>
+</div>
+
+<!-- Customized Office Solutions -->
+<div class="container-fluid bg_orangeAndTexture" id="customized-office"
+     style="background-image: url('@Model.CustomizedOfficeSolutionsBgImage.Url');
+         ">
+    <div class="container">
+        @Html.Raw(Model.CustomizedOfficeSolutionsHeading)
+        <div class="spacer-md"></div>
+        @Html.Partial("~/Views/Partials/CustomizedOfficeSolutionsCard-Partial.cshtml")
+
+    </div>
+</div>
+
+
+<!-- Featured Locations Navigation  -->
+@Html.Partial("~/Views/Partials/Navigation/FeaturedLocationsNavigation.cshtml")
+
+
+<div class="container-fluid">
+    <div class="container">
+        <!-- Partial View for Featured Locations 6 Items -->
+        <!--Featured Locations Paragraph -->
+        @Html.Raw(Model.FeaturedLocationParagraph)
+        <div class="spacer-lg"></div>
+        @Html.Partial("~/Views/Partials/FeaturedLocations/FeaturedLocations-6-Items.cshtml")
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/custom/location-pages.es5.min.js"></script>
+}

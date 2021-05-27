@@ -1,0 +1,136 @@
+﻿/*_blogs-style.scss*/
+/* Resources page*/
+#blogs_carousel {
+    .owl-stage {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+
+    #article_card {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+
+        .card-body {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+        }
+    }
+}
+
+.blogs-subscribe-form {
+    background-color: #F8F8F8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 30px;
+}
+
+.popular-posts-section {
+    .card {
+        .card-header {
+            background-color: $primary-orange;
+        }
+
+        .card-body {
+            padding: 30px;
+
+            .blog-img-style {
+                height: 80px;
+                margin-bottom: 10px;
+
+                img {
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+}
+
+.filterDiv {
+    margin-bottom: 20px;
+    display: none;
+}
+
+#categories-list {
+    margin: auto 0;
+
+    ul {
+        float: right;
+    }
+
+    .category-link {
+        color: $primary-orange;
+    }
+
+    :hover {
+        cursor: pointer;
+        opacity: 0.9;
+    }
+}
+
+
+.show{
+    display:block;
+}
+
+.no-content-btn {
+    color: #000000;
+    background-color: #f5f5f5 !important;
+    border: 1px solid #333333;
+    pointer-events: none;
+
+    &:focus {
+        border: 1px solid #333333;
+    }
+}
+
+.article-content {
+    img {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .sharethis-inline-share-buttons {
+        img {
+            width: auto !important;
+            height: auto !important;
+        }
+    }
+}
+
+.article-modal {
+    .modal-content {
+        background: #fff;
+        padding: 20px;
+    }
+
+    .modal-dialog {
+        width: 40%;
+    }
+
+    .modal-title {
+        width: 100%;
+    }
+}
+
+@include tablet--lg {
+    .article-modal {
+        .modal-dialog {
+            width: 100%;
+        }
+    }
+}
+
+.noContent {
+    color: #000 !important;
+    background-color: transparent !important;
+    pointer-events: none;
+}
+
+#news-list{
+    .hidden{
+        display: none;
+    }
+}

@@ -1,0 +1,493 @@
+﻿@using Umbraco.Core.PropertyEditors
+@using Umbraco.Web.Models
+@inherits UmbracoViewPage
+@{
+    Layout = null;
+    var home = (Home)Model.Root();
+    var pageurl = "https://kmc.solutions" + Model.Url;
+    var ogimage = Model.Value<IPublishedContent>("ogImage");
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>@Model.Value("pageTitle")</title>
+    <meta name="description" content="@Model.Value("metaDescription")">
+    <meta name="author" content="">
+    
+    <meta property="og:title" content="@Model.Value("pageTitle")">
+    <meta property="og:description" content="@Model.Value("metaDescription")">
+    <meta property="og:image" content="@ogimage.Url">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="@Model.Url">
+
+    <link rel="apple-touch-icon" sizes="120x120" href="/media/z5uj2rcb/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/media/ddvf3vpi/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/media/iydgpzfg/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/media/c4vdk4bq/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#00aba9">
+	<meta name="theme-color" content="#f99d3a">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 
+	 @* Facebook App Id *@
+    <meta property="fb:app_id" content="522517341694783" />
+    
+    <link rel="preload" as="font" href="../fonts/PROXIMANOVA-EXTRABOLD.OTF" type="font/otf" crossorigin />
+    <link rel="preload" as="font" href="../fonts/PROXIMANOVA-SEMIBOLD.OTF" type="font/otf" crossorigin />
+    <link rel="preload" as="font" href="../fonts/PROXIMANOVA-REGULAR.OTF" type="font/otf" crossorigin />
+    
+    @*Umbraco RTE - Inline Style *@
+    <style>
+        .text-orange{color:#f99d3a}.text-white{color:#fff}.black-text{color:#333}.medium-text{font-size:2rem;line-height:1}.large-text{font-size:3rem;line-height:1}.text-semibold{font-family:PROXIMANOVA-SEMIBOLD,Arial,Helvetica,sans-serif}.text-extrabold{font-family:PROXIMANOVA-SEMIBOLD,Arial,Helvetica,sans-serif}h1{font-family:PROXIMANOVA-EXTRABOLD,Arial,Helvetica,sans-serif;font-size:3em;line-height:1.25em}h2{font-family:PROXIMANOVA-SEMIBOLD,Arial,Helvetica,sans-serif;font-size:2.25em;line-height:1.25em}h3{font-family:PROXIMANOVA-SEMIBOLD,Arial,Helvetica,sans-serif;font-size:1.75em;line-height:1.25em}h4{font-family:PROXIMANOVA-SEMIBOLD,Arial,Helvetica,sans-serif;font-size:1.125em;line-height:1.22em}
+    </style>
+    
+    @*CSS connected with main.css*@
+    <link href="~/css/main.min.css" rel="stylesheet" media="screen"/>
+    
+    <!--[if lte IE 8]>
+    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+    <![endif]-->
+    <script defer charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+
+    <!-- ManyChat -->
+    <script src="//widget.manychat.com/150528084957196.js" async="async"></script>
+    
+    <!-- Google Tag Manager -->
+    <script defer>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-K7J7W42');</script>
+    <!-- End Google Tag Manager -->
+   
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=UA-73943338-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-73943338-1');
+        gtag('config', 'UA-73943338-7');
+    </script>
+    
+    <!-- Start of HubSpot Embed Code -->
+    <script defer type="text/javascript" id="hs-script-loader" src="//js.hs-scripts.com/2867266.js"></script>
+    <!-- End of HubSpot Embed Code -->
+    
+    <!-- Facebook Pixel Code -->
+    <script defer>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '343939492846739');
+        fbq('track', 'PageView');
+    </script>
+
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=343939492846739&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+    
+    <!-- Insider Integration -->
+    <script async src="//kmcph.api.useinsider.com/ins.js?id=10003936"></script>
+    
+    <!--Hreflang-->
+    <link rel="canonical" href="@pageurl" />
+   
+    <!--Schema.org-->
+    @Html.Raw(Model.Value("structuredData"))
+
+    @if(Model.Value("structuredData") == "")
+    {
+        @Html.Partial("SchemaData")
+    }
+
+   
+    @RenderSection("Header", required: false)
+    
+    
+    <!-- Hotjar Tracking Code for https://kmc.solutions/ -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:1178864,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K7J7W42"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    @{
+        var link = home.Value<Link>("doNotShowON");
+        if (home.Value<bool>("popupActive"))
+        {
+            if (link.Url != null)
+            {
+                if (Model.Url != link.Url && Model.Url != home.PopupCtalink)
+                {
+                    <!-- Announcement Modal -->
+                    <div class="modal fade" 
+                         id="announcementsModal" 
+                         tabindex="-1" 
+                         role="dialog" 
+                         aria-labelledby="announcementsModal" 
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content"
+                                 style="background: url( @home.PopupDesktopBackgroundImage.Url);
+                                        background-position: bottom;
+                                        background-repeat: no-repeat;
+                                        background-size: 100%;
+                                        background-color: #e8ebf4;">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                            onclick="gtag('event', 'click', {'send_to':'UA-73943338-1', 'event_category': 'get-back-to-work', 'event_action': 'click', 'event_label': 'get-back-to-work-banner-button'});">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body my-auto">
+                                    @home.PopupContents
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="@home.PopupCtalink" class="btn btn-primary"
+                                       onclick="gtag('event', 'click', {'send_to':'UA-73943338-1', 'event_category': 'popup-banner', 'event_action': 'click', 'event_label': 'learn-more-button'});">
+                                       @home.PopupCtatext</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            
+            else
+            {
+                if (Model.Url != home.PopupCtalink)
+                {
+                    <!-- Announcement Modal -->
+                    <div class="modal fade" 
+                         id="announcementsModal" 
+                         tabindex="-1" 
+                         role="dialog" 
+                         aria-labelledby="announcementsModal" 
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content"
+                                 style="background: url( @home.PopupDesktopBackgroundImage.Url);
+                                        background-position: bottom;
+                                        background-repeat: no-repeat;
+                                        background-size: 100%;
+                                        background-color: #e8ebf4;">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                            onclick="gtag('event', 'click', {'send_to':'UA-73943338-1', 'event_category': 'get-back-to-work', 'event_action': 'click', 'event_label': 'get-back-to-work-banner-button'});">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body my-auto">
+                                    @home.PopupContents
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="@home.PopupCtalink" class="btn btn-primary"
+                                       onclick="gtag('event', 'click', {'send_to':'UA-73943338-1', 'event_category': 'popup-banner', 'event_action': 'click', 'event_label': 'learn-more-button'});">
+                                       @home.PopupCtatext</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    }
+    
+    
+    @if (home.Value<bool>("bannerActive"))
+    {
+        if (Model.Url != home.DoNotShowOnPage)
+        {
+            <div id="notif-bar">
+                <div class="container-fluid py-2 display-notif"
+                     style="background-color: #f99d3a">
+                    <div class="container">
+                        <p class="text-semibold text-white mb-0">
+                            @home.BannerText
+                            <a class="text-semibold text-white mb-0"
+                               style="text-decoration:underline"
+                               href="@home.BannerCtalink"
+                               onclick="gtag('event', 'click', {'send_to':'UA-73943338-1', 'event_category': 'get-back-to-work', 'event_action': 'click', 'event_label': 'get-back-to-work-banner-button'});">@home.BannerCtatext</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+    <!---WHite Nav-->
+        
+    <header class="container-fluid nav-bg nav-bg-white">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg" id="header-nav">
+
+                @if (home.SiteLogoWhiteNav != null && !string.IsNullOrEmpty(home.SiteLogoWhiteNav.Url))
+                {
+                    <div class="nav-link--home navbar-brand">
+                        <a class="nav-link nav-link--home nav-link--home__text logo-text" href="/">
+                            <img class="logo-image img-fluid" 
+                            src="@home.SiteLogoWhiteNav.Url" 
+                            alt="KMC Solutions" 
+                            title="KMC Solutions"
+                            loading="lazy"></a>
+                    </div>
+                }
+                else
+                {
+                    <a class="nav-link nav-link--home nav-link--home__text logo-text" href="/">@home.Sitename</a>
+                }
+                <a href="#" data-toggle="modal" data-target="#popUpModal" class="nav-link ml-auto locations-link btn btn-primary navbar-btn">Register Now</a>
+
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto" id="header-nav">
+                        
+                    </ul>
+                    <a href="/contact-us/" class="" style="margin-left:30px; padding: 0.2rem 1rem; color: white;">Speakers</a>
+                    <a href="/contact-us/" class="btn btn-outline-primary navbar-btn" style="margin-left:30px; padding: 0.2rem 1rem;">Register Now</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <main id="main">
+        @RenderBody()
+    </main>
+
+    <footer>
+        <div id="footer-section1">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 mb-3">
+
+                            <form id="newsletter-form">
+                                <h5 class="text-semibold text-orange">SUBSCRIBE TO OUR NEWSLETTER</h5>
+                                <p>Sign up to receive email updates</p>
+                                <!--[if lte IE 8]>
+                                <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+                                <![endif]-->
+                                <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                                <script>
+                                  hbspt.forms.create({
+                                	portalId: "2867266",
+                                	formId: "08a5284f-1779-4dd3-8245-e08320f66732",
+                                	css:""
+                                });
+                                </script>
+                            </form>
+
+                        </div>
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-6">
+                            <div class="row" id="footer-links">
+
+                                <div class="col-lg-3 col-sm-4 col-4">
+                                    <h5 class="text-semibold text-orange">SERVICES</h5>
+                                    <ul id="services-links">
+                                        <li><a href="/covid-19-business-solutions-in-the-philippines/">COVID Solutions</a></li>
+                                        <li><a href="/kmc-spaces/">KMC SPACES</a></li>
+                                        <li><a href="/teams/">KMC TEAMS</a></li>
+                                    </ul>
+
+                                    <div id="sm-icons-mobile">
+                                        <h5 class="text-semibold text-orange">FOLLOW US</h5>
+                                        <small>
+                                            <a href="https://www.facebook.com/kmcsolutionsPH"
+                                   target="_blank"
+                                   style="padding-right:10px"
+                                   onclick="gtag('event', 'click', { 'send_to': 'UA-73943338-1', 'event_category': 'kmc-socials', 'event_action': 'click', 'event_label': 'kmc-fb'});">
+                                <i class="fab fa-facebook-f"></i></a>
+
+                                <a href="https://www.linkedin.com/company/kmc-solutions-inc/"
+                                   target="_blank"
+                                   onclick="gtag('event', 'click', { 'send_to': 'UA-73943338-1', 'event_category': 'kmc-socials', 'event_action': 'click', 'event_label': 'kmc-linkedin'});"
+                                   style="padding-right:10px"><i class="fab fa-linkedin"></i></a>
+
+                                <a href="https://www.instagram.com/kmcsolutions/"
+                                   target="_blank"
+                                   onclick="gtag('event', 'click', { 'send_to': 'UA-73943338-1', 'event_category': 'kmc-socials', 'event_action': 'click', 'event_label': 'kmc-insta'});">
+                                <i class="fab fa-instagram"></i></a>
+                                        </small>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-3 col-sm-4 col-4">
+                                    <h5 class="text-semibold text-orange">OTHER LINKS</h5>
+                                    <ul id="other-links">
+                                        <li><a href="/about/">About</a></li>
+                                        <li><a href="/company-news/">News</a></li>
+                                        <li><a href="/blogs/">Blogs</a></li>
+                                        <li><a href="/careers/">Careers</a></li>
+                                        <li><a href="/space-for-ingenious/">Incubation Program</a></li>
+                                        <li><a href="/contact-us/">Contact Us</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-lg-6 col-sm-4 col-4">
+
+                                    <a href="/contact-us/" class="btn btn-outline-primary navbar-btn" style="margin-left:30px; padding: 0.2rem 1rem;">Register Now</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer-section2">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6" id="copyright">
+                            <small>© Copyright @DateTime.Now.Year KMC Solutions - All Rights Reserved</small>
+                        </div>
+                        <div class="col-lg-6 col-md-6" id="small-links">
+
+                            <small>
+                                <a href="/covid-it-support/">IT Support</a> •
+                                <a href="/terms-of-service/">Terms of Service</a> •
+                                <a href="/privacy-policy/">Privacy Policy</a> •
+                                <a href="/faq/">FAQs</a>
+                            </small>
+
+                            <small id="sm-icons" style="padding-left:20px;">
+                                 <a href="https://www.facebook.com/kmcsolutionsPH"
+                                   target="_blank"
+                                   style="padding-right:10px"
+                                   onclick="gtag('event', 'click', { 'send_to': 'UA-73943338-1', 'event_category': 'kmc-socials', 'event_action': 'click', 'event_label': 'kmc-fb'});">
+                                <i class="fab fa-facebook-f"></i></a>
+
+                                <a href="https://www.linkedin.com/company/kmc-solutions-inc/"
+                                   target="_blank"
+                                   style="padding-right:10px"
+                                   onclick="gtag('event', 'click', { 'send_to': 'UA-73943338-1', 'event_category': 'kmc-socials', 'event_action': 'click', 'event_label': 'kmc-linkedin'});"><i class="fab fa-linkedin"></i></a>
+
+                                <a href="https://www.instagram.com/kmcsolutions/"
+                                   target="_blank"
+                                   onclick="gtag('event', 'click', { 'send_to': 'UA-73943338-1', 'event_category': 'kmc-socials', 'event_action': 'click', 'event_label': 'kmc-insta'});">
+                                <i class="fab fa-instagram"></i></a>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    @*Font Awesome*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    
+    @*Owl Carousel Plugin*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+
+    @*Hubspot Form*@
+    <link href="~/css/hubspot-form.css" rel="stylesheet" media="screen"/>
+    
+    @*JQuery CDN*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    @*JQuery and Owl Carousel JS*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous"></script>
+
+    @*Featured Locations, Nav Active, Mobile Sidepanel*@
+    <script src="~/Scripts/custom/external-scripts.es5.min.js"></script>
+
+    @*Announcements Modal*@
+    <script>
+        $(window).on('load',function(){
+          if (!sessionStorage.getItem('shown-modal')){
+            $('#announcementsModal').modal('show');
+            sessionStorage.setItem('shown-modal', 'true');
+          }
+        });
+    </script>
+    
+    @*Custom Owl Carousel JS*@
+    <script src="~/Scripts/custom/commonOwlCarousel.es5.min.js"></script>
+    
+    @*Lead Feeder*@
+    <script> (function(){ window.ldfdr = window.ldfdr || {}; (function(d, s, ss, fs){ fs = d.getElementsByTagName(s)[0]; function ce(src){ var cs = d.createElement(s); cs.src = src; setTimeout(function(){fs.parentNode.insertBefore(cs,fs)}, 1); } ce(ss); })(document, 'script', 'https://lftracker.leadfeeder.com/lftracker_v1_9k315xMoQ5pdlB0m.js'); })(); </script>
+    
+    @* <!-- Set to Inacvtive -->
+    <!-- Hotjar Tracking Code for https://kmc.solutions/ -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:1714632,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+    *@
+    
+    <!-- LinkedIn Insight -->
+    <script type="text/javascript">
+       _linkedin_partner_id = "56908";
+        window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+        window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+    </script>
+    
+    <script type="text/javascript">
+        (function () {
+            var s = document.getElementsByTagName("script")[0];
+            var b = document.createElement("script");
+            b.type = "text/javascript"; b.async = true;
+            b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+            s.parentNode.insertBefore(b, s);
+        })();
+    </script>
+    
+    <noscript>
+        <img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=56908&fmt=gif" defer/>
+    </noscript>
+    <!-- End LinkedIn Insight -->
+    
+    @RenderSection("Scripts", required: false)
+    
+</body>
+
+</html>

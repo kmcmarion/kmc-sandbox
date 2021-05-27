@@ -1,0 +1,56 @@
+﻿
+@{
+    var jobs = (ICollection<KMC_New.Models.ActiveJobs>)ViewBag.Jobs;
+}
+
+
+<div class="container" id="careers-job-list">
+    <div class="row">
+
+        <table class="careers table">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-uppercase">Position</th>
+                    <th scope="col" class="text-uppercase">Category</th>
+                    <th scope="col" class="text-uppercase"></th>
+                </tr>
+            </thead>
+
+            <tbody id="careers_tb_all">
+                @{
+                    if (jobs != null)
+                    {
+                        foreach (var job in jobs.OrderBy(x => x.position).ToArray())
+                        {
+                            <tr>
+                                <td><a class="job_opening uppercase" href=@("/careers/opportunity/?p=" + job.id + "&position_applying_for=" + job.position.Replace(" ", "%20"))>@job.position</a></td>
+
+                                <td>@job.category</td>
+
+                                <td style="text-align: right;">
+                                <a id="kmc-careers"
+                                   class="btn btn-primary" 
+                                   onclick="gtag('event', 'click', {'send_to':'UA-73943338-1', 'event_category': 'kmc-job-list', 'event_action': 'click', 'event_label': '@job.position'});"
+                                   href=@("/careers/opportunity/?p=" + job.id + "&position_applying_for=" + job.position.Replace(" ", "%20")) >Apply Now</a>
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" id="previous-page" href="javascript:void(0)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+</div>

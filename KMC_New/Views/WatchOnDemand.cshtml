@@ -1,0 +1,51 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.WatchOnDemand>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+}
+
+<!--Video and How we can help section-->
+<div class="container-fluid">
+    <div class="container" style="max-width: 800px;">
+        <h1 class="text-extrabold text-orange">@Model.Heading</h1>
+        <div class="orange-divider-2px"></div>
+        <div class="container center-items-justify my-4"
+             style="background:linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('@Model.VideoThumbnail.Url');
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center;
+                    position: relative;
+                    min-height: 300px;
+                    padding: 20px;">
+
+            <button class="video-btn"
+                    data-toggle="modal"
+                    data-src="@Model.VideoLink"
+                    data-target="#videoModal">
+            </button>
+        </div>
+        @Html.Raw(Model.Content)
+    </div>
+</div>
+<!--Modal Code-->
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="video-targetCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            <div class="modal-body">
+                <!-- 16:9 aspect ratio -->
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always" allow="autoplay"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/custom/modal-script.js"></script>
+}

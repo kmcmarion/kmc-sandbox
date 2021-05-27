@@ -1,0 +1,322 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.CareersCulture>
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+@{
+    Layout = "master.cshtml";
+    var home = Umbraco.Content(Guid.Parse("0a9b12f9-b934-4cc4-817d-a0a645785ad2"));
+}
+
+<div class="container-fluid p-0" id="aboveTheFold_overlapped">
+    <!-- Above the Fold - Desktop View -->
+    <div class="desktop-view">
+        <div class="row rowHeight">
+            <div class="col-lg-6 col-sm-12 col-12"
+                 style="background: #000 url('@Model.AboveTheFoldCol1BgImage.Url');
+                        position:relative;
+                        background-repeat: repeat;">
+
+                <div class="overlapped_box center-items">
+                    <div>
+                        @Html.Raw(Model.AboveTheFoldHeading)
+                        <div class="orange-divider-2px"></div>
+                        @Html.Raw(Model.AboveTheFoldSubHeading)
+                        @Html.Raw(Model.AboveTheFoldDescription)
+                        <div class="spacer-sm"></div>
+                        <a class="btn btn-primary" role="button" href="@Model.AboveTheFoldButtonLink">@Model.AboveTheFoldButtonText</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-12 col-12 p-5 aboveTheFoldImage"
+                 style="background: url(@Model.AboveTheFoldCol2BgImage.Url);
+                    background-position:center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    min-height: 400px;">
+            </div>
+        </div>
+    </div>
+
+    <!--Above the Fold - Mobile View -->
+    <div class="mobile-view"
+         style="background: url(@Model.AboveTheFoldCol2BgImage.Url);
+                background-position:center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                min-height: 300px;">
+    </div>
+
+    <div class="container-fluid mobile-view">
+        <div class="container">
+            @Html.Raw(Model.AboveTheFoldHeading)
+            <div class="orange-divider-2px"></div>
+            @Html.Raw(Model.AboveTheFoldSubHeading)
+            @Html.Raw(Model.AboveTheFoldDescription)
+            <div class="spacer-sm"></div>
+            <a class="btn btn-primary w-100" role="button" href="@Model.AboveTheFoldButtonLink">@Model.AboveTheFoldButtonText</a>
+        </div>
+    </div>
+</div>
+
+<!--KMC Careers Section-->
+<div class="container-fluid p-0" id="kmc-careers">
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container h-100 center-items overlap_left"
+                         style="position: relative;
+                            min-height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             data-src="@Model.KMccareersSupportingImage.Url"
+                             alt="@Model.KMccareersImageAltTag"
+                             title="@Model.KMccareersImageAltTag" />
+                    </div>
+
+                    <div class="overlap_border_left h-100"></div>
+                </div>
+
+                <div class="col-12 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.KMccareersHeading)
+                    @*<h3>@Model.KMccareersHeading</h3>*@
+                    <div class="orange-divider"></div>
+                    @Html.Raw(Model.KMccareersDescription)
+                    <a href="@Model.KMccareersButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.KMccareersButtonText</a>
+                </div>
+            </div>
+            <div class="spacer-lg"></div>
+        </div>
+    </div>
+
+
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             data-src="@Model.KMccareersSupportingImage.Url"
+             alt="@Model.KMccareersImageAltTag"
+             title="@Model.KMccareersImageAltTag" />
+        <div class="container-fluid">
+            <div class="container">
+                @Html.Raw(Model.KMccareersHeading)
+                <div class="orange-divider"></div>
+                @Html.Raw(Model.KMccareersDescription)
+                <a href="@Model.KMccareersButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.KMccareersButtonText</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--KMC Culture-->
+<div class="container-fluid p-0 " id="kmc-culture">
+    <!-- Desktop View-->
+    <div class="desktop-view">
+        <div class="row">
+            <div class="col-lg-6 col-sm-12 col-12 p-5 center-items-justify"
+                 style="background: #f99d3a url('@Model.KMccultureCol1Bg.Url');
+                 position:relative;
+                 background-repeat: repeat;">
+
+                <div style="padding:20px;">
+                    @Html.Raw(Model.KMccultureHeading)
+                    <div class="white-divider-2px"></div>
+                    @Html.Raw(Model.KMccultureDescription)
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-12 col-12 p-5 aboveTheFoldImage"
+                 style="background: url(@Model.KMccultureSupportingImage.Url);
+                    background-position:center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    min-height: 400px;">
+            </div>
+        </div>
+    </div>
+
+    <!--KMC Culture - Mobile View-->
+    <div class="mobile-view"
+         style="background: url(@Model.KMccultureSupportingImage.Url);
+            background-position:center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 400px;">
+    </div>
+
+    <div class="container-fluid mobile-view">
+        <div class="container">
+            @Html.Raw(Model.AboveTheFoldHeading)
+            <div class="orange-divider-2px"></div>
+            @Html.Raw(Model.AboveTheFoldSubHeading)
+            @Html.Raw(Model.AboveTheFoldDescription)
+        </div>
+    </div>
+</div>
+
+<!--Life within KMC-->
+<div class="container-fluid p-0" id="life-within-kmc">
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            @Html.Raw(Model.LifeWithinKmcheading)
+            <div class="orange-divider-2px"></div>
+            @Html.Raw(Model.LifeWithinKmcdescription)
+            <div class="spacer-sm"></div>
+            <a class="btn btn-primary" role="button" href="@Model.LifeWithinKmcbuttonLink">@Model.LifeWithinKmcbuttonText</a>
+        </div>
+    </div>
+
+    <div class="mobile-view">
+        <div class="container">
+            @Html.Raw(Model.LifeWithinKmcheading)
+            <div class="orange-divider-2px"></div>
+            @Html.Raw(Model.LifeWithinKmcdescription)
+            <div class="spacer-sm"></div>
+            <a class="btn btn-primary" role="button" href="@Model.LifeWithinKmcbuttonLink">@Model.LifeWithinKmcbuttonText</a>
+        </div>
+        <div class="spacer-lg"></div>
+    </div>
+
+    <!--Videos-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12"
+                 style="margin-top: 1rem; margin-bottom: 1rem;">
+                <div class="container center-items-justify"
+                     style="background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                            url('@Model.FeaturedVideoImage1.Url');
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                            background-position: center;
+                            position: relative;
+                            min-height: 500px;
+                            padding: 20px;">
+
+                    <button class="video-btn"
+                            data-toggle="modal"
+                            data-src="@Model.FeaturedVideoLink1"
+                            data-target="#videoModal">
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12"
+                 style="margin-top: 1rem; margin-bottom: 1rem;">
+                <div class="container center-items-justify"
+                     style="background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                            url('@Model.FeaturedVideoImage2.Url');
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                            background-position: center;
+                            position: relative;
+                            min-height: 500px;
+                            padding: 20px;">
+                    <button class="video-btn"
+                            data-toggle="modal"
+                            data-src="@Model.FeaturedVideoLink2"
+                            data-target="#videoModal">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top:1rem;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="container center-items-justify"
+                     style="background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                            url('@Model.FeaturedVideoImage3.Url');
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                            background-position: center;
+                            position: relative;
+                            min-height: 500px;
+                            padding: 20px;">
+
+                    <button class="video-btn"
+                            data-toggle="modal"
+                            data-src="@Model.FeaturedVideoLink3"
+                            data-target="#videoModal">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Code-->
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="video-targetCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            <div class="modal-body">
+                <!-- 16:9 aspect ratio -->
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always" allow="autoplay"></iframe>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!--Join our Community-->
+<div class="container-fluid p-0" id="join-our-community">
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class=" col-12 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.JoinTheCommunityHeading)
+
+                    <div class="orange-divider"></div>
+                    @Html.Raw(Model.JoinTheCommunityDescription)
+                    <a href="@Model.JoinTheCommunityButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.JoinTheCommunityButtonText</a>
+                </div>
+
+                <div class="col-12 col-lg-6">
+
+                    <div class="container h-100 center-items overlap_right"
+                         style="position: relative;
+                        min-height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             data-src="@Model.JoinTheCommunitySupportingImage.Url"
+                             alt="@Model.JoinTheCommunityImageAltTag"
+                             title="@Model.JoinTheCommunityImageAltTag" />
+                    </div>
+
+                    <div class="overlap_border_right h-100"></div>
+                </div>
+
+            </div>
+            <div class="spacer-lg"></div>
+        </div>
+    </div>
+
+    <div class="container-fluid mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             data-src="@Model.JoinTheCommunitySupportingImage.Url"
+             alt="@Model.JoinTheCommunityImageAltTag"
+             title="@Model.JoinTheCommunityImageAltTag" />
+
+        <div class="container-fluid pb-0">
+            <div class="container">
+                <div class="col-12 col-lg-6">
+                    @Html.Raw(Model.JoinTheCommunityHeading)
+                    <div class="orange-divider"></div>
+                    @Html.Raw(Model.JoinTheCommunityDescription)
+                    <a href="@Model.JoinTheCommunityButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.JoinTheCommunityButtonText</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Featured Banner-->
+@Html.Partial("~/Views/Partials/FeaturedBanner.cshtml")
+
+@section Scripts{
+    <script src="~/Scripts/custom/modal-script.es5.min.js"></script>
+}

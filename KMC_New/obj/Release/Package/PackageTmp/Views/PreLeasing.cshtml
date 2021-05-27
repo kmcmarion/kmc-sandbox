@@ -1,0 +1,156 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.PreLeasing>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+<div class="container-fluid p-0"
+     style="border-bottom: 1px solid #ccc;">
+    <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+            <div class="desktop-view" style="min-height: 50vh;">
+                <img class="img-fluid img_object-fit"
+                     style="border-right: 1px solid #ccc"
+                     data-src="@Model.Poster.Url"
+                     loading="lazy"
+                     alt="@Model.Poster.Name">
+            </div>
+
+            <div class="mobile-view">
+                <img class="img-fluid img_object-fit"
+                     style="border-right: 1px solid #ccc"
+                     data-src="@Model.Poster.Url"
+                     loading="lazy"
+                     alt="@Model.Poster.Name">
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+            <div class="event-form py-2">
+                @if (Model.PreLeasingFormScript != "")
+                {
+                    <h2 class="text-extrabold text-orange">
+                        @Model.PreLeasingFormHeading
+                        @Html.Raw(Model.PreLeasingFormScript)
+                        <div class="spacer-sm"></div>
+                    </h2>
+                }
+                @Html.Raw(Model.PreLeasingDescription)
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.Value<bool>("displaySection2"))
+{
+    <div class="container-fluid" style="background-color: #5e6158;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <img class="img-fluid mb-3"
+                         data-src="@Model.PreLeasingSection2Image.Url"
+                         loading="lazy"
+                         alt="@Model.PreLeasingSection2Image.Name" />
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 vertical-align">
+                    @Html.Raw(Model.PreLeasingSection2Heading)
+                    @Html.Raw(Model.PreLeasingSection2Description)
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.Value<bool>("displaySection3"))
+{
+    <div class="container-fluid p-0">
+        <div class="container-fluid desktop-view">
+            <div class="container">
+                <div class="row">
+                    <div class=" col-12 col-lg-6 overlap_contents">
+                        @Html.Raw(Model.PreLeasingSection3Heading)
+                        @Html.Raw(Model.PreLeasingSection3Description)
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <div class="container overlap_right"
+                             style="position: relative;
+                                height: 500px;">
+                            <img class="img-fluid img_object-fit img-overlap-style"
+                                 data-src="@Model.PreLeasingSection3Image.Url"
+                                 loading="lazy"
+                                 alt="@Model.PreLeasingSection3Image.Name"
+                                 title="@Model.PreLeasingSection3Image.Name" />
+                        </div>
+                        <div class="overlap_border_right"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="spacer-lg"></div>
+        </div>
+
+        <div class="mobile-view">
+            <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+                 data-src="@Model.PreLeasingSection3Image.Url"
+                 loading="lazy"
+                 alt="@Model.PreLeasingSection3Image.Name"
+                 title="@Model.PreLeasingSection3Image.Name" />
+            <div class="container-fluid">
+                <div class="container">
+                    @Html.Raw(Model.PreLeasingSection3Heading)
+                    @Html.Raw(Model.PreLeasingSection3Description)
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.Value<bool>("displaySection4"))
+{
+    <div class="container-fluid">
+        <div class="container">
+            @Html.Raw(Model.PreLeasingSection4Heading)
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <img class="img-fluid"
+                         data-src="@Model.Option1Image.Url"
+                         loading="lazy"
+                         alt="@Model.Option1Image.Name"
+                         title="@Model.Option1Image.Name" />
+                    <div class="spacer-sm"></div>
+                    @Html.Raw(Model.Option1Description)
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <img class="img-fluid"
+                         data-src="@Model.Option2Image.Url"
+                         loading="lazy"
+                         alt="@Model.Option2Image.Name"
+                         title="@Model.Option2Image.Name" />
+                    <div class="spacer-sm"></div>
+                    @Html.Raw(Model.Option2Description)
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <img class="img-fluid"
+                         data-src="@Model.Option3Image.Url"
+                         loading="lazy"
+                         alt="@Model.Option3Image.Name"
+                         title="@Model.Option3Image.Name" />
+                    <div class="spacer-sm"></div>
+                    @Html.Raw(Model.Option3Description)
+                </div>
+
+            </div>
+        </div>
+        
+        @if (Model.Value<bool>("displaySection5"))
+        {
+            <div class="spacer-md"></div>
+            <div class="container">
+                @Html.Raw(Model.EmbedMap)
+            </div>    
+        }
+    </div>
+}
+

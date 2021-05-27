@@ -1,0 +1,176 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.KMckarmaCashPartners>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+}
+
+<div class="container-fluid p-0 kv-banner-100vh">
+    <img class="img-bg"
+         data-src="@Model.AboveTheFoldCol1BgImage.Url" />
+    <div class="container vertical-center-transform">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 ">
+                @Model.AboveTheFoldHeading
+                @Model.AboveTheFoldSubHeading
+                @Model.AboveTheFoldDescription
+                 @if (Model.AboveTheFoldButtonText != "")
+                {
+                    <div class="spacer-sm"></div>
+                    <button type="button"
+                            class="btn btn-primary"
+                            data-toggle="modal"
+                            data-target="#partner-form"
+                            onclick="">
+                        @Model.AboveTheFoldButtonText
+                    </button>
+                }
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 text-center">
+                @*<img class="img-fluid" data-src="@Model.AboveTheFoldCol2BgImage.Url" />*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Partners Modal Form-->
+<div class="modal fade" id="partner-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="background:#F8F8F8; padding: 30px;">
+            <div class="modal-header text-center" style="border-bottom: none;">
+                <h3 class="modal-title text-extrabold mx-auto">Become Our Partner!</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">  
+                <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                <script>
+                    hbspt.forms.create({
+                        portalId: "2867266",
+                        formId: "ba043307-5f18-4524-800b-702c01f38085",
+                        css:""
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Vendor Partners List and Categories-->
+<div class="container-fluid" id="partners-list">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-12 mb-5">
+                <form>
+                    <label for="category" class="text-extrabold" style="font-size: 1.5rem;">CATEGORIES</label>
+                    <select class="form-control partners-filter-type" id="category-options">
+                        <option value="all">View All</option>
+                        <option value="merchants">Merchants</option>
+                        <option value="affiliated-organizations">Affiliated Organizations</option>
+                    </select>
+                </form>
+
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+                <div class="row" id="partners-form-container">
+                    @{
+                        int count = 0;
+                        foreach (var item in Model.Children)
+                        {
+                            if (item.IsDocumentType("kMCPartnerMerchants"))
+                            {
+                                var merchant = (KMcpartnerMerchants)item;
+
+                                <div class="partners-container col-lg-4 col-md-4 col-sm-6 col-12 mb-2"
+                                     data-partnertype="@merchant.Category">
+
+                                    <div class="card text-center">
+                                        <div>
+                                            @if (merchant.PromoTag != "")
+                                            {
+                                                <span class="promo-ribbon">@merchant.PromoTag</span>
+                                            }
+                                            <img class="card-img-top p-3"
+                                                 data-src="@merchant.MerchantIcon.Url"
+                                                 alt="@merchant.MerchantAltTag"
+                                                 style="max-height: 200px; max-width: 200px;" />
+
+                                        </div>
+
+                                        <div class="card-footer bg-transparent d-flex flex-column">
+                                            <a class="w-100 p-2"
+                                               data-toggle="modal"
+                                               data-target="#partner_@count"
+                                               href="#">
+                                                <strong>@merchant.ButtonLabel</strong>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="partner_@count" tabindex="-1" role="dialog" aria-labelledby="partner_@count" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+
+                                                <div class="modal-body p-3">
+                                                    <div class="row">
+                                                        <div class="col-lg-3 col-md-3 col-sm-4 col-12">
+                                                            <img class="img-fluid"
+                                                                 data-src="@merchant.MerchantIcon.Url"
+                                                                 alt="@merchant.MerchantAltTag"
+                                                                 style="max-height: 150px" />
+                                                        </div>
+
+                                                        <div class="col-lg-9 col-md-9 col-sm-8 col-12 my-auto">
+                                                            @Html.Raw(merchant.PrimaryDetails)
+                                                            @if (merchant.Value<bool>("showCTA"))
+                                                            {                                                                     
+                                                                <a href="@merchant.RedirectLink"
+                                                                    class="btn btn-primary mt-2"
+                                                                    target="_blank">
+                                                                    @merchant.CTalabel
+                                                                </a>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            @Html.Raw(merchant.OtherDetails)
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            count++;
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(".partners-filter-type").change(function () {
+            var selectedFilterType = this.options[this.selectedIndex].value;
+
+            if (selectedFilterType == "all") {
+                $('.partners-container').removeClass('hidden');
+            } else {
+                console.log(selectedFilterType);
+                $('.partners-container').addClass('hidden');
+                $('.partners-container[data-partnertype="' + selectedFilterType + '"]').removeClass('hidden');
+            }
+        });
+    </script>
+}

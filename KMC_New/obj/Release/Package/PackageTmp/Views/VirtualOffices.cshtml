@@ -1,0 +1,189 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.VirtualOffices>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web
+@{
+    Layout = "master.cshtml";
+
+    var selection = Model.Ancestor("home");
+    var home = (Home)selection;
+
+    string page = "Virtual Office";
+}
+
+<div class="container-fluid p-0" id="aboveTheFold">
+    <div class="row rowHeight">
+        <div class="desktop-view col-lg-7 col-md-12"
+             style="background: #000 url('@Model.AboveTheFoldCol1BgImage.Url');
+                                         background-repeat: repeat;
+                                         background-position: center;
+                                         position: relative;
+                                         min-height: 250px;
+                                         padding: 0 80px;
+                                         color: #fff;">
+
+            <div class="vertical-center-transform">
+                @Html.Raw(Model.AboveTheFoldHeading)
+                <div class="orange-divider-1px"></div>
+                @Html.Raw(Model.AboveTheFoldSubHeading)
+                @Html.Raw(Model.AboveTheFoldDescription)
+                <a href="@Model.AboveTheFoldButtonLink" class="btn btn-primary" role="button" aria-pressed="false">@Model.AboveTheFoldButtonText</a>
+            </div>
+
+        </div>
+
+        <!-- Carousel -->
+        <div class="col-lg-5 col-md-12 col-sm-12 col-12 owl-carousel owl-theme px-0" id="aboveTheFold_carousel">
+            @{
+                int count = 0;
+                {
+                    foreach (var city in home.Children)
+                    {
+                        if (city.IsDocumentType("cityItems"))
+                        {
+                            foreach (var building in city.Children)
+                            {
+                                if (building.IsDocumentType("buildings"))
+                                {
+                                    var featured = (Buildings)building;
+                                    if (featured.AppearOnPage.Contains(page))
+                                    {
+                                        if (count >= 3)
+                                        {
+                                            break;
+                                        }
+
+                                        else
+                                        {
+                                            <div class="container-fluid h-100 p-0 kv-banner-100vh" 
+                                                 style="color: #fff;">
+                                                 
+                                                 <img class="img-bg owl-lazy"
+                                                     data-src="@featured.FeaturedPhoto.Url" />
+
+                                                <div class="spacer-sm"></div>
+
+                                                <div class="spaces-carousel-text" style="background-color: rgba(0,0,0,0.7);padding: 20px;">
+                                                    <h4 class="text-semibold text-orange text-uppercase">
+                                                        <a href="@featured.Url">@featured.FeaturedBuildingName</a>
+                                                    </h4>
+                                                    <h5>
+                                                        <i class="fa fa-map-marker-alt" aria-hidden="true"></i>&nbsp;
+                                                        @featured.FeaturedBuildingCity
+                                                    </h5>
+                                                    @Html.Raw(featured.BuildingAddress)
+                                                    <br />
+                                                    <a href="/office-space-philippines/" class="viewAllLocations" target="_blank">View All Locations</a>
+                                                    <div class="spacer-sm"></div>
+                                                </div>
+                                            </div>
+                                            count++;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        </div>
+
+        <!--Title and Description On Mobile-->
+        <div class="container mobile-view"
+             style="background: #fff;
+                        min-height: 250px;
+                        padding: 30px;
+                        color: #333;">
+
+            <div>
+                @Html.Raw(Model.AboveTheFoldHeading)
+                <div class="orange-divider-1px"></div>
+                @Html.Raw(Model.AboveTheFoldSubHeading)
+                @Html.Raw(Model.AboveTheFoldDescription)
+                <a href="@Model.Url" class="btn btn-primary" role="button" aria-pressed="false">@Model.AboveTheFoldButtonText</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Why Virtual Offices-->
+<div class="container-fluid pt-3" id="whyVirtualOffices">
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class=" col-12 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.WhyVirtualHeading)
+                    <div class="orange-divider-2px"></div>
+                    @Html.Raw(Model.WhyVirtualDescription)
+                </div>
+                <div class="col-12 col-lg-6 m-auto">
+                    <div class="container overlap_right"
+                         style="position: relative;
+                            height: 500px;">
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             data-src="@Model.WhyVirtualSupportingImage.Url"
+                             alt="@Model.WhyVirtualImageAltTag"
+                             title="@Model.WhyVirtualImageAltTag" />
+                    </div>
+                    <div class="overlap_border_right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             data-src="@Model.WhyVirtualSupportingImage.Url"
+             alt="@Model.WhyVirtualImageAltTag"
+             title="@Model.WhyVirtualImageAltTag" />
+
+        <div class="container-fluid">
+            <div class="container">
+                @Html.Raw(Model.WhyVirtualHeading)
+                <div class="orange-divider-2px"></div>
+                @Html.Raw(Model.WhyVirtualDescription)
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Packages-->
+@Html.Partial("~/Views/Partials/VirtualOfficesPackages.cshtml")
+
+<!--FAQ-->
+@Html.Partial("~/Views/Partials/FAQSchema.cshtml")
+
+@Html.Partial("~/Views/Partials/OfficeOptions/VirtualOffice.cshtml")
+
+@section Scripts{
+    <script src="~/Scripts/custom/aboveTheFold_Carousel.es5.min.js"></script>
+    
+    <script>
+       $(document).ready(function () {
+    //4 cards in a row
+    $('#cards-group-four').owlCarousel({
+        lazyLoad: true,
+        loop: true,
+        margin: 10,
+        nav: false,
+        dots: true,
+        autoplay: true,
+
+        responsive: {
+            0: {
+                items: 1
+
+            },
+            576: {
+                items: 1
+            },
+            768: {
+                items: 2
+            },
+            990: {
+                items: 4
+            }
+        }
+    });
+});
+    </script>
+}

@@ -1,0 +1,181 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.BusRoutes>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+<div id="aboveTheFold_overlapped">
+    <!-- Above the Fold - Desktop View -->
+    <div class="container-fluid p-0 desktop-view">
+        <div class="row rowHeight">
+            <div class="col-lg-6 col-sm-12 col-12 p-5"
+                 style="background: #000 url('@Model.AboveTheFoldCol1BgImage.Url');
+                        position:relative;
+                        background-repeat: repeat;">
+
+                <div class="overlapped_box">
+                    <div class="">
+                        @Html.Raw(Model.AboveTheFoldHeading)
+                        <div class="orange-divider-2px"></div>
+                        @Html.Raw(Model.AboveTheFoldSubHeading)
+                        @Html.Raw(Model.AboveTheFoldDescription)
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-12 col-12 p-5 aboveTheFoldImage"
+                 style="background: url(@Model.AboveTheFoldCol2BgImage.Url);
+                    background-position:center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    min-height: 400px;">
+            </div>
+        </div>
+
+    </div>
+
+    <!--Above the Fold - Mobile View -->
+    <div class="container-fluid mobile-view"
+         style="background: url(@Model.AboveTheFoldCol2BgImage.Url);
+            background-position:center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 300px;">
+    </div>
+
+    <div class="container-fluid mobile-view">
+        <div class="container">           
+            @Html.Raw(Model.AboveTheFoldHeading)
+            <div class="orange-divider-2px"></div>
+            @Html.Raw(Model.AboveTheFoldSubHeading)
+            @Html.Raw(Model.AboveTheFoldDescription)                  
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                @Html.Raw(Model.ViaMrt)
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                @Html.Raw(Model.ViaBus)
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                @Html.Raw(Model.ViaJeep)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-0" id="bgc-bus-routes">
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <div class="container overlap_left"
+                         style="position: relative;
+                                height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             src="@Model.Route1Image.Url"
+                             alt="@Model.Route1ImageAltTag"
+                             title="@Model.Route1ImageAltTag" />
+                    </div>
+                    <div class="overlap_border_left"></div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.Route1TitleAndDescription)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             src="@Model.Route1Image.Url"
+             alt="@Model.Route1ImageAltTag"
+             title="@Model.Route1ImageAltTag" />
+
+        <div class="container-fluid">
+            <div class="container">
+                @Html.Raw(Model.Route1TitleAndDescription)
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.Route2TitleAndDescription)
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <div class="container overlap_right"
+                         style="position: relative;
+                                height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             src="@Model.Route2Image.Url"
+                             alt="@Model.Route2ImageAltTag"
+                             title="@Model.Route2ImageAltTag" />
+                    </div>
+                    <div class="overlap_border_right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             src="@Model.Route2Image.Url"
+             alt="@Model.Route2ImageAltTag"
+             title="@Model.Route2ImageAltTag" />
+
+        <div class="container-fluid">
+            <div class="container">
+                @Html.Raw(Model.Route2TitleAndDescription)
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <div class="container overlap_left"
+                         style="position: relative;
+                                height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             src="@Model.Route3Image.Url"
+                             alt="@Model.Route1ImageAltTag"
+                             title="@Model.Route1ImageAltTag" />
+                    </div>
+                    <div class="overlap_border_left"></div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.Route1TitleAndDescription)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             src="@Model.Route3Image.Url"
+             alt="@Model.Route3ImageAltTag"
+             title="@Model.Route3ImageAltTag" />
+
+        <div class="container-fluid">
+            <div class="container">
+                @Html.Raw(Model.Route3TitleAndDescription)
+            </div>
+        </div>
+    </div>
+</div>

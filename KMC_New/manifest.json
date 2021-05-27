@@ -1,0 +1,31 @@
+{
+  "name": "KMC Solutions",
+  "short_name": "KMCSolutions",
+  "start_url": "/",
+  "display": "standalone",
+  "background-color": "#F99D3A",
+  "theme_color": "#F99D3A",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/media/luklrffe/favicon-144x144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/media/534pjqj0/apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "120x120"
+    },
+    {
+      "src": "/media/ddvf3vpi/favicon-32x32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "/media/iydgpzfg/favicon-16x16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    }
+  ]
+}

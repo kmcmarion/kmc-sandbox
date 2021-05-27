@@ -1,0 +1,57 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.UniversityOfArizonaCourses>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+	var gtagCourse= Model.CourseTitle.ToLower();
+}
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+                <h1 class="text-semibold text-uppercase">@Model.CourseTitle</h1>
+                <div class="spacer-sm"></div>
+                @Html.Raw(Model.LongDescription)
+
+                @if (Model.CTalabel != "")
+                {
+                    <button type="button" 
+                            class="btn btn-primary my-5" 
+                            data-toggle="modal" 
+                            data-target="#ua-form" 
+                            onclick="gtag('event', 'click', {'send_to':'UA-73943338-1', 'event_category': 'ua-online-course', 'event_action': 'click', 'event_label': '@gtagCourse-get-started'});">
+                        @Model.CTalabel
+                    </button>
+                }
+            </div>
+
+            <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+                <img class="img-fluid" src="@Model.MainImage.Url" alt="@Model.MainImage.Name" />
+                <div class="spacer-sm"></div>
+                <div style="background: #F3F3F3; border: 1px solid #E1E1E1; padding: 20px; border-radius: 5px;">
+                    @Html.Raw(Model.CareerLevel)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ua-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 600px;">
+        <div class="modal-content" style="background:#F8F8F8; padding: 30px;">
+            <div class="modal-header text-center" style="border-bottom: none;">
+                <h3 class="modal-title text-extrabold mx-auto">Register Now</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="form_b07d6040-40df-4af2-9713-c0c52f753a96">Loading...</div>
+                <script>
+                /*<![CDATA[*/var script = document.createElement('script'); script.async = 1; script.src = 'https://slate.grad.arizona.edu/register/?id=b07d6040-40df-4af2-9713-c0c52f753a96&output=embed&div=form_b07d6040-40df-4af2-9713-c0c52f753a96' + ((location.search.length > 1) ? '&' + location.search.substring(1) : ''); var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);/*]]>*/
+                </script>
+            </div>
+        </div>
+    </div>
+</div>

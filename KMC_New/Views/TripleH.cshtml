@@ -1,0 +1,232 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.TripleH>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+<!-- Above the Fold - Desktop View -->
+<div class="container-fluid p-0">
+    <div class="row black-pattern-bg">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-5 my-auto">
+            <div>
+                @Html.Raw(Model.AboveTheFoldHeading)
+                @Html.Raw(Model.AboveTheFoldSubHeading)
+                <div class="orange-divider-2px"></div>
+                @Html.Raw(Model.AboveTheFoldDescription)
+                @if (Model.AboveTheFoldButtonText != "")
+                {   
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary my-3" data-toggle="modal" data-target="#covid-solutions-form">
+                        @Model.AboveTheFoldButtonText
+                    </button>
+                }
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-5"
+                style="background: url( @Model.AboveTheFoldCol1BgImage.Url );
+                background-repeat: repeat;
+                background-position: center center;
+                background-size: cover;                  
+                ">
+            <div class="text-center">
+                <img class="img-fluid " src="@Model.AboveTheFoldCol2BgImage.Url" />
+            </div>
+                
+        </div>
+    </div>
+</div>
+
+<!--Video and How we can help section-->
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 col-12 mb-3">
+                <a class="video-btn"
+                   data-toggle="modal"
+                   data-src="@Model.VideoLink"
+                   data-target="#videoModal"
+                   style="cursor:pointer;">
+                    <img class="img-fluid"
+                         data-src="@Model.VideoThumbnail.Url"
+                         alt="@Model.VideoThumbnail.Name">
+                </a>
+                <!--Modal Code-->
+                <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="video-targetCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <div class="modal-body">
+                                <!-- 16:9 aspect ratio -->
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="" 
+                                            id="video" 
+                                            allowscriptaccess="always" 
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                            allowfullscreen>
+
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12 col-sm-12 col-12 my-auto">
+                @Html.Raw(Model.VideoHeading)
+                <div class="orange-divider-2px"></div>
+                @Html.Raw(Model.VideoDescription)
+            </div>
+        </div>
+       
+    </div>
+</div>
+
+
+<div class="container-fluid black-pattern-bg">
+        <div class="container text-center">
+            @Html.Raw(Model.Heading)
+            <div class="spacer-lg"></div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div>@Html.Raw(Model.Column1)</div>
+                </div>
+
+                <div class="col-lg-4 col-md-4">
+                    <div>@Html.Raw(Model.Column2)</div>
+                </div>
+
+                <div class="col-lg-4 col-md-4">
+                    <div>@Html.Raw(Model.Column3)</div>
+                </div>
+            </div>
+
+            @if (Model.CTabuttonLabel != "")
+            { 
+                <div class="text-center">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary my-3" data-toggle="modal" data-target="#covid-solutions-form">
+                        @Model.CTabuttonLabel
+                    </button>
+                </div>
+            }    
+        </div>
+    </div>
+    
+    <div class="container-fluid">
+    <div class="container-fluid desktop-view">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container overlap_left"
+                         style="position: relative;
+                                height: 500px;">
+
+                        <img class="img-fluid img_object-fit img-overlap-style"
+                             src="@Model.LeftSupportingImage.Url"
+                             alt="@Model.LeftSupportingImageAltTag"
+                             title="@Model.LeftSupportingImageAltTag" />
+                    </div>
+                    <div class="overlap_border_left"></div>
+                </div>
+
+                <div class="col-12 col-lg-6 overlap_contents">
+                    @Html.Raw(Model.RightHeading)
+                    @Model.RightSubHeading
+                    <div class="orange-divider"></div>
+                    @Html.Raw(Model.RightDescription)
+                    @if (@Model.RightButtonText != "")
+                    {
+                        <a href="@Model.RightButtonLink" class="btn btn-primary my-3" role="button" aria-pressed="false">@Model.RightButtonText</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-view">
+        <img class="img-fluid img_object-fit-mobile img-overlap-style-mobile"
+             src="@Model.LeftSupportingImage.Url"
+             alt="@Model.LeftSupportingImageAltTag"
+             title="@Model.LeftSupportingImageAltTag" />
+
+        <div class="container-fluid">
+            <div class="container">
+                @Html.Raw(Model.RightHeading)
+                @Model.RightSubHeading
+                <div class="orange-divider"></div>
+                @Html.Raw(Model.RightDescription)
+                @if (@Model.RightButtonText != "")
+                {
+                    <a href="@Model.RightButtonLink" class="btn btn-primary my-3" role="button" aria-pressed="false">@Model.RightButtonText</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="background: #F99D3A;">
+    <div class="container">
+        @Html.Raw(Model.AllowUsToHelpYouDescription)
+        <div class="spacer-sm"></div>
+         @if (Model.AllowUsToHelpYouBtnLabel != "")
+        {
+            <div class="text-center">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary my-3" style="background:#000;" data-toggle="modal" data-target="#covid-solutions-form">
+                    @Model.AllowUsToHelpYouBtnLabel
+                </button>
+            </div>
+        }           
+    </div>
+</div>
+
+<!-- Form Modal -->
+<div class="modal fade" id="covid-solutions-form" tabindex="-1" role="dialog" aria-labelledby="covid-solutions-form" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="background:#F8F8F8; padding: 40px;">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>           
+            <div class="modal-body">
+                <!--[if lte IE 8]>
+        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+        <![endif]-->
+                <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                <script>
+                    hbspt.forms.create({
+                        portalId: "2867266",
+                        formId: "f149e76c-b1d5-4a03-9bfa-5cc9c10ebcd2",
+                        css: ""
+                    });
+                </script>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/custom/modal-script.js"></script>
+    <script>
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+
+        var openform = getUrlVars()["get-in-touch"];
+
+        if (openform) {
+            $('#covid-solutions-form').modal('show');
+        }
+</script>
+}

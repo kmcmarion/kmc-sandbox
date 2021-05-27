@@ -1,0 +1,21 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.ApplicationSuccess>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+<div class="container-fluid" id="application-success">
+    <div class="container">
+        <div>
+            <h1 class="text-extrabold">@Model.AboveTheFoldHeading</h1>
+            <p class="text-center">@Model.AboveTheFoldSubHeading</p>
+
+            <div class="text-semibold">
+                <a href="javascript:history.back()">Go Back</a> | <a href="/careers/jobs-list/">See Jobs List</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Indeed Integration-->
+    <img height=1 width=1 border=0 src="//conv.indeed.com/pagead/conv/5771804262434729/?script=0">
+</div>

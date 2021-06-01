@@ -205,5 +205,39 @@
                     }
             </script>
         }
+
+        // Organization Schema
+        if (item.Value("companyName") != null)
+        {
+            <script type="application/ld+json">
+                    {
+                        "@@context": "http://schema.org",
+                        "@@type": "Organization",
+                        "name": "@item.Value("companyName")",
+                        "legalName": "@item.Value("companyName")",
+                        "description": "@item.Value("description")",
+                        "foundingDate": "@item.Value("foundingYear")",
+                        "founders": {
+                            "@@type": "Person",
+                            "name": "@item.Value("founder")"
+                        },
+                        "contactPoint": {
+                            "@@type": "ContactPoint",
+                            "contactType": "@item.Value("contactType")", 
+                            "telephone": "@item.Value("telephoneNumber")", 
+                            "email": "@item.Value("email")"
+                        },
+                        "url": "@Request.Url.AbsoluteUri",
+                        "logo": "https://kmc.solutions/media/aikesh01/kmc-solutions.png",
+                        "address": {
+                            "@@type": "PostalAddress",
+                            "addressLocality": "@item.Value("city")",
+                            "addressCountry": "@item.Value("country")",
+                            "postalCode": "@item.Value("postalCode")",
+                            "streetAddress": "@item.Value("streetAddress")"
+                        }
+                    }
+            </script>
+        }
     }
 }

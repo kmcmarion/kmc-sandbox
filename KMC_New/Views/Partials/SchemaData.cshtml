@@ -223,8 +223,8 @@
                         },
                         "contactPoint": {
                             "@@type": "ContactPoint",
-                            "contactType": "@item.Value("contactType")", 
-                            "telephone": "@item.Value("telephoneNumber")", 
+                            "contactType": "@item.Value("contactType")",
+                            "telephone": "@item.Value("telephoneNumber")",
                             "email": "@item.Value("email")"
                         },
                         "url": "@Request.Url.AbsoluteUri",
@@ -237,6 +237,167 @@
                             "streetAddress": "@item.Value("streetAddress")"
                         }
                     }
+            </script>
+        }
+
+        // FAQ Schema
+        @*if (item.Value("question1") != null)
+            {
+                <script type="application/ld+json">
+                {
+                    "@@context": "http://schema.org",
+                    "@@type": "FAQPage",
+                    "mainEntity": [{
+                        "@@type": "Question",
+                        "name": "@item.Value("question1")",
+                        "acceptedAnswer": {
+                            "@@type": "Answer",
+                            "text": "@item.Value("answer1")"
+                            }
+                        }, {
+                        "@@type": "Question",
+                        "name": "@item.Value("question2")",
+                        "acceptedAnswer": {
+                            "@@type": "Answer",
+                            "text": "@item.Value("answer2")"
+                            }
+                        }, {
+                        "@@type": "Question",
+                        "name": "@item.Value("question3")",
+                        "acceptedAnswer": {
+                            "@@type": "Answer",
+                            "text": "@item.Value("answer3")"
+                            }
+                        }, {
+                        "@@type": "Question",
+                        "name": "@item.Value("question4")",
+                        "acceptedAnswer": {
+                            "@@type": "Answer",
+                            "text": "@item.Value("answer4")"
+                            }
+                        }, {
+                        "@@type": "Question",
+                        "name": "@item.Value("question5")",
+                        "acceptedAnswer": {
+                            "@@type": "Answer",
+                            "text": "@item.Value("answer5")"
+                            }
+                        },{
+                        "@@type": "Question",
+                        "name": "@item.Value("question6")",
+                        "acceptedAnswer": {
+                            "@@type": "Answer",
+                            "text": "@item.Value("answer6")"
+                            }
+                        }, {
+                        "@@type": "Question",
+                        "name": "@item.Value("question7")",
+                        "acceptedAnswer": {
+                            "@@type": "Answer",
+                            "text": "@item.Value("answer7")"
+                            }
+                        },{
+                        "@@type": "Question",
+                        "name": "@item.Value("question8")",
+                        "acceptedAnswer": {
+                            "@@type": "Answer",
+                            "text": "@item.Value("answer8")"
+                            }
+                        },{
+                        "@@type": "Question",
+                        "name": "@item.Value("question9")",
+                        "acceptedAnswer": {
+                            "@@type": "Answer",
+                            "text": "@item.Value("answer9")"
+                            }
+                        }, {
+                        "@@type": "Question",
+                        "name": "@item.Value("question10")",
+                        "acceptedAnswer": {
+                            "@@type": "Answer",
+                            "text": "@item.Value("answer10")"
+                            }
+
+
+
+
+                                    <text>
+                                    {
+                                    "@@type": "Question",
+                                    "name": "@questionName",
+                                    "acceptedAnswer": {
+                                        "@@type": "Answer",
+                                        "text": "@answerName"
+                                        }
+                                    },
+                                    </text>
+                    }]
+                }
+                </script>
+            }*@
+
+        // FAQ Schema
+        if (item.Value("question1") != null)
+        {
+            <script type="application/ld+json">
+            {
+                "@@context": "http://schema.org",
+                "@@type": "FAQPage",
+                "mainEntity": [
+                    @{
+                        //Variables
+                        var questionNumber = 0;
+
+                        for (int i = 0; i < 10; i++)
+                        {
+                            questionNumber++;
+                            var questionName = "question" + questionNumber;
+                            var answerName = "answer" + questionNumber;
+                            if (item.Value(""+ questionName + "") == null)
+                            {
+                                // If this is null, reduce the increment
+                                questionNumber--;
+                                break;
+                            }
+                        }
+
+                        for (int j = 1; j <= questionNumber; j++)
+                        {
+                            var questionFieldName = "question" + j;
+                            var answerFieldName = "answer" + j;
+
+                            if (j < questionNumber)
+                            {
+                                <text>
+                                {
+                                "@@type": "Question",
+                                "name": "@item.Value("" + questionFieldName + "")",
+                                "acceptedAnswer": {
+                                    "@@type": "Answer",
+                                    "text": "@item.Value("" + answerFieldName + "")"
+                                    }
+                                },
+                                </text>
+                            }
+                            else
+                            {
+                                <text>
+                                {
+                                "@@type": "Question",
+                                "name": "@item.Value("" + questionFieldName + "")",
+                                "acceptedAnswer": {
+                                    "@@type": "Answer",
+                                    "text": "@item.Value("" + answerFieldName + "")"
+                                    }
+                                }
+                                </text>
+                            }
+                        }
+
+
+                    }
+                ]
+            }
             </script>
         }
     }

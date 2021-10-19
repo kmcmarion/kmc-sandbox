@@ -355,7 +355,6 @@
 
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto" id="header-nav">
-                        <li class="nav-item"><a class="nav-link" href="/covid-19-business-solutions-in-the-philippines/">COVID Solutions</a></li>
                         <li class="nav-item dropdownLink">
                             <a class="nav-link"
                                aria-expanded="true"
@@ -363,8 +362,8 @@
                                 Locations
                             </a>
                             <ul class="dropdown-content">
-                                
-                               @{
+
+                                @{
                                     foreach (var item in home.Children)
                                     {
                                         if (item.IsDocumentType("cityItems"))
@@ -384,34 +383,79 @@
                                href="/spaces/">KMC SPACES</a>
 
                             <ul class="dropdown-content">
-                                 <li class="dropdownLink-child"><a href="/serviced-offices/">Serviced Offices <i class="fas fa-caret-right float-right" style="padding-top:3px;"></i></a>
+                                <li class="dropdownLink-child">
+                                    <a href="/serviced-offices/">Serviced Offices <i class="fas fa-caret-right float-right" style="padding-top:3px;"></i></a>
                                     <ul class="dropdown-content-child">
                                         <li><a href="/coworking-space-philippines/">Coworking Spaces</a></li>
                                         <li><a href="/private-offices/">Private Offices</a></li>
                                     </ul>
                                 </li>
+                                <li><a href="/virtual-offices/">Virtual Offices</a></li>
                                 <li class="dropdownLink-child">
-                                    <a href="/enterprise-offices/">Enterprise Offices
+                                    <a href="/covid-19-business-solutions-in-the-philippines/">
+                                        COVID Solutions
                                         <i class="fas fa-caret-right float-right" style="padding-top:3px;"></i>
                                     </a>
                                     <ul class="dropdown-content-child">
-                                        <li><a href="/customized-private-offices/">Customized Private Offices</a></li>
-                                        <li><a href="/customized-office-floors/">Customized Office Floors</a></li>
-                                        <li><a href="/business-continuity-planning/">Business Continuity Planning</a></li>
+                                        <li><a href="/the-kmc-passport/">The KMC Passport</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="/virtual-offices/">Virtual Offices</a></li>
                             </ul>
                         </li>
 
                         <li class="nav-item dropdownLink">
                             <a class="nav-link" aria-expanded="true" href="/teams/">KMC TEAMS</a>
                             <ul class="dropdown-content">
-                                <li><a href="/teams/remote/">Remote Teams</a></li>
-                                <li><a href="/teams/onsite/">Onsite Teams</a></li>
-                                <li><a href="/teams/offsite/">Offsite Teams</a></li>
+                                <li class="dropdownLink-child">
+                                    <a href="/staff-leasing/">
+                                        Staff Leasing
+                                    </a>
+                                </li>
+
+                                <li class="dropdownLink-child">
+                                    <a href="#">
+                                        Managed Services
+                                        <i class="fas fa-caret-right float-right" style="padding-top:3px;"></i>
+                                    </a>
+                                    <ul class="dropdown-content-child">
+                                        <li><a href="/hr-payroll-management/">HR &amp; Payroll</a></li>
+                                        <li><a href="/business-registration-in-the-philippines/">Business Registration</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdownLink-child">
+                                    <a href="/employer-of-record-eor/">
+                                        Employer of Record
+                                        <i class="fas fa-caret-right float-right" style="padding-top:3px;"></i>
+                                    </a>
+                                    <ul class="dropdown-content-child">
+                                        <li><a href="/professional-employer-organization-peo-in-the-philippines/">Professional Employer Organization</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdownLink-child">
+                                    <a href="/teams/remote/">
+                                        Remote Teams
+                                        <i class="fas fa-caret-right float-right" style="padding-top:3px;"></i>
+                                    </a>
+                                    <ul class="dropdown-content-child">
+                                        <li><a href="/teams/onsite/">Onsite Teams</a></li>
+                                        <li><a href="/teams/offsite/">Offsite Teams</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
+
+                        <li class="nav-item dropdownLink">
+                            <a class="nav-link"
+                               aria-expanded="true"
+                               href="/spaces/">KMC Enterprise</a>
+
+                            <ul class="dropdown-content">
+                                <li><a href="/customized-private-offices/">Customized Private Offices</a></li>
+                                <li><a href="/customized-office-floors/">Customized Office Floors</a></li>
+                                <li><a href="/business-continuity-planning/">Business Continuity Planning</a></li>
+                            </ul>
+                        </li>
+
                         <li class="nav-item dropdownLink">
                             <a class="nav-link" href="/about/">About</a>
                             <ul class="dropdown-content">
@@ -419,7 +463,8 @@
                                 <li><a href="/blogs/">Blogs</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdownLink"><a class="nav-link" href="/careers-culture/">Careers &amp; Culture</a>   
+                        <li class="nav-item dropdownLink">
+                            <a class="nav-link" href="/careers-culture/">Careers &amp; Culture</a>
                             <ul class="dropdown-content">
                                 <li><a href="/events/">Events</a></li>
                                 <li><a href="/careers/">Careers</a></li>
@@ -435,7 +480,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <a href="/contact-us/" class="btn btn-primary navbar-btn" style="margin-left:30px; padding: 0.7rem 1rem;">Book A Tour</a>
+                    <a href="/contact-us/" class="btn btn-primary navbar-btn" style="margin-left:30px; padding: 0.7rem 1rem;">Contact Us</a>
                 </div>
             </nav>
         </div>

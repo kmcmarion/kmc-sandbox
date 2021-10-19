@@ -1,0 +1,629 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.DynamicLandingPage>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "flexByKMCLandingPage.cshtml";
+
+    var rootItem = Model.Ancestor("home");
+    var root = (Home)rootItem;
+}
+
+<head>
+    <link rel="stylesheet" href="@Url.Content("~/css/countdown.css")" />
+</head>
+
+@*@Html.Partial("SchemaData")*@
+
+@{
+    foreach (var child in Model.Children)
+    {
+        switch (child.ContentType.Alias)
+        {
+            case "headerImage":
+                var contentHeaderImage = (ContentModels.HeaderImage)child;
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <img src="@contentHeaderImage.BgImage.Url"
+                                 alt="@child.Name"
+                                 style="width: 100%" />
+                        </div>
+                    </div>
+                </div>
+                break;
+            case "heroBanner":
+                var content = (ContentModels.HeroBanner)child;
+                <div class="pt-0 mb-3">
+                    <div class="row hero-banner-wrapper">
+                        @if (content.BannerPosition == "Left")
+                        {
+                            <div class="col-lg-6 col-md-12 hero-banner-image">
+                                <img srcset="@content.BannerImageDesktop.Url 480w,
+                             @content.BannerImageMobile.Url 800w"
+                                     sizes="(max-width: 600px) 480px,
+                            800px"
+                                     src="@content.BannerImageDesktop.Url"
+                                     alt="@child.Name"
+                                     class="img-bg" />
+                            </div>
+                        }
+
+                        <div class="col-lg-6 col-md-12 hero-banner-text @(content.BannerPosition.ToLower())">
+                            <div class="text-content">
+                                @Html.Raw(content.BannerText)
+                            </div>
+                        </div>
+
+                        @if (content.BannerPosition == "Right")
+                        {
+                            <div class="col-lg-6 col-md-12 hero-banner-image">
+                                <img srcset="@content.BannerImageDesktop.Url 480w,
+                             @content.BannerImageMobile.Url 800w"
+                                     sizes="(max-width: 600px) 480px,
+                            800px"
+                                     src="@content.BannerImageDesktop.Url"
+                                     alt="@child.Name"
+                                     class="img-bg" />
+                            </div>
+                        }
+                    </div>
+                </div>
+                break;
+            case "centerTitle":
+                var centerTitleContent = (ContentModels.CenterTitle)child;
+                <div class="container text-center" style="background-image: url('/media/3qlhqynv/mask-group-2.png')">
+                    @Html.Raw(centerTitleContent.TitleText)
+                </div>
+                break;
+            case "twoColumnSection":
+                var twoColumnContent = (ContentModels.TwoColumnSection)child;
+                <div class="container lp-section">
+                    @if (!string.IsNullOrEmpty(twoColumnContent.CenterTitle.ToString()))
+                    {
+                        <div class="text-center py-5">
+                            @Html.Raw(twoColumnContent.CenterTitle)
+                        </div>
+                    }
+                    <div class="row ">
+                        @if (twoColumnContent.ImageLocation == "Left")
+                        {
+                            <div class="col-lg-6 col-md-12 center-items text-center mb-5">
+                                <img srcset="@twoColumnContent.ImageDesktop.Url 480w,
+                                 @twoColumnContent.ImageMobile.Url 800w"
+                                     sizes="(max-width: 600px) 480px,
+                                800px"
+                                     src="@twoColumnContent.ImageDesktop.Url"
+                                     alt="@twoColumnContent.Name" />
+                            </div>
+                        }
+
+                        @if (twoColumnContent.ImageLocation == "Right")
+                        {
+                            <div class="col-lg-6 col-md-12 center-items text-center mb-5 mobile-view">
+                                <img srcset="@twoColumnContent.ImageDesktop.Url 480w,
+                                     @twoColumnContent.ImageMobile.Url 800w"
+                                     sizes="(max-width: 600px) 480px,
+                                    800px"
+                                     src="@twoColumnContent.ImageDesktop.Url"
+                                     alt="@twoColumnContent.Name"
+                                     style="margin-left: auto;" />
+                            </div>
+                        }
+
+                        <div class="col-lg-6 col-md-12 center-items mb-5 text-content-wrapper">
+                            <div class="text-content">
+                                @Html.Raw(twoColumnContent.TextContent)
+                            </div>
+                        </div>
+                        @if (twoColumnContent.ImageLocation == "Right")
+                        {
+                            <div class="col-lg-6 col-md-12 center-items text-center mb-5 desktop-view">
+                                <img srcset="@twoColumnContent.ImageDesktop.Url 480w,
+                                 @twoColumnContent.ImageMobile.Url 800w"
+                                     sizes="(max-width: 600px) 480px,
+                                800px"
+                                     src="@twoColumnContent.ImageDesktop.Url"
+                                     alt="@twoColumnContent.Name"
+                                     style="margin-left: auto;" />
+                            </div>
+                        }
+                    </div>
+                </div>
+                break;
+            case "twoColumnsTitleLeftAnd2RowsRight":
+                var twoColumnsTitleLeftAnd2RowsRight = (ContentModels.TwoColumnsTitleLeftAnd2RowsRight)child;
+                <div class="container-fluid" style="background-color: #F99D3A">
+                    <div class="container lp-section">
+                        @if (!string.IsNullOrEmpty(twoColumnsTitleLeftAnd2RowsRight.Title.ToString()))
+                        {
+                            <div class="row">
+                                <div class="py-5 col-lg-6">
+                                    @Html.Raw(twoColumnsTitleLeftAnd2RowsRight.Title)
+                                </div>
+
+                                <div class="col-lg-6 py-5">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p class="text-extrabold" style="font-size: 16px">SPEAKERS</p>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6 col-lg-12">
+                                                <div class="row p-2">
+                                                    <div class="col-lg-3">
+                                                        <div class="center-items text-center">
+                                                            <img srcset="@twoColumnsTitleLeftAnd2RowsRight.Row1Image.Url" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-9 mt-3">
+                                                        @Html.Raw(twoColumnsTitleLeftAnd2RowsRight.Row1Text)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6  col-lg-12">
+                                                <div class="row p-2">
+                                                    <div class="col-lg-3">
+                                                        <div class="center-items text-center">
+                                                            <img srcset="@twoColumnsTitleLeftAnd2RowsRight.Row2Image.Url" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-9 mt-3">
+                                                        @Html.Raw(twoColumnsTitleLeftAnd2RowsRight.Row2Text)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">&nbsp;</div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="container-fluid" style="background-color: #363636; padding-top: 1rem; padding-bottom: 0px;">
+                    <div class="container countdownContainer">
+                        <div class="header">
+                            <h3>BOOK YOUR SLOT NOW</h3>
+                            <p>Countdown to your next learning experience</p>
+                        </div>
+
+                        <div class="day">
+                            <h4 id="dayNumber">00</h4>
+                            <p>DAYS</p>
+                        </div>
+                        <h4 class="colon-1">:</h4>
+                        <div class="hour">
+                            <h4 id="hourNumber">00</h4>
+                            <p>HOURS</p>
+                        </div>
+                        <h4 class="colon-2">:</h4>
+                        <div class="min">
+                            <h4 id="minNumber">00</h4>
+                            <p>MINUTES</p>
+                        </div>
+                    </div>
+                </div>
+                break;
+            case "testimonialSection":
+                var testiContent = (ContentModels.TestimonialSection)child;
+                <div class="container testimonial-section lp-section">
+                    <div class="">
+                        @Html.Raw(testiContent.TitleText)
+                    </div>
+                    <div class="owl-carousel owl-theme testimonial-carousel">
+                        @foreach (var testiItem in testiContent.Children)
+                        {
+                            var testiItemContent = (ContentModels.TestimonialItem)testiItem;
+
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="testimonial-item">
+                                    <div class="text-quote text-italic">"</div>
+                                    <p class="font-italic text-center">@testiItemContent.TestimonialText</p>
+                                    <div class="testi-divider"></div>
+                                    <div class="testi-image">
+                                        <img src="@testiItemContent.PersonImage.Url" alt="@testiItemContent.PersonName" />
+                                    </div>
+                                    <div class="testi-person">
+                                        <p class="testi-person-name">@testiItemContent.PersonName</p>
+                                        <p class="testi-person-position">@testiItemContent.PersonPosition</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                break;
+            case "twoColumnSection1":
+                var twoColumnWithImageContent = (ContentModels.TwoColumnSection1)child;
+                <div class="two-column-content-with-image lp-section">
+                    @if (!string.IsNullOrEmpty(twoColumnWithImageContent.CenterTitle.ToString()))
+                    {
+                        <div class="text-center py-5">
+                            @Html.Raw(twoColumnWithImageContent.CenterTitle)
+                        </div>
+                    }
+                    <div class="row ">
+                        @if (twoColumnWithImageContent.ImageLocation == "Left")
+                        {
+                            <div class="col-lg-6 col-md-12 center-items text-center image-wrapper">
+                                <img srcset="@twoColumnWithImageContent.ImageDesktop.Url 480w,
+                                 @twoColumnWithImageContent.ImageMobile.Url 800w"
+                                     sizes="(max-width: 600px) 480px,
+                                800px"
+                                     src="@twoColumnWithImageContent.ImageDesktop.Url"
+                                     alt="@twoColumnWithImageContent.Name"
+                                     class="background-image img-bg" />
+
+                                <div class="play-button">
+                                    <img src="@twoColumnWithImageContent.PlayButtonImage.Url" alt="@twoColumnWithImageContent.PlayButtonLabel" />
+                                    <p>
+                                        @twoColumnWithImageContent.PlayButtonLabel
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                        <div class="col-lg-6 col-md-12 center-items text-wrapper mb-3">
+                            <div class="text-content">
+                                @Html.Raw(twoColumnWithImageContent.TextContent)
+                            </div>
+                        </div>
+                        @if (twoColumnWithImageContent.ImageLocation == "Right")
+                        {
+                            <div class="col-lg-6 col-md-12 center-items  text-center image-wrapper">
+                                <img srcset="@twoColumnWithImageContent.ImageDesktop.Url 480w,
+                                 @twoColumnWithImageContent.ImageMobile.Url 800w"
+                                     sizes="(max-width: 600px) 480px,
+                                800px"
+                                     src="@twoColumnWithImageContent.ImageDesktop.Url"
+                                     alt="@twoColumnWithImageContent.Name"
+                                     class="background-image img-bg" />
+
+                                <div class="play-button" data-toggle="modal" data-target="#video-target-@child.Id">
+                                    <img src="@twoColumnWithImageContent.PlayButtonImage.Url" alt="@twoColumnWithImageContent.PlayButtonLabel" />
+                                    <p>
+                                        @twoColumnWithImageContent.PlayButtonLabel
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <!--Modal Code-->
+                    <div class="modal fade video-modal" id="video-target-@child.Id" tabindex="-1"
+                         role="dialog" aria-labelledby="video-targetCenterTitle"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered"
+                             role="document">
+
+                            <div class="modal-content">
+                                <button type="button"
+                                        class="close close-modal"
+                                        data-dismiss="modal"
+                                        aria-label="Close"
+                                        data-video-src="@twoColumnWithImageContent.VideoLink?rel=0"
+                                        style="text-align: right;">
+
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+
+                                <div class="modal-body">
+                                    <iframe src="@twoColumnWithImageContent.VideoLink?rel=0"
+                                            height="400"
+                                            width="100%"
+                                            class="youtube"
+                                            frameborder="0"
+                                            allow="encrypted-media"
+                                            allowfullscreen
+                                            allowscriptaccess="always"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                break;
+            case "twoColumFormSection":
+                var twoFormSectionContent = (ContentModels.TwoColumFormSection)child;
+                <div id="formSection" class="container two-column-form-section">
+                    <div class="row">
+                        @if (twoFormSectionContent.FormLocation == "Right")
+                        {
+                            <div class="col-lg-6 col-md-12 mb-5">
+                                <div class="form-wrapper">
+                                    <div class="form">
+                                        <h3 class="text-extrabold">
+                                            @twoFormSectionContent.FormTitle
+                                        </h3>
+                                        @Html.Raw(twoFormSectionContent.FormScript)
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="col-lg-6 col-md-12 text-wrapper mb-5">
+                            <div class="text-content">
+                                @Html.Raw(twoFormSectionContent.FormSideText)
+                            </div>
+                        </div>
+
+                        @if (twoFormSectionContent.FormLocation == "Left")
+                        {
+                            <div class="col-lg-6 col-md-12 mb-5">
+                                <div class="form-wrapper">
+                                    <div class="form">
+                                        <h3 class="text-extrabold">
+                                            @twoFormSectionContent.FormTitle
+                                        </h3>
+                                        @Html.Raw(twoFormSectionContent.FormScript)
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="modal fade" id="form-modal-@twoFormSectionContent.Id" tabindex="-1" aria-labelledby="form-modal-@twoFormSectionContent.Id" aria-hidden="true">
+                        <div class="modal-dialog modal-sm" style="max-width: 650px;">
+                            <div class="modal-content bg-transparent" style="box-shadow: none; border: none;">
+                                <div class="modal-header" style="border-bottom: 0px;">
+                                    <button class="text-white cursor-pointer close btn-close ml-auto" data-dismiss="modal" aria-label="Close">&times;</button>
+                                </div>
+                                <div class="modal-body form-wrapper">
+                                    <div class="form">
+                                        <h3 class="text-extrabold">
+                                            @twoFormSectionContent.FormTitle
+                                        </h3>
+                                        @Html.Raw(twoFormSectionContent.FormScript)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                //Modal
+                <div class="modal fade" id="popUpModal" tabindex="-1" role="dialog" aria-labelledby="popUpModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content" style="background-color:white">
+                            <div class="modal-header" style="padding-left: 0">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h3 style="color: black; font-weight: bolder !important;">Watch On Demand</h3>
+                            </div>
+                            <div class="modal-body">
+                                @Html.Raw(twoFormSectionContent.FormScript)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                break;
+
+            case "featuredLocationSection":
+                var featuredLocationContent = (ContentModels.FeaturedLocationSection)child;
+
+                <div class="container">
+                    <div class="container" id="featured-locations-nav" style="background:#F99D3A url() ">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-3">
+                                <h3 class="featured-6-heading text-extrabold" id="featured-nav-title">Featured Locations</h3>
+                            </div>
+
+                            <div class="col-sm-12 col-md-12 col-lg-9">
+                                <ul id="featured-locations-filter-li-6">
+                                    @foreach (var item in root.Children)
+                                    {
+                                        if (item.IsDocumentType("cityItems"))
+                                        {
+                                            var city = (CityItems)item;
+                                            <li><a class="location-filter-6" data-value="@city.Name.Replace(" ", "-")">@city.NavigationItemName</a></li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                if (!string.IsNullOrEmpty(featuredLocationContent.ExtraText.ToString()))
+                {
+                    <div class="container" id="featured-paragraph">
+                        <div class="spacer-md"></div>
+                        @Html.Raw(featuredLocationContent.ExtraText)
+                        <div class="spacer-md"></div>
+                    </div>
+                }
+
+
+                if (featuredLocationContent.ShowBuildingCards)
+                {
+                    <!--Locations Data Filter-->
+                    <div class="container">
+                        <div class="row buildings-container">
+                            @{
+                                int buildingCount = 0;
+                                foreach (var item in root.Children)
+                                {
+                                    if (item.IsDocumentType("cityItems"))
+                                    {
+                                        foreach (var building in item.Children)
+                                        {
+                                            if (building.IsDocumentType("buildings"))
+                                            {
+                                                var featured = (Buildings)building;
+
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-12 mb-2 h-100 featured-locations-style location-item-6 all-6 @featured.Parent.Name.Replace(" ","-")  ">
+
+                                                    <div class="card shadow mb-3 bg-white rounded">
+                                                        <figure class="card-img-style">
+                                                            <a href="@featured.Url">
+                                                                <img class="card-img-top img_object-fit"
+                                                                     data-src="@featured.FeaturedPhoto.Url"
+                                                                     alt="@featured.FeaturedPhotoAltTag"
+                                                                     title="@featured.FeaturedPhotoAltTag">
+                                                            </a>
+                                                        </figure>
+
+                                                        <div class="card-body d-flex flex-column">
+
+                                                            <h4 class="card-title text-semibold"><a href="@featured.Url">@featured.FeaturedBuildingName</a></h4>
+                                                            <h5>
+                                                                <i class="fa fa-map-marker-alt" aria-hidden="true"></i>&nbsp;
+                                                                @featured.FeaturedBuildingCity
+                                                            </h5>
+                                                            <div class="spacer-sm"></div>
+                                                            <div class="card-text text-limit">@Html.Raw(featured.FeaturedDescription)</div>
+
+                                                            <a class="card-link mt-auto" href="@featured.Url">Read More</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                buildingCount = buildingCount + 1;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+
+                    <!--View All Locations-->
+                    <div class="container-fluid">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4"></div>
+
+                                <div class="col-lg-4">
+                                    <a href="/locations/" class="btn btn-primary" role="button" aria-disabled="true" style="font-size:0.8rem;width:100%;">See All Locations </a>
+                                </div>
+
+                                <div class="col-lg-4"></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                break;
+
+            case "fullWidthEmbedSection":
+                var fWES = (ContentModels.FullWidthEmbedSection)child;
+
+                <div class="full-width-embed-section">
+                    <iframe src="@fWES.IFrameLink" style="height: 100%; width: 100%;"></iframe>
+                </div>
+                break;
+            case "oneLinerForm":
+                var oneLinerForm = (ContentModels.OneLinerForm)child;
+                <div class="container">
+                    <div class="one-liner-form-section">
+                        <div class="header">
+                            @oneLinerForm.FormTitle
+                        </div>
+                        <div class="form">
+                            @Html.Raw(oneLinerForm.FormScript)
+                        </div>
+                    </div>
+                </div>
+                break;
+            case "cardsWithImageSection":
+                var cardsWithImage = (ContentModels.CardsWithImageSection)child;
+                int count = 1;
+
+                <div class="cards-with-image-section">
+                    <div class="container-fluid">
+                        @cardsWithImage.TitleText
+
+                        <div class="cards-wrapper">
+
+                            @foreach (var card in cardsWithImage.Children)
+                            {
+                                var cardContent = (ContentModels.CardWithImage)card;
+
+                                <div class="card-wrapper">
+                                    <div class="card" style="width: 100%;">
+                                        <div class="step-count text-extrabold">
+                                            @(count > 10? count.ToString(): $"0{count}")
+                                        </div>
+                                        <img class="card-img-top" src="@cardContent.Image.Url" alt="@cardContent.Name">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-extrabold">@cardContent.CardTitle</h5>
+                                            @cardContent.CardContent
+                                        </div>
+                                    </div>
+                                </div>
+
+                                count = count + 1;
+                            }
+                        </div>
+
+                        @cardsWithImage.Button
+                    </div>
+                </div>
+
+                break;
+            case "infoCards":
+                var infoCardsWithImage = (ContentModels.InfoCards)child;
+
+                <div class="info-cards-with-image-section">
+                    <div class="container-fluid">
+                        @infoCardsWithImage.CenterTitle
+
+                        <div class="cards-wrapper">
+
+                            @foreach (var card in infoCardsWithImage.Children)
+                            {
+                                var cardContent = (ContentModels.InfoCardItem)card;
+
+                                <div class="card-wrapper">
+                                    <div class="card" style="width: 100%;">
+                                        <img class="card-img-top" src="@cardContent.Image.Url" alt="@cardContent.ImageAlt">
+                                        <div class="card-body">
+                                            @cardContent.CardContent
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                break;
+            case "twoColumnSectionBothRichText":
+                var twoColumnRCContent = (ContentModels.TwoColumnSectionBothRichText)child;
+                <div id="speakersSection" class="container lp-section">
+                    @if (!string.IsNullOrEmpty(twoColumnRCContent.CenterTitle.ToString()))
+                    {
+                        <div class="text-center">
+                            @Html.Raw(twoColumnRCContent.CenterTitle)
+                        </div>
+                    }
+                    <div class="row ">
+                        <div class="col-lg-6 col-md-12 mb-5 center-items">
+                            @twoColumnRCContent.LeftContent
+                        </div>
+
+                        <div class="col-lg-6 col-md-12 mb-5 center-items">
+                            @twoColumnRCContent.RightContent
+                        </div>
+                    </div>
+                </div>
+                break;
+
+            default: break;
+        }
+    }
+}
+
+@*Custom Content*@
+@if (Model.PageTitle == "Career Ads - Marketing")
+{
+    @Html.Partial("~/Views/Partials/Landing Page/Career Ads Our Vision.cshtml")
+    @Html.Partial("~/Views/Partials/Landing Page/Open Positions.cshtml")
+}
+
+@section Scripts{
+    <script defer src="~/Scripts/custom/homepagescripts.es5.min.js"></script>
+    <script defer src="~/Scripts/custom/countdownTimer.js"></script>
+    <script defer src="~/Scripts/custom/career-ads-our-vision.js"></script>
+    <script defer src="~/Scripts/custom/job-ads-carousel.js"></script>
+    <script defer src="~/Scripts/custom/careers-open-position.js"></script>
+}

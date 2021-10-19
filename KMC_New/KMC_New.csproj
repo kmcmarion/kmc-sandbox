@@ -480,6 +480,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\fonts.css" />
+    <Content Include="css\grid-career-ads.css" />
     <Content Include="css\hubspot-form.css" />
     <Content Include="css\main.css" />
     <Content Include="css\main.min.css">
@@ -2695,11 +2696,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CareersController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ContactSurfaceController.cs" />
     <Compile Include="Controllers\Surface\IPublishedContent.cs" />
     <Compile Include="Controllers\Surface\SiteLayoutController.cs" />
     <Compile Include="Models\ActiveJobs.cs" />
     <Compile Include="Models\ApplicationModel.cs" />
+    <Compile Include="Models\ContactFormViewModel.cs" />
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2858,6 +2861,7 @@
     <Folder Include="GulpFiles\minify-css\" />
     <Folder Include="Uglify-JS\" />
     <Folder Include="Views\ApplicationModel\" />
+    <Folder Include="Views\ContactFormViewModel\" />
     <Folder Include="Views\Search\" />
   </ItemGroup>
   <PropertyGroup>

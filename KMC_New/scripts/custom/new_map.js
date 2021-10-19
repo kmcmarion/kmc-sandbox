@@ -106,12 +106,12 @@ var mobileBranches = {
         },
         {
             "properties": {
-                "buildingName": "Armstrong Corporate Center",
+                "buildingName": "One Ayala",
                 "phone": "(02) 8779 6540",
-                "address": "Salcedo, Village, Makati, 1227 Metro Manila",
+                "address": "No.1 Ayala Avenue, Makati",
                 "city": "Makati",
-                "link": "/makati-office-space/armstrong-corporate-center/",
-                "image": "https://kmc.solutions/media/2opbr0gk/carousel-02.jpg"
+                "link": "/makati-office-space/one-ayala/",
+                "image": "https://kmc.solutions/media/5dxlhena/ayala-carousel-2.jpg"
             }
         },
         {

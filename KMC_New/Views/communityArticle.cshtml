@@ -1,0 +1,109 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.CommunityArticle>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web
+@{ Layout = "master.cshtml";
+    var blogs = Model.AncestorOrSelf(1).Descendants()
+        .Where(x => x.IsDocumentType("communityArticle")); }
+
+<head>
+    @* If there is already a structuredData existing for the previous blog entries *@
+    @if (Model.StructuredData == "")
+    {
+<script type="application/ld+json">
+        {
+            "@@context" : "http://schema.org",
+            "@@type" : "Article",
+            "name" : "@Model.Value("pageTitle")",
+            "author" : {
+                "@@type" : "Person",
+                "name" : "@Model.Value("articleAuthor")"
+            },
+            "datePublished" : "@Model.ArticlePublishedDate.ToShortDateString()",
+            "image" : "https://kmc.solutions@(Model.OgImage.Url)",
+            "articleSection" : "@Model.Value("articleSummary")",
+            "publisher" : {
+                "@@type" : "Organization",
+                "name" : "KMC Solutions",
+                "url" : "https://kmc.solutions/"
+            },
+            "url" : "@Request.Url.AbsoluteUri",
+            "logo": "https://kmc.solutions/media/aikesh01/kmc-solutions.png",
+            "headline" : "@Model.Value("pageTitle")"
+        }
+</script>}
+</head>
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                @* Profile Image *@
+                <img class="img-fluid"
+                     data-src="@Model.UploadYourFavoritePhotoOfYou"
+                     alt="Profile Image" />
+                @* Profile Details *@
+                <p class="pt-4"><span class="medium-text text-orange text-semibold">@Model.PersonName</span></p>
+                <p>@Model.Position</p>
+                <p>@Model.Location</p>
+                <p>Joined: @Model.JoiningDate</p>
+
+                @{
+                    if (Model.KMcphoto1 != "") { 
+                        <img class="img-fluid"
+                     data-src="@Model.KMcphoto1"
+                     alt="Profile Image" />
+                    }
+
+                    if (Model.KMcphoto2 != "") {
+                        <img class="img-fluid"
+                         data-src="@Model.KMcphoto2"
+                         alt="Profile Image" />
+                    }
+
+                    if (Model.KMcphoto3 != "") { 
+                        <img class="img-fluid"
+                         data-src="@Model.KMcphoto3"
+                         alt="Profile Image" />
+                    }
+                }
+                
+            </div>
+            <div class="col-lg-8 col-md-12 article-content">
+                @Html.Raw(Model.ArticleHeading)
+
+                <div class="addthis_inline_share_toolbox"></div>
+
+                <div class="spacer-md"></div>
+                <p class="medium-text text-orange text-semibold pt-2">Questions</p>
+                <p>
+                    <b>1. What do your parents think you do?</b> @Model.WhatDoYourParentsThinkYouDo
+                </p>
+                <p>
+                    <b>2. What do you actually do?</b> @Model.WhatDoYouActuallyDo
+                </p>
+                <p>
+                    <b>3. 3 best things about working at KMC?</b> @Model.BestThingsAboutWorkingAtKmc
+                </p>
+                <p>
+                    <b>4. What do you love about your job?</b> @Model.WhatDoYouLoveAboutYourJob
+                </p>
+                <p>
+                    <b>5. Time to take a break! What's your go-to merienda/office snack?</b> @Model.TimeToTakeAbreakWhatSyourGoToMeriendaOfficeSnack
+                </p>
+                <p>
+                    <b>6. What do you do to relax?</b> @Model.WhatDoYouDoToRelax
+                </p>
+                <p>
+                    <b>7. What's your guilty pleasure?</b> @Model.WhatSyourGuiltyPleasure
+                </p>
+
+                <div class="spacer-md"></div>
+
+                <p class="medium-text text-orange text-semibold pt-2">Ready to join KMC?</p>
+                <a href="/careers" class="btn btn-primary">Apply Now</a>
+
+            </div>
+
+        </div>
+    </div>
+</div>

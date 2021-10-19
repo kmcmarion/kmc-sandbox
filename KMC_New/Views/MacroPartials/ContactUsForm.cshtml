@@ -1,0 +1,105 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+    <div class="container">
+       
+
+        <!--Dependent Form - Ideal Office Space Solution -->
+        <form class="p-5" id="contactUsForm">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12 col-12">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optradio" value="Private Office">
+                                Private Office
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optradio" value="Build to Suit">
+                                Build to Suit
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-12 col-12">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optradio" value="Coworking Space">
+                                Coworking Space
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optradio" value="Business Continuity Planning">
+                                Business Continuity Planning
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="preferredLocation">Location</label>
+                        <select id="preferredLocation" class="form-control">
+                            <option selected disabled>Where's your preferred location</option>
+                            <option value="Makati">Makati</option>
+                            <option value="BGC/Taguig">BGC/Taguig</option>
+                            <option value="Ortigas">Ortigas</option>
+                            <option value="Mandaluyong">Mandaluyong</option>
+                            <option value="Quezon City">Quezon City</option>
+                            <option value="Cebu">Cebu</option>
+                            <option value="Iloilo">Iloilo</option>
+                            <option value="Alabang">Alabang</option>
+                            <option value="Clark">Clark</option>
+                            <option value="Offsite">Offsite</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group" >
+                        <label for="moveInDate" required>Target Move-in  Date</label>
+                        <div class="input-group date" id="datetimepicker1" data-date-format="yyyy-mm-dd" required>
+                            <input type="date" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" rows="3"></textarea>
+            </div>
+
+        </form>
+
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optradio">
+                A virtual office solution
+            </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optradio">
+                A talented offshore team (Staff Leasing/ HR & Payroll Management)
+            </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optradio">
+                A career opportunity with a great company
+            </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optradio">
+                Need to talk to a department?
+            </label>
+        </div>
+    </div>

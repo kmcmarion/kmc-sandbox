@@ -1,0 +1,134 @@
+﻿
+
+    @model KMC_New.Models.ContactFormViewModel
+
+    <head>
+        <style>
+            form div {
+                display: flex;
+                flex-direction: column;
+                margin: 1em 0;
+            }
+
+            input {
+                display: inline-block;
+                padding: 8px 12px;
+                font-size: .8rem;
+                border: 1px solid silver !important;
+                border-radius: 3px;
+                -webkit-appearance: none;
+            }
+
+            label, span {
+                text-align: left;
+            }
+        </style>
+    </head>
+
+    @using (Html.BeginUmbracoForm
+        ("Submit", "ContactForm", new { enctype = "multipart/form-data" }))
+        {
+        <div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            
+            <p>@TempData["status"]</p>
+        </div>
+        <div>
+            <label>Name</label>
+            @Html.TextBoxFor(m => m.Name)
+            @Html.ValidationMessageFor(m => m.Name, "Please enter a text", new { @class = "text-danger" })
+        </div>
+        <div>
+            <label>Email</label>
+            @Html.TextBoxFor(m => m.Email)
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
+        <div>
+            <label>Position</label>
+            @Html.TextBoxFor(m => m.Position)
+            @Html.ValidationMessageFor(m => m.Position, "", new { @class = "text-danger" })
+        </div>
+        <div>
+            <label>Department</label>
+            @*@Html.TextBoxFor(m => m.Department)*@
+            @*@Html.ValidationMessageFor(m => m.Department, "", new { @class = "text-danger" })*@
+            <select id="Department" name="Department">
+                <option>PROJECTS & DESIGN</option>
+                <option>FACILITIES</option>
+                <option>PROCUREMENT</option>
+                <option>CUSTOMER SUCCESS</option>
+                <option>PEOPLE & CULTURE</option>
+                <option>TECHNOLOGY SERVICES</option>
+                <option>LEGAL & COMPLIANCE</option>
+                <option>MARKETING & STRATEGIC PARTNERSHIPS</option>
+                <option>FINANCE</option>
+                <option>SALES</option>
+                <option>ENTERPRISE SOLUTIONS</option>
+                <option>EXTERNAL</option>
+                <option>EXECUTIVE</option>
+                <option>MANAGED SERVICES</option>
+            </select>
+        </div>
+        <div>
+            <label>Location</label>
+            @Html.TextBoxFor(m => m.Location)
+            @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-danger" })
+        </div>
+        <div>
+            <label>Joining Date</label>
+            @*@Html.TextBoxFor(m => m.JoiningDate, new { type = "date" })*@
+            @Html.TextBoxFor(m => m.JoiningDate)
+            @Html.ValidationMessageFor(m => m.JoiningDate, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div>
+            <label>1. What do your parents think you do?</label>
+            @Html.TextBoxFor(m => m.YourWork)
+            @Html.ValidationMessageFor(m => m.YourWork, "", new { @class = "text-danger" })
+        </div>
+        <div>
+            <label>2. What do you actually do?</label>
+            @Html.TextBoxFor(m => m.YourActualWork)
+            @Html.ValidationMessageFor(m => m.YourActualWork, "", new { @class = "text-danger" })
+        </div>
+        <div>
+            <label>3. 3 best things about working at KMC?</label>
+            @Html.TextBoxFor(m => m.ThreeThings)
+            @Html.ValidationMessageFor(m => m.ThreeThings, "", new { @class = "text-danger" })
+        </div>
+        <div>
+            <label>4. What do you love about your job?</label>
+            @Html.TextBoxFor(m => m.ILoveMyJob)
+            @Html.ValidationMessageFor(m => m.ILoveMyJob, "", new { @class = "text-danger" })
+        </div>
+        <div>
+            <label>5. Time to take a break! What's your go-to merienda/office snack?</label>
+            @Html.TextBoxFor(m => m.Merienda)
+            @Html.ValidationMessageFor(m => m.Merienda, "", new { @class = "text-danger" })
+        </div>
+        <div>
+            <label>6. What do you do to relax?</label>
+            @Html.TextBoxFor(m => m.Relax)
+            @Html.ValidationMessageFor(m => m.Relax, "", new { @class = "text-danger" })
+        </div>
+        <div>
+            <label>7. What's your guilty pleasure?</label>
+            @Html.TextBoxFor(m => m.GuiltyPleasure)
+            @Html.ValidationMessageFor(m => m.GuiltyPleasure, "", new { @class = "text-danger" })
+        </div>
+        <div>
+            <label>Upload your favorite photo of you!</label>
+            @Html.TextBoxFor(m => m.YourPhoto, new { type = "file" })
+
+        </div>
+        <div>
+            <label>Send us some photos of your favorite moments at KMC!</label>
+            @Html.TextBoxFor(m => m.KMCPhotos1, new { type = "file" })
+            @Html.TextBoxFor(m => m.KMCPhotos2, new { type = "file" })
+            @Html.TextBoxFor(m => m.KMCPhotos3, new { type = "file" })
+        </div>
+
+
+        <input type="submit" name="Submit" class="mt-4" value="Submit" />
+        }

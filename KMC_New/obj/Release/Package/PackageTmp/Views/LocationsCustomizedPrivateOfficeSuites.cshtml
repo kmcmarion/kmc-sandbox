@@ -16,6 +16,13 @@
                 <div class="overview-section1">
                     <h1 class="text-extrabold building-name-style">@buildings.BuildingName</h1>
                     <p>@buildings.BuildingAddress</p>
+                    @if (buildings.TelephoneNumber.ToString() == "")
+                    {
+                        <p><a href="tel:+63287796540">(+632) 8779-6540</a></p> }
+                    else
+                    {
+                        <p><a href="tel:@buildings.TelephoneNumber.ToString().Replace("(", "").Replace(")", "").Replace(" ", "").Replace("-","")">@buildings.TelephoneNumber</a></p>
+                    }
 
                     <div class="spacer-md"></div>
 

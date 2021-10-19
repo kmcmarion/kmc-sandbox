@@ -1,3 +1,4 @@
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2Fyb2xkZXN0cmV6YSIsImEiOiJjanp3OGo4cHEwbmduM2hwZnNuZDJzZWxyIn0.rF-a4FSzqc5PhileOuq7jg';
 
 var map = new mapboxgl.Map({
@@ -210,6 +211,24 @@ var branches = {
                 "city": "Makati",
                 "link": "/makati-office-space/armstrong-corporate-center/",
                 "coords": [121.021331, 14.561131],
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    121.02931182959573,
+                    14.55154145087669
+                ]
+            },
+            "properties": {
+                "buildingName": "One Ayala",
+                "phone": "(02) 8779 6540",
+                "address": "No.1 Ayala Avenue, Makati",
+                "city": "Makati",
+                "link": "/makati-office-space/one-ayala/",
+                "coords": [121.02931182959573, 14.55154145087669]
             }
         },
         {

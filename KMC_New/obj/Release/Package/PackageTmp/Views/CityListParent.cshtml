@@ -2,19 +2,16 @@
 @using ContentModels = Umbraco.Web.PublishedModels;
 @using Umbraco.Web
 
-@{
-    @*This is the Locations page (View All Locations)*@
-    Layout = "master.cshtml";
-    var selection = Model.Ancestor("home");
-    var home = (Home)selection;
-}
+@{ @*This is the Locations page (View All Locations)*@ Layout = "master.cshtml";
+            var selection = Model.Ancestor("home");
+            var home = (Home)selection; }
 
 @section Header{
-     @*Mapbox*@
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.0/mapbox-gl.css' rel='stylesheet'/>
+    @*Mapbox*@
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.0/mapbox-gl.css' rel='stylesheet' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.0/mapbox-gl.js'></script>
 }
-  
+
 <div class="container-fluid p-0">
     <!-- NEW MAP -->
     <div class="row" id="map-style">
@@ -25,20 +22,46 @@
             <h2 class="text-semibold" style="font-size: 1rem;">Coworking Space &amp; Private Offices in Metro-Manila, Cebu, Clark &amp; Iloilo</h2>
         </div>
 
-        <div class="col-lg-4 col-md-6 col-sm-5 col-5 text-white listings" id="listings">
+        <div class="col-lg-4 col-md-6 col-sm-5 col-12 text-white listings d-none d-md-block" id="listings">
             <div class="m-auto desktop-view" id="map-title-and-text">
                 <h1 class="text-extrabold text-orange">Office Space in the Philippines</h1>
                 <h2 class="text-semibold" style="font-size: 1rem;">Coworking Space &amp; Private Offices in Metro-Manila, Cebu, Clark &amp; Iloilo</h2>
-                <div class="spacer-sm"></div>
+                <div class="spacer-sm d-none d-md-block"></div>
             </div>
         </div>
+       
 
-        <div class="col-lg-8 col-md-6 col-sm-7 col-7 mx-auto"
+        <div class="col-12 d-block d-md-none bg-primary">
+            <div class="m-2">
+                <select id="cityList" class="form-control">
+                    <option value="Makati">Makati</option>
+                    <option value="BGC">BGC</option>
+                    <option value="Ortigas">Ortigas</option>
+                    <option value="Mandaluyong">Mandaluyong</option>
+                    <option value="Alabang">Alabang</option>
+                    <option value="Pasay">Pasay</option>
+                    <option value="Clark">Clark</option>
+                    <option value="Cebu">Cebu</option>
+                    <option value="Iloilo">Iloilo</option>
+                </select>
+
+                <div id="buildingList" class="p-0 mt-2">
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="col-lg-8 col-md-6 col-sm-7 col-7 mx-auto d-none d-md-block"
              style="background: #eee; padding: 0">
 
             <!-- Where the map is displayed -->
             <div class="map" id="map" style="height: 90vh;"></div>
         </div>
+
+
 
 
     </div>
@@ -48,4 +71,5 @@
 @section Scripts{
     <script src="~/Scripts/custom/map.js"></script>
     <script src="~/Scripts/custom/modal-script.es5.min.js"></script>
+    <script src="~/Scripts/custom/new_map.js"></script>
 }

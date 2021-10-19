@@ -1,14 +1,13 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.CommunityEventSpaces>
 @using ContentModels = Umbraco.Web.PublishedModels;
-@{
-    Layout = "master.cshtml";
+@{ Layout = "master.cshtml";
 
-    var selection = Umbraco.Content(Guid.Parse("02eee460-950f-4610-a8b1-b516aa54e706"))
-    .Children("event")
-    .Where(x => x.IsVisible())
-    .OrderByDescending(x => x.Value<DateTime>("eventDateFrom"));
-}
+                var selection = Umbraco.Content(Guid.Parse("02eee460-950f-4610-a8b1-b516aa54e706"))
+                .Children("event")
+                .Where(x => x.IsVisible())
+                .OrderByDescending(x => x.Value<DateTime>("eventDateFrom")); }
 
+<p>@Model.PageTitle</p>
 <div class="container-fluid" id="aboveTheFold"
      style="background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
             url('@Model.AboveTheFoldCol1BgImage.Url');
@@ -31,59 +30,53 @@
                 <h3 class="text-semibold text-white text-center mb-3">
                     Featured Event
                 </h3>
-                @{
-                    <!--Insert event poster carousel here -->
-                    <div class="owl-carousel owl-theme" id="event_carousel">
+                @{ <!--Insert event poster carousel here -->
+                                            <div class="owl-carousel owl-theme" id="event_carousel">
 
-                        <!-- Events Sorted by Event Date -->
-                        @{
-                            int count_carousel = 0;
-                        }
+                                                <!-- Events Sorted by Event Date -->
+                                                @{ int count_carousel = 0; }
 
-                        @foreach (var item in selection.OrderBy(x => x.Value("eventDateFrom")))
-                        {
-                            if (item.IsDocumentType("event"))
-                            {
-                                var eventPage = (Event)item;
+                                                @foreach (var item in selection.OrderBy(x => x.Value("eventDateFrom")))
+                                                {
+                                                    if (item.IsDocumentType("event"))
+                                                    {
+                                                        var eventPage = (Event)item;
 
-                                if (count_carousel >= 3)
-                                {
-                                    break;
-                                }
+                                                        if (count_carousel >= 3)
+                                                        {
+                                                            break;
+                                                        }
 
-                                else
-                                if (eventPage.EventDateFrom.Date >= DateTime.Now.Date && eventPage.EventDateTo.Date >= DateTime.Now.Date && eventPage.EventPoster != null)
-                                {
-                                    if (eventPage.Value<bool>("redirectToHubspotLandingPage"))
-                                    {
-                                        <div class="container item">
-                                            <a href="@eventPage.LandingPageLink" target="_blank">
-                                                <img class="img-fluid img-style owl-lazy"
-                                                     data-src="@eventPage.EventPoster.Url"
-                                                     alt="@eventPage.EventPosterAltTag"
-                                                     title="@eventPage.EventPosterAltTag" />
-                                            </a>
-                                        </div>
-                                        count_carousel++;
-                                    }
+                                                        else
+                                                        if (eventPage.EventDateFrom.Date >= DateTime.Now.Date && eventPage.EventDateTo.Date >= DateTime.Now.Date && eventPage.EventPoster != null)
+                                                        {
+                                                            if (eventPage.Value<bool>("redirectToHubspotLandingPage"))
+                                                            {
+                                    <div class="container item">
+                                        <a href="@eventPage.LandingPageLink" target="_blank">
+                                            <img class="img-fluid img-style owl-lazy"
+                                                 data-src="@eventPage.EventPoster.Url"
+                                                 alt="@eventPage.EventPosterAltTag"
+                                                 title="@eventPage.EventPosterAltTag" />
+                                        </a>
+                                    </div> count_carousel++;
+                                                            }
 
-                                    else
-                                    {
-                                        <div class="container item">
-                                            <a href="@eventPage.Url">
-                                                <img class="img-fluid img-style owl-lazy"
-                                                     data-src="@eventPage.EventPoster.Url"
-                                                     alt="@eventPage.EventPosterAltTag"
-                                                     title="@eventPage.EventPosterAltTag" />
-                                            </a>
-                                        </div>
-                                        count_carousel++;
-                                    }
-                                }
-                            }
-                        }
-                    </div>
-                }
+                                                            else
+                                                            {
+                                    <div class="container item">
+                                        <a href="@eventPage.Url">
+                                            <img class="img-fluid img-style owl-lazy"
+                                                 data-src="@eventPage.EventPoster.Url"
+                                                 alt="@eventPage.EventPosterAltTag"
+                                                 title="@eventPage.EventPosterAltTag" />
+                                        </a>
+                                    </div>count_carousel++;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            </div> }
             </div>
         </div>
     </div>
@@ -234,16 +227,14 @@
     </div>
 </div>
 
-@{
-    if (Model.Value<bool>("displayFeaturedVideo"))
-    {
-        <!--Featured Video is Optional-->
-        <div class="container-fluid" id="featured-event-video">
-            <div class="container">
-                @Html.Raw(Model.FeaturedVideoHeading)
-                <div class="orange-divider-2px"></div>
-                <div class="container center-items-justify"
-                     style="background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+@{ if (Model.Value<bool>("displayFeaturedVideo"))
+                { <!--Featured Video is Optional-->
+                    <div class="container-fluid" id="featured-event-video">
+                        <div class="container">
+                            @Html.Raw(Model.FeaturedVideoHeading)
+                            <div class="orange-divider-2px"></div>
+                            <div class="container center-items-justify"
+                                 style="background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
                         url('@Model.FeaturedVideoImage.Url');
                         background-repeat: no-repeat;
                         background-size: cover;
@@ -252,36 +243,32 @@
                         min-height: 500px;
                         padding: 20px;">
 
-                    <button class="video-btn"
-                            data-toggle="modal"
-                            data-src="@Model.FeaturedVideoLink"
-                            data-target="#videoModal">
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!--Modal Code-->
-        <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="video-targetCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-
-                <div class="modal-content">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-
-                    <div class="modal-body">
-                        <!-- 16:9 aspect ratio -->
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always" allow="autoplay"></iframe>
+                                <button class="video-btn"
+                                        data-toggle="modal"
+                                        data-src="@Model.FeaturedVideoLink"
+                                        data-target="#videoModal">
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </div> <!--Modal Code-->
+                                                    <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="video-targetCenterTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 
-            </div>
-        </div>
-    }
-}
+                                                            <div class="modal-content">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+
+                                                                <div class="modal-body">
+                                                                    <!-- 16:9 aspect ratio -->
+                                                                    <div class="embed-responsive embed-responsive-16by9">
+                                                                        <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always" allow="autoplay"></iframe>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div> } }
 
 <div class="container-fluid pt-0" id="function-rooms">
     <div class="container">

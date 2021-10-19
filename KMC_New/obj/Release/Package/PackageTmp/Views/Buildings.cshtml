@@ -17,6 +17,13 @@
                 <div class="overview-section1 mb-3">
                     <h1 class="text-extrabold building-name-style">@Model.BuildingName, @cities.NavigationItemName</h1>
                     <p>@Model.BuildingAddress</p>
+                    @if (Model.Value("TelephoneNumber").ToString() == "")
+                    {
+                        <p><a href="tel:+63287796540">(+632) 8779-6540</a></p> }
+                    else
+                    {
+                        <p><a href="tel:@Model.Value("TelephoneNumber").ToString().Replace("(", "").Replace(")", "").Replace(" ", "").Replace("-","")">@Model.Value("TelephoneNumber")</a></p>
+                    }
                     <a href="/coworking-locations">View All Coworking Spaces</a>
                     <div class="spacer-sm"></div>
 
@@ -249,6 +256,14 @@
         <div class="overview-section1">
             <h1 class="text-extrabold building-name-style">@Model.BuildingName, @cities.NavigationItemName</h1>
             <p>@Model.BuildingAddress</p>
+            @if (Model.Value("TelephoneNumber").ToString() == "")
+            {
+                <p><a href="tel:+63287796540">(+632) 8779-6540</a></p> }
+            else
+            {
+                <p><a href="tel:@Model.Value("TelephoneNumber").ToString().Replace("(", "").Replace(")", "").Replace(" ", "").Replace("-","")">@Model.Value("TelephoneNumber")</a></p>
+            }
+            <a href="/coworking-locations">View All Coworking Spaces</a>
         </div>
     </div>
 

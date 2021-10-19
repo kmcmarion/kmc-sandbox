@@ -1,0 +1,115 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+<head>
+    <style>
+        .core-values-wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .core-values-wrapper a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .section-sub-title {
+            grid-column: 1/3;
+        }
+
+        .section-title {
+            grid-column: 1/3;
+        }
+
+        .section-text {
+            grid-column: 1;
+        }
+
+        .section-image {
+            grid-column: 2/2;
+            justify-self: end;
+        }
+
+        .control-buttons {
+            grid-column: 1/3;
+        }
+
+        .section-nav {
+            grid-column: 1/3;
+            display: flex;
+            align-items: center;
+            align-content: center;
+            flex-grow: 1;
+            justify-content: space-between;
+
+            font-weight: bolder;
+            color: #000;
+        }
+
+        .active-item {
+            color: #f99d3a !important;
+        }
+
+        .section-nav a:hover {
+            color: #f99d3a;
+        }
+
+        .active-item {
+            color: #f99d3a !important;
+        }
+
+        .control-buttons a {
+            font-size: 3em;
+            color: gray;
+        }
+
+        .control-buttons a:hover {
+            color: #f99d3a;
+        }
+
+        #mobileView {
+            display: none;
+        }
+
+        @@media(max-width: 768px) {
+            .core-values-wrapper {
+                display: none;
+            }
+
+            #mobileView {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<div class="core-values-wrapper container">
+    <p class="section-sub-title">CORE VALUES</p>
+    <h1 class="section-title">Enhance Everything</h1>
+    <p class="section-text">We strive to seek constant improvement and growth within ourselves every day, putting in passion and optimism in the work that we do. By enhancing ourselves through our health, mind, and body, we also strive in prioritizing the overall wellness of our inclusive community — welcoming all genders, races, and people from all walks of life.</p>
+    <img class="section-image" src="/media/lvcjevrc/astro_landing_1.png" alt="">
+
+    <div class="control-buttons">
+        <a href="javascript:void(0)" id="carouselPrev">&lt;</a>
+        <a href="javascript:void(0)" id="carouselNext">&gt;</a>
+    </div>
+
+    <div class="section-nav">
+        <a href="javascript:void(0)" class="active-item nav-item-1">01 Enhance Everything</a>
+        <a href="javascript:void(0)" class="nav-item-2">02 It's Everyone's Problem</a>
+        <a href="javascript:void(0)" class="nav-item-3">03 We Eat, Drink, Sleep Flexibility</a>
+        <a href="javascript:void(0)" class="nav-item-4">04 Anticipate the Future</a>
+    </div>
+</div>
+
+<div id="mobileView" class="container">
+    <p class="section-sub-title">CORE VALUES</p>
+    <h1 class="section-title">01 Enhance Everything</h1>
+    <p class="section-text">We strive to seek constant improvement and growth within ourselves every day, putting in passion and optimism in the work that we do. By enhancing ourselves through our health, mind, and body, we also strive in prioritizing the overall wellness of our inclusive community — welcoming all genders, races, and people from all walks of life.</p>
+
+    <h1 class="section-title">02 It's Everyone's Problem</h1>
+    <p class="section-text">We avoid finger-pointing and take accountability as a team, with everyone working towards the common goal of coming up with a solution. This extends outside the office, and helps in creating an environment that fosters both collaboration and compassion with employees and clients, within the community, and our surroundings.</p>
+
+    <h1 class="section-title">03 We Eat, Drink, Sleep Flexibility</h1>
+    <p class="section-text">We are constantly looking for ways to make things easier for our clients, people and other stakeholders. We stay agile, versatile, and think outside the box to come up with the best solutions that help them lead a flexible life.</p>
+
+    <h1 class="section-title">04 Anticipate the Future</h1>
+    <p class="section-text">We are continuously anticipating our clients’ future needs to find new ways that ensure they have the best experience with us. By taking chances, we strive to be forward thinking leaders in our industry that continue to create more innovative solutions that make things easier for everybody.</p>
+</div>

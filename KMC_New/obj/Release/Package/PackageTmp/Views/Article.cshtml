@@ -7,6 +7,35 @@
         .Where(x => x.IsDocumentType("article"));
 }
 
+<head>
+    @* If there is already a structuredData existing for the previous blog entries *@
+    @if( Model.StructuredData == "" )
+    {
+        <script type="application/ld+json">
+        {
+            "@@context" : "http://schema.org",
+            "@@type" : "Article",
+            "name" : "@Model.Value("pageTitle")",
+            "author" : {
+                "@@type" : "Person",
+                "name" : "@Model.Value("articleAuthor")"
+            },
+            "datePublished" : "@Model.ArticlePublishedDate.ToShortDateString()",
+            "image" : "https://kmc.solutions@(Model.OgImage.Url)",
+            "articleSection" : "@Model.Value("articleSummary")",
+            "publisher" : {
+                "@@type" : "Organization",
+                "name" : "KMC Solutions",
+                "url" : "https://kmc.solutions/"
+            },
+            "url" : "@Request.Url.AbsoluteUri",
+            "logo": "https://kmc.solutions/media/aikesh01/kmc-solutions.png",
+            "headline" : "@Model.Value("pageTitle")"
+        }
+        </script>
+    }
+</head>
+
 <div class="container-fluid">
     <div class="container">
         <div class="row">

@@ -3,6 +3,7 @@
 @{
     var homeSelection = Model.Ancestor("home");
     var home = (Home)homeSelection;
+    //var param1 = ViewData["Param1"];
 }
 
 @{
@@ -11,6 +12,8 @@
         if (selection.IsDocumentType("virtualOffices"))
         {
             var virtualPackage = (VirtualOffices)selection;
+            
+            <h1>@Model.Value("hubID")</h1>
 
             <div class="container-fluid" style="background: #000 url(@virtualPackage.FeaturedLocationDivBgTexture.Url);">
                 <div class="container">
@@ -34,7 +37,7 @@
                                             <div class="spacer-md"></div>
                                             <div class="card-text">@Html.Raw(virtualPackage.BasicPackageInclusions)</div>
 
-                                            <a href="https://kmc.solutions/hub/s/virtual-office?book-now=true" class="btn btn-primary w-100 mt-auto">Get Now</a>
+                                            <a href="@(Model.Value("hubID"))" class="btn btn-primary w-100 mt-auto">Get Now</a>
                                         </div>
 
                                     </div>

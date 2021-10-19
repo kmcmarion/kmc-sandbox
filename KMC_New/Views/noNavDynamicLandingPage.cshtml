@@ -18,6 +18,18 @@
     {
         switch (child.ContentType.Alias)
         {
+            case "headerImage":
+                var contentHeaderImage = (ContentModels.HeaderImage)child;
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <img src="@contentHeaderImage.BgImage.Url"
+                                 alt="@child.Name"
+                                 style="width: 100%" />
+                        </div>
+                    </div>
+                </div>
+                break;
             case "heroBanner":
                 var content = (ContentModels.HeroBanner)child;
                 <div class="pt-0 mb-3">
@@ -58,13 +70,13 @@
                 break;
             case "centerTitle":
                 var centerTitleContent = (ContentModels.CenterTitle)child;
-                <div class="container text-center pt-5">
+                <div class="container text-center">
                     @Html.Raw(centerTitleContent.TitleText)
                 </div>
                 break;
             case "twoColumnSection":
                 var twoColumnContent = (ContentModels.TwoColumnSection)child;
-                <div class="container two-column-content lp-section">
+                <div class="container lp-section">
                     @if (!string.IsNullOrEmpty(twoColumnContent.CenterTitle.ToString()))
                     {
                         <div class="text-center py-5">
@@ -197,7 +209,7 @@
             case "testimonialSection":
                 var testiContent = (ContentModels.TestimonialSection)child;
                 <div class="container testimonial-section lp-section">
-                    <div class="pt-5 pb-5">
+                    <div class="">
                         @Html.Raw(testiContent.TitleText)
                     </div>
                     <div class="owl-carousel owl-theme testimonial-carousel">
@@ -577,7 +589,7 @@
                 break;
             case "twoColumnSectionBothRichText":
                 var twoColumnRCContent = (ContentModels.TwoColumnSectionBothRichText)child;
-                <div id="speakersSection" class="container two-column-content lp-section">
+                <div id="speakersSection" class="container lp-section">
                     @if (!string.IsNullOrEmpty(twoColumnRCContent.CenterTitle.ToString()))
                     {
                         <div class="text-center">
@@ -601,11 +613,17 @@
     }
 }
 
-
-
-
+@*Custom Content*@
+@if (Model.PageTitle == "Career Ads - Marketing")
+{
+    @Html.Partial("~/Views/Partials/Landing Page/Career Ads Our Vision.cshtml")
+    @Html.Partial("~/Views/Partials/Landing Page/Open Positions.cshtml")
+}
 
 @section Scripts{
     <script defer src="~/Scripts/custom/homepagescripts.es5.min.js"></script>
     <script defer src="~/Scripts/custom/countdownTimer.js"></script>
+    <script defer src="~/Scripts/custom/career-ads-our-vision.js"></script>
+    <script defer src="~/Scripts/custom/job-ads-carousel.js"></script>
+    <script defer src="~/Scripts/custom/careers-open-position.js"></script>
 }
